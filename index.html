@@ -190,8 +190,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2021-10-28 08:46:12" itemprop="dateCreated datePublished" datetime="2021-10-28T08:46:12+08:00">2021-10-28</time>
+              <time title="创建时间：2021-10-28 08:46:12 / 修改时间：08:48:05" itemprop="dateCreated datePublished" datetime="2021-10-28T08:46:12+08:00">2021-10-28</time>
             </span>
 
           
@@ -205,7 +206,55 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <p>一个 ZIP 文件由三个部分组成：</p>
+<pre><code>    压缩源文件数据区+压缩源文件目录区+压缩源文件目录结束标志
+
+1、压缩源文件数据区
+
+在这个数据区中每一个压缩的源文件/目录都是一条记录，记录的格式如下：
+  
+
+   [文件头+ 文件数据 + 数据描述符]
+
+   a、文件头结构
+
+     组成    　                长度
+  文件头标记                  4 bytes  (0x04034b50)
+  解压文件所需 pkware 版本    2 bytes
+  全局方式位标记              2 bytes
+</code></pre>
+<p>  　　压缩方式                    2 bytes<br>  　　最后修改文件时间             2 bytes<br> 　　 最后修改文件日期             2 bytes<br> 　　 CRC-32校验                  4 bytes<br> 　 　压缩后尺寸                  4 bytes<br> 　 　未压缩尺寸                  4 bytes<br> 　　 文件名长度                  2 bytes</p>
+<pre><code>  扩展记录长度                2 bytes
+</code></pre>
+<p> 　　 文件名                     （不定长度）<br> 　　 扩展字段                   （不定长度）</p>
+<pre><code>    b、文件数据
+
+   
+
+    c、数据描述符
+</code></pre>
+<p> 　　　组成    　长度<br>  　　CRC-32校验                  4 bytes<br>  　　压缩后尺寸                   4 bytes<br> 　 　未压缩尺寸                   4 bytes</p>
+<pre><code>  这个数据描述符只在全局方式位标记的第３位设为１时才存在（见后详解），紧接在压缩数据的最后一个字节后。这个数据描述符只用在不能对输出的 ZIP 文件进行检索时使用。例如：在一个不能检索的驱动器（如：磁带机上）上的 ZIP 文件中。如果是磁盘上的ZIP文件一般没有这个数据描述符。
+
+ 2、压缩源文件目录区
+
+ 在这个数据区中每一条纪录对应在压缩源文件数据区中的一条数据
+</code></pre>
+<p>   　　　组成               　            长度<br>    　　目录中文件文件头标记             4 bytes  (0x02014b50)<br>    　　压缩使用的　pkware 版本          2 bytes<br>    　　解压文件所需 pkware 版本         2 bytes<br>    　　全局方式位标记                   2 bytes<br>    　　压缩方式                        2 bytes<br>    　　最后修改文件时间                 2 bytes<br>    　　最后修改文件日期                 2 bytes<br>    　　ＣＲＣ－３２校验                 4 bytes<br>    　　压缩后尺寸                      4 bytes<br>    　　未压缩尺寸                      4 bytes<br>    　　文件名长度                      2 bytes<br>    　　扩展字段长度                    2 bytes<br>    　　文件注释长度                    2 bytes<br>    　　磁盘开始号                      2 bytes<br>    　　内部文件属性                    2 bytes<br>    　　外部文件属性                    4 bytes<br>        局部头部偏移量                  4 bytes<br>    　　文件名                       （不定长度）<br>    　　扩展字段                     （不定长度）<br>        文件注释                     （不定长度）<br>    3、压缩源文件目录结束标志</p>
+<pre><code>　　　组成               　          长度
+    目录结束标记                    4 bytes  (0x02014b50)
+    当前磁盘编号                    2 bytes
+    目录区开始磁盘编号              2 bytes
+　　本磁盘上纪录总数                 2 bytes
+　　目录区中纪录总数                 2 bytes
+　　目录区尺寸大小                   4 bytes
+　　目录区对第一张磁盘的偏移量        4 bytes
+　　ZIP 文件注释长度                 2 bytes
+　　ZIP 文件注释                   （不定长度）
+　　
+</code></pre>
+<p><strong>转自：<a target="_blank" rel="noopener" href="https://blog.csdn.net/wclxyn/article/details/7288994">https://blog.csdn.net/wclxyn/article/details/7288994</a></strong></p>
+
       
     </div>
 
