@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"ttwsyyds.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="一个 ZIP 文件由三个部分组成：     压缩源文件数据区+压缩源文件目录区+压缩源文件目录结束标志  1、压缩源文件数据区  在这个数据区中每一个压缩的源文件&#x2F;目录都是一条记录，记录的格式如下：        [文件头+ 文件数据 + 数据描述符]     a、文件头结构       组成    　                长度   文件头标记                  4 b">
+  <meta name="description" content="base64脚本12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849base64 &#x3D; &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+&#x2F;&quot;path &#x3D; input(&amp;quot">
 <meta property="og:type" content="article">
-<meta property="og:title" content="zip原理">
-<meta property="og:url" content="http://ttwsyyds.top/2021/10/28/zip%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:title" content="base64脚本">
+<meta property="og:url" content="http://ttwsyyds.top/2021/10/28/base64%E8%84%9A%E6%9C%AC/index.html">
 <meta property="og:site_name" content="zjh博客">
-<meta property="og:description" content="一个 ZIP 文件由三个部分组成：     压缩源文件数据区+压缩源文件目录区+压缩源文件目录结束标志  1、压缩源文件数据区  在这个数据区中每一个压缩的源文件&#x2F;目录都是一条记录，记录的格式如下：        [文件头+ 文件数据 + 数据描述符]     a、文件头结构       组成    　                长度   文件头标记                  4 b">
+<meta property="og:description" content="base64脚本12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849base64 &#x3D; &quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+&#x2F;&quot;path &#x3D; input(&amp;quot">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-10-28T00:43:06.000Z">
-<meta property="article:modified_time" content="2021-10-28T07:18:32.625Z">
+<meta property="article:published_time" content="2021-10-28T01:15:31.000Z">
+<meta property="article:modified_time" content="2021-10-28T07:32:42.704Z">
 <meta property="article:author" content="郑佳杭">
-<meta property="article:tag" content="CTF-MISC">
+<meta property="article:tag" content="CTF—MISC">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://ttwsyyds.top/2021/10/28/zip%E5%8E%9F%E7%90%86/">
+<link rel="canonical" href="http://ttwsyyds.top/2021/10/28/base64%E8%84%9A%E6%9C%AC/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>zip原理 | zjh博客</title>
+  <title>base64脚本 | zjh博客</title>
   
 
 
@@ -171,7 +171,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://ttwsyyds.top/2021/10/28/zip%E5%8E%9F%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="http://ttwsyyds.top/2021/10/28/base64%E8%84%9A%E6%9C%AC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -184,7 +184,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          zip原理
+          base64脚本
         </h1>
 
         <div class="post-meta">
@@ -195,7 +195,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2021-10-28 08:43:06 / 修改时间：15:18:32" itemprop="dateCreated datePublished" datetime="2021-10-28T08:43:06+08:00">2021-10-28</time>
+              <time title="创建时间：2021-10-28 09:15:31 / 修改时间：15:32:42" itemprop="dateCreated datePublished" datetime="2021-10-28T09:15:31+08:00">2021-10-28</time>
             </span>
 
           
@@ -209,54 +209,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p> 一个 ZIP 文件由三个部分组成：</p>
-<pre><code>    压缩源文件数据区+压缩源文件目录区+压缩源文件目录结束标志
-
-1、压缩源文件数据区
-
-在这个数据区中每一个压缩的源文件/目录都是一条记录，记录的格式如下：
-  
-
-   [文件头+ 文件数据 + 数据描述符]
-
-   a、文件头结构
-
-     组成    　                长度
-  文件头标记                  4 bytes  (0x04034b50)
-  解压文件所需 pkware 版本    2 bytes
-  全局方式位标记              2 bytes
-</code></pre>
-<p>  　　压缩方式                    2 bytes<br>  　　最后修改文件时间             2 bytes<br> 　　 最后修改文件日期             2 bytes<br> 　　 CRC-32校验                  4 bytes<br> 　 　压缩后尺寸                  4 bytes<br> 　 　未压缩尺寸                  4 bytes<br> 　　 文件名长度                  2 bytes</p>
-<pre><code>  扩展记录长度                2 bytes
-</code></pre>
-<p> 　　 文件名                     （不定长度）<br> 　　 扩展字段                   （不定长度）</p>
-<pre><code>    b、文件数据
-
-   
-
-    c、数据描述符
-</code></pre>
-<p> 　　　组成    　长度<br>  　　CRC-32校验                  4 bytes<br>  　　压缩后尺寸                   4 bytes<br> 　 　未压缩尺寸                   4 bytes</p>
-<pre><code>  这个数据描述符只在全局方式位标记的第３位设为１时才存在（见后详解），紧接在压缩数据的最后一个字节后。这个数据描述符只用在不能对输出的 ZIP 文件进行检索时使用。例如：在一个不能检索的驱动器（如：磁带机上）上的 ZIP 文件中。如果是磁盘上的ZIP文件一般没有这个数据描述符。
-
- 2、压缩源文件目录区
-
- 在这个数据区中每一条纪录对应在压缩源文件数据区中的一条数据
-</code></pre>
-<p>   　　　组成               　            长度<br>    　　目录中文件文件头标记             4 bytes  (0x02014b50)<br>    　　压缩使用的　pkware 版本          2 bytes<br>    　　解压文件所需 pkware 版本         2 bytes<br>    　　全局方式位标记                   2 bytes<br>    　　压缩方式                        2 bytes<br>    　　最后修改文件时间                 2 bytes<br>    　　最后修改文件日期                 2 bytes<br>    　　ＣＲＣ－３２校验                 4 bytes<br>    　　压缩后尺寸                      4 bytes<br>    　　未压缩尺寸                      4 bytes<br>    　　文件名长度                      2 bytes<br>    　　扩展字段长度                    2 bytes<br>    　　文件注释长度                    2 bytes<br>    　　磁盘开始号                      2 bytes<br>    　　内部文件属性                    2 bytes<br>    　　外部文件属性                    4 bytes<br>        局部头部偏移量                  4 bytes<br>    　　文件名                       （不定长度）<br>    　　扩展字段                     （不定长度）<br>        文件注释                     （不定长度）<br>    3、压缩源文件目录结束标志</p>
-<pre><code>　　　组成               　          长度
-    目录结束标记                    4 bytes  (0x02014b50)
-    当前磁盘编号                    2 bytes
-    目录区开始磁盘编号              2 bytes
-　　本磁盘上纪录总数                 2 bytes
-　　目录区中纪录总数                 2 bytes
-　　目录区尺寸大小                   4 bytes
-　　目录区对第一张磁盘的偏移量        4 bytes
-　　ZIP 文件注释长度                 2 bytes
-　　ZIP 文件注释                   （不定长度）
-　　
-</code></pre>
-<p><strong>转自：<a target="_blank" rel="noopener" href="https://blog.csdn.net/wclxyn/article/details/7288994">https://blog.csdn.net/wclxyn/article/details/7288994</a></strong></p>
+        <h2 id="base64脚本"><a href="#base64脚本" class="headerlink" title="base64脚本"></a><strong>base64脚本</strong></h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">base64 = <span class="string">&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;</span></span><br><span class="line">path = <span class="built_in">input</span>(<span class="string">&quot;path&quot;</span>)   <span class="comment">#读取文件的位置</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">change</span>(<span class="params">string_test</span>) :</span></span><br><span class="line">    strings_ans = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> every <span class="keyword">in</span> string_test :</span><br><span class="line">        bin_num = <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="keyword">if</span> every == <span class="string">&quot;=&quot;</span> :</span><br><span class="line">            <span class="keyword">return</span> strings_ans</span><br><span class="line">        <span class="keyword">else</span> :</span><br><span class="line">            num = base64.find(every)</span><br><span class="line">            <span class="keyword">while</span> num != <span class="number">0</span> :</span><br><span class="line">                bin_num += <span class="built_in">str</span>(num%<span class="number">2</span>)</span><br><span class="line">                num = <span class="built_in">int</span>(num/<span class="number">2</span>)</span><br><span class="line">            <span class="keyword">while</span> <span class="built_in">len</span>(bin_num) &lt;<span class="number">6</span> :</span><br><span class="line">                bin_num += <span class="string">&quot;0&quot;</span></span><br><span class="line">            bin_num = bin_num[::-<span class="number">1</span>]</span><br><span class="line">        strings_ans += bin_num</span><br><span class="line">    <span class="keyword">return</span> strings_ans</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">answer</span>(<span class="params">strings_last</span>) :</span></span><br><span class="line">    ans = <span class="string">&quot;&quot;</span></span><br><span class="line">    strings_temp = change(strings_last)</span><br><span class="line">    <span class="keyword">if</span> strings_last.count(<span class="string">&#x27;=&#x27;</span>) == <span class="number">1</span> :</span><br><span class="line">        ans += strings_temp[-<span class="number">2</span>:]</span><br><span class="line">    <span class="keyword">else</span> :</span><br><span class="line">        ans += strings_temp[-<span class="number">4</span>:]</span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(path + <span class="string">&quot;\\&quot;</span> + <span class="string">&quot;stego.txt&quot;</span>,<span class="string">&quot;r&quot;</span>) <span class="keyword">as</span> in_file :   <span class="comment">#输入文件的名称</span></span><br><span class="line">    strings_first = in_file.readlines()</span><br><span class="line">    strings = []</span><br><span class="line">    <span class="keyword">for</span> every_strings <span class="keyword">in</span> strings_first :</span><br><span class="line">        <span class="keyword">if</span> every_strings[-<span class="number">2</span>] ==<span class="string">&quot;=&quot;</span> :</span><br><span class="line">            strings.append(every_strings)</span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(path + <span class="string">&quot;\\&quot;</span> + <span class="string">&quot;out.txt&quot;</span>,<span class="string">&quot;w&quot;</span>) <span class="keyword">as</span> out_file :    <span class="comment">#输出文件的名称</span></span><br><span class="line">    ans = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> strings :</span><br><span class="line">        ans += answer(line)</span><br><span class="line">    num = <span class="number">0</span></span><br><span class="line">    list_num = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(ans)) :</span><br><span class="line">        num = num*<span class="number">2</span>+<span class="built_in">int</span>(ans[i])</span><br><span class="line">        <span class="keyword">if</span> (i+<span class="number">1</span>)%<span class="number">8</span> == <span class="number">0</span> :</span><br><span class="line">            list_num.append(num)</span><br><span class="line">            num = <span class="number">0</span></span><br><span class="line">    ans = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> list_num :</span><br><span class="line">        ans += <span class="built_in">chr</span>(i)</span><br><span class="line">    out_file.write(ans)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>————————————————<br>转自：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_30445397/article/details/104407338">https://blog.csdn.net/qq_30445397/article/details/104407338</a></p>
 
     </div>
 
@@ -276,7 +230,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/CTF-MISC/" rel="tag"># CTF-MISC</a>
+              <a href="/tags/CTF%E2%80%94MISC/" rel="tag"># CTF—MISC</a>
           </div>
 
         
@@ -285,13 +239,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/10/25/markdown%E7%94%A8%E6%B3%95/" rel="prev" title="我的第一篇博客">
-      <i class="fa fa-chevron-left"></i> 我的第一篇博客
+    <a href="/2021/10/28/zip/" rel="prev" title="zip">
+      <i class="fa fa-chevron-left"></i> zip
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2021/10/28/zip/" rel="next" title="zip">
-      zip <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -350,6 +301,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#base64%E8%84%9A%E6%9C%AC"><span class="nav-number">1.</span> <span class="nav-text">base64脚本</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
