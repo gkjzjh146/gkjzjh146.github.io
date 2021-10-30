@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ttwsyyds.top","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="-- codeing &#x3D; utf-8 --from bs4 import BeautifulSoup  # 网页解析，获取数据import re  # 正则表达式，进行文字匹配&#96;import urllib.request, urllib.error  # 制定URL，获取网页数据import xlwt  # 进行excel操作#import sqlite3  # 进行SQLite数据库操作 fin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="爬虫例子1——转载">
+<meta property="og:url" content="http://ttwsyyds.top/2021/10/30/%E7%88%AC%E8%99%AB%E4%BE%8B%E5%AD%901%E2%80%94%E2%80%94%E8%BD%AC%E8%BD%BD/index.html">
+<meta property="og:site_name" content="zjh博客">
+<meta property="og:description" content="-- codeing &#x3D; utf-8 --from bs4 import BeautifulSoup  # 网页解析，获取数据import re  # 正则表达式，进行文字匹配&#96;import urllib.request, urllib.error  # 制定URL，获取网页数据import xlwt  # 进行excel操作#import sqlite3  # 进行SQLite数据库操作 fin">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-30T06:58:41.000Z">
+<meta property="article:modified_time" content="2021-10-30T07:00:42.719Z">
+<meta property="article:author" content="郑佳杭">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://ttwsyyds.top/2021/10/30/%E7%88%AC%E8%99%AB%E4%BE%8B%E5%AD%901%E2%80%94%E2%80%94%E8%BD%AC%E8%BD%BD/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>爬虫例子1——转载 | zjh博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  
+  <script type="text/javascript"
+  color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">zjh博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录生活点点滴滴</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="tags fa-fw"></i>标签<span class="badge">0</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="th fa-fw"></i>分类<span class="badge">1</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="archive fa-fw"></i>归档<span class="badge">6</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ttwsyyds.top/2021/10/30/%E7%88%AC%E8%99%AB%E4%BE%8B%E5%AD%901%E2%80%94%E2%80%94%E8%BD%AC%E8%BD%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="郑佳杭">
+      <meta itemprop="description" content="好好学习，天天向上">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zjh博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          爬虫例子1——转载
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-10-30 14:58:41 / 修改时间：15:00:42" itemprop="dateCreated datePublished" datetime="2021-10-30T14:58:41+08:00">2021-10-30</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="codeing-utf-8"><a href="#codeing-utf-8" class="headerlink" title="-- codeing = utf-8 --"></a>-<em>- codeing = utf-8 -</em>-</h1><p>from bs4 import BeautifulSoup  # 网页解析，获取数据<br>import re  # 正则表达式，进行文字匹配`<br>import urllib.request, urllib.error  # 制定URL，获取网页数据<br>import xlwt  # 进行excel操作<br>#import sqlite3  # 进行SQLite数据库操作</p>
+<p>findLink = re.compile(r’<a href="(.*?)">‘)  # 创建正则表达式对象，标售规则   影片详情链接的规则<br>findImgSrc = re.compile(r’&lt;img.<em>src=”(.*?)”‘, re.S)<br>findTitle = re.compile(r’<span class="title">(.</em>)</span>‘)<br>findRating = re.compile(r’<span class="rating_num" property="v:average">(.<em>)</span>‘)<br>findJudge = re.compile(r’<span>(\d</em>)人评价</span>‘)<br>findInq = re.compile(r’<span class="inq">(.<em>)</span>‘)<br>findBd = re.compile(r’<p class="">(.</em>?)</p>‘, re.S)</p>
+<p>def main():<br>    baseurl = “<a target="_blank" rel="noopener" href="https://movie.douban.com/top250?start=&quot;">https://movie.douban.com/top250?start=&quot;</a>  #要爬取的网页链接<br>    # 1.爬取网页<br>    datalist = getData(baseurl)<br>    savepath = “豆瓣电影Top250.xls”    #当前目录新建XLS，存储进去<br>    # dbpath = “movie.db”              #当前目录新建数据库，存储进去<br>    # 3.保存数据<br>    saveData(datalist,savepath)      #2种存储方式可以只选择一种<br>    # saveData2DB(datalist,dbpath)</p>
+<h1 id="爬取网页"><a href="#爬取网页" class="headerlink" title="爬取网页"></a>爬取网页</h1><p>def getData(baseurl):<br>    datalist = []  #用来存储爬取的网页信息<br>    for i in range(0, 10):  # 调用获取页面信息的函数，10次<br>        url = baseurl + str(i * 25)<br>        html = askURL(url)  # 保存获取到的网页源码<br>        # 2.逐一解析数据<br>        soup = BeautifulSoup(html, “html.parser”)<br>        for item in soup.find_all(‘div’, class_=”item”):  # 查找符合要求的字符串<br>            data = []  # 保存一部电影所有信息<br>            item = str(item)<br>            link = re.findall(findLink, item)[0]  # 通过正则表达式查找<br>            data.append(link)<br>            imgSrc = re.findall(findImgSrc, item)[0]<br>            data.append(imgSrc)<br>            titles = re.findall(findTitle, item)<br>            if (len(titles) == 2):<br>                ctitle = titles[0]<br>                data.append(ctitle)<br>                otitle = titles[1].replace(“/“, “”)  #消除转义字符<br>                data.append(otitle)<br>            else:<br>                data.append(titles[0])<br>                data.append(‘ ‘)<br>            rating = re.findall(findRating, item)[0]<br>            data.append(rating)<br>            judgeNum = re.findall(findJudge, item)[0]<br>            data.append(judgeNum)<br>            inq = re.findall(findInq, item)<br>            if len(inq) != 0:<br>                inq = inq[0].replace(“。”, “”)<br>                data.append(inq)<br>            else:<br>                data.append(“ “)<br>            bd = re.findall(findBd, item)[0]<br>            bd = re.sub(‘&lt;br(\s+)?/&gt;(\s+)?’, “”, bd)<br>            bd = re.sub(‘/‘, “”, bd)<br>            data.append(bd.strip())<br>            datalist.append(data)</p>
+<pre><code>return datalist
+</code></pre>
+<h1 id="得到指定一个URL的网页内容"><a href="#得到指定一个URL的网页内容" class="headerlink" title="得到指定一个URL的网页内容"></a>得到指定一个URL的网页内容</h1><p>def askURL(url):<br>    head = {  # 模拟浏览器头部信息，向豆瓣服务器发送消息<br>        “User-Agent”: “Mozilla / 5.0(Windows NT 10.0; Win64; x64) AppleWebKit / 537.36(KHTML, like Gecko) Chrome / 80.0.3987.122  Safari / 537.36”<br>    }<br>    # 用户代理，表示告诉豆瓣服务器，我们是什么类型的机器、浏览器（本质上是告诉浏览器，我们可以接收什么水平的文件内容）</p>
+<pre><code>request = urllib.request.Request(url, headers=head)
+html = &quot;&quot;
+try:
+    response = urllib.request.urlopen(request)
+    html = response.read().decode(&quot;utf-8&quot;)
+except urllib.error.URLError as e:
+    if hasattr(e, &quot;code&quot;):
+        print(e.code)
+    if hasattr(e, &quot;reason&quot;):
+        print(e.reason)
+return html
+</code></pre>
+<h1 id="保存数据到表格"><a href="#保存数据到表格" class="headerlink" title="保存数据到表格"></a>保存数据到表格</h1><p>def saveData(datalist,savepath):<br>    print(“save…….”)<br>    book = xlwt.Workbook(encoding=”utf-8”,style_compression=0) #创建workbook对象<br>    sheet = book.add_sheet(‘豆瓣电影Top250’, cell_overwrite_ok=True) #创建工作表<br>    col = (“电影详情链接”,”图片链接”,”影片中文名”,”影片外国名”,”评分”,”评价数”,”概况”,”相关信息”)<br>    for i in range(0,8):<br>        sheet.write(0,i,col[i])  #列名<br>    for i in range(0,250):<br>        # print(“第%d条” %(i+1))       #输出语句，用来测试<br>        data = datalist[i]<br>        for j in range(0,8):<br>            sheet.write(i+1,j,data[j])  #数据<br>    book.save(savepath) #保存</p>
+<h1 id="def-saveData2DB-datalist-dbpath"><a href="#def-saveData2DB-datalist-dbpath" class="headerlink" title="def saveData2DB(datalist,dbpath):"></a>def saveData2DB(datalist,dbpath):</h1><h1 id="init-db-dbpath"><a href="#init-db-dbpath" class="headerlink" title="init_db(dbpath)"></a>init_db(dbpath)</h1><h1 id="conn-sqlite3-connect-dbpath"><a href="#conn-sqlite3-connect-dbpath" class="headerlink" title="conn = sqlite3.connect(dbpath)"></a>conn = sqlite3.connect(dbpath)</h1><h1 id="cur-conn-cursor"><a href="#cur-conn-cursor" class="headerlink" title="cur = conn.cursor()"></a>cur = conn.cursor()</h1><h1 id="for-data-in-datalist"><a href="#for-data-in-datalist" class="headerlink" title="for data in datalist:"></a>for data in datalist:</h1><h1 id="for-index-in-range-len-data"><a href="#for-index-in-range-len-data" class="headerlink" title="for index in range(len(data)):"></a>for index in range(len(data)):</h1><h1 id="if-index-4-or-index-5"><a href="#if-index-4-or-index-5" class="headerlink" title="if index == 4 or index == 5:"></a>if index == 4 or index == 5:</h1><h1 id="continue"><a href="#continue" class="headerlink" title="continue"></a>continue</h1><h1 id="data-index-‘“‘-data-index-’”‘"><a href="#data-index-‘“‘-data-index-’”‘" class="headerlink" title="data[index] = ‘“‘+data[index]+’”‘"></a>data[index] = ‘“‘+data[index]+’”‘</h1><h1 id="sql-‘’’"><a href="#sql-‘’’" class="headerlink" title="sql = ‘’’"></a>sql = ‘’’</h1><h1 id="insert-into-movie250"><a href="#insert-into-movie250" class="headerlink" title="insert into movie250("></a>insert into movie250(</h1><h1 id="info-link-pic-link-cname-ename-score-rated-instroduction-info"><a href="#info-link-pic-link-cname-ename-score-rated-instroduction-info" class="headerlink" title="info_link,pic_link,cname,ename,score,rated,instroduction,info)"></a>info_link,pic_link,cname,ename,score,rated,instroduction,info)</h1><h1 id="values-s-’’’-”-”-join-data"><a href="#values-s-’’’-”-”-join-data" class="headerlink" title="values (%s)’’’%”,”.join(data)"></a>values (%s)’’’%”,”.join(data)</h1><h1 id="print-sql-输出查询语句，用来测试"><a href="#print-sql-输出查询语句，用来测试" class="headerlink" title="# print(sql)     #输出查询语句，用来测试"></a># print(sql)     #输出查询语句，用来测试</h1><h1 id="cur-execute-sql"><a href="#cur-execute-sql" class="headerlink" title="cur.execute(sql)"></a>cur.execute(sql)</h1><h1 id="conn-commit"><a href="#conn-commit" class="headerlink" title="conn.commit()"></a>conn.commit()</h1><h1 id="cur-close"><a href="#cur-close" class="headerlink" title="cur.close"></a>cur.close</h1><h1 id="conn-close"><a href="#conn-close" class="headerlink" title="conn.close()"></a>conn.close()</h1><h1 id="def-init-db-dbpath"><a href="#def-init-db-dbpath" class="headerlink" title="def init_db(dbpath):"></a>def init_db(dbpath):</h1><h1 id="sql-‘’’-1"><a href="#sql-‘’’-1" class="headerlink" title="sql = ‘’’"></a>sql = ‘’’</h1><h1 id="create-table-movie250"><a href="#create-table-movie250" class="headerlink" title="create table movie250("></a>create table movie250(</h1><h1 id="id-integer-primary-key-autoincrement"><a href="#id-integer-primary-key-autoincrement" class="headerlink" title="id integer  primary  key autoincrement,"></a>id integer  primary  key autoincrement,</h1><h1 id="info-link-text"><a href="#info-link-text" class="headerlink" title="info_link text,"></a>info_link text,</h1><h1 id="pic-link-text"><a href="#pic-link-text" class="headerlink" title="pic_link text,"></a>pic_link text,</h1><h1 id="cname-varchar"><a href="#cname-varchar" class="headerlink" title="cname varchar,"></a>cname varchar,</h1><h1 id="ename-varchar"><a href="#ename-varchar" class="headerlink" title="ename varchar ,"></a>ename varchar ,</h1><h1 id="score-numeric"><a href="#score-numeric" class="headerlink" title="score numeric,"></a>score numeric,</h1><h1 id="rated-numeric"><a href="#rated-numeric" class="headerlink" title="rated numeric,"></a>rated numeric,</h1><h1 id="instroduction-text"><a href="#instroduction-text" class="headerlink" title="instroduction text,"></a>instroduction text,</h1><h1 id="info-text"><a href="#info-text" class="headerlink" title="info text"></a>info text</h1><h1 id=""><a href="#" class="headerlink" title=")"></a>)</h1><h1 id="-1"><a href="#-1" class="headerlink" title=""></a></h1><h1 id="-2"><a href="#-2" class="headerlink" title=""></a></h1><h1 id="‘’’-创建数据表"><a href="#‘’’-创建数据表" class="headerlink" title="‘’’  #创建数据表"></a>‘’’  #创建数据表</h1><h1 id="conn-sqlite3-connect-dbpath-1"><a href="#conn-sqlite3-connect-dbpath-1" class="headerlink" title="conn = sqlite3.connect(dbpath)"></a>conn = sqlite3.connect(dbpath)</h1><h1 id="cursor-conn-cursor"><a href="#cursor-conn-cursor" class="headerlink" title="cursor = conn.cursor()"></a>cursor = conn.cursor()</h1><h1 id="cursor-execute-sql"><a href="#cursor-execute-sql" class="headerlink" title="cursor.execute(sql)"></a>cursor.execute(sql)</h1><h1 id="conn-commit-1"><a href="#conn-commit-1" class="headerlink" title="conn.commit()"></a>conn.commit()</h1><h1 id="conn-close-1"><a href="#conn-close-1" class="headerlink" title="conn.close()"></a>conn.close()</h1><h1 id="保存数据到数据库"><a href="#保存数据到数据库" class="headerlink" title="保存数据到数据库"></a>保存数据到数据库</h1><p>if <strong>name</strong> == “<strong>main</strong>“:  # 当程序执行时<br>    # 调用函数<br>     main()<br>    # init_db(“movietest.db”)<br>     print(“爬取完毕！”)</p>
+
+    </div>
+
+    
+    
+    
+  <div>
+    
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+    
+  </div>
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/10/28/%E5%8F%A5%E6%9F%84/" rel="prev" title="句柄">
+      <i class="fa fa-chevron-left"></i> 句柄
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#codeing-utf-8"><span class="nav-number">1.</span> <span class="nav-text">-- codeing &#x3D; utf-8 --</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%88%AC%E5%8F%96%E7%BD%91%E9%A1%B5"><span class="nav-number">2.</span> <span class="nav-text">爬取网页</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%97%E5%88%B0%E6%8C%87%E5%AE%9A%E4%B8%80%E4%B8%AAURL%E7%9A%84%E7%BD%91%E9%A1%B5%E5%86%85%E5%AE%B9"><span class="nav-number">3.</span> <span class="nav-text">得到指定一个URL的网页内容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE%E5%88%B0%E8%A1%A8%E6%A0%BC"><span class="nav-number">4.</span> <span class="nav-text">保存数据到表格</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#def-saveData2DB-datalist-dbpath"><span class="nav-number">5.</span> <span class="nav-text">def saveData2DB(datalist,dbpath):</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#init-db-dbpath"><span class="nav-number">6.</span> <span class="nav-text">init_db(dbpath)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#conn-sqlite3-connect-dbpath"><span class="nav-number">7.</span> <span class="nav-text">conn &#x3D; sqlite3.connect(dbpath)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cur-conn-cursor"><span class="nav-number">8.</span> <span class="nav-text">cur &#x3D; conn.cursor()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#for-data-in-datalist"><span class="nav-number">9.</span> <span class="nav-text">for data in datalist:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#for-index-in-range-len-data"><span class="nav-number">10.</span> <span class="nav-text">for index in range(len(data)):</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#if-index-4-or-index-5"><span class="nav-number">11.</span> <span class="nav-text">if index &#x3D;&#x3D; 4 or index &#x3D;&#x3D; 5:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#continue"><span class="nav-number">12.</span> <span class="nav-text">continue</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#data-index-%E2%80%98%E2%80%9C%E2%80%98-data-index-%E2%80%99%E2%80%9D%E2%80%98"><span class="nav-number">13.</span> <span class="nav-text">data[index] &#x3D; ‘“‘+data[index]+’”‘</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sql-%E2%80%98%E2%80%99%E2%80%99"><span class="nav-number">14.</span> <span class="nav-text">sql &#x3D; ‘’’</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#insert-into-movie250"><span class="nav-number">15.</span> <span class="nav-text">insert into movie250(</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#info-link-pic-link-cname-ename-score-rated-instroduction-info"><span class="nav-number">16.</span> <span class="nav-text">info_link,pic_link,cname,ename,score,rated,instroduction,info)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#values-s-%E2%80%99%E2%80%99%E2%80%99-%E2%80%9D-%E2%80%9D-join-data"><span class="nav-number">17.</span> <span class="nav-text">values (%s)’’’%”,”.join(data)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#print-sql-%E8%BE%93%E5%87%BA%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5%EF%BC%8C%E7%94%A8%E6%9D%A5%E6%B5%8B%E8%AF%95"><span class="nav-number">18.</span> <span class="nav-text"># print(sql)     #输出查询语句，用来测试</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cur-execute-sql"><span class="nav-number">19.</span> <span class="nav-text">cur.execute(sql)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#conn-commit"><span class="nav-number">20.</span> <span class="nav-text">conn.commit()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cur-close"><span class="nav-number">21.</span> <span class="nav-text">cur.close</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#conn-close"><span class="nav-number">22.</span> <span class="nav-text">conn.close()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#def-init-db-dbpath"><span class="nav-number">23.</span> <span class="nav-text">def init_db(dbpath):</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sql-%E2%80%98%E2%80%99%E2%80%99-1"><span class="nav-number">24.</span> <span class="nav-text">sql &#x3D; ‘’’</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#create-table-movie250"><span class="nav-number">25.</span> <span class="nav-text">create table movie250(</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#id-integer-primary-key-autoincrement"><span class="nav-number">26.</span> <span class="nav-text">id integer  primary  key autoincrement,</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#info-link-text"><span class="nav-number">27.</span> <span class="nav-text">info_link text,</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pic-link-text"><span class="nav-number">28.</span> <span class="nav-text">pic_link text,</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cname-varchar"><span class="nav-number">29.</span> <span class="nav-text">cname varchar,</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ename-varchar"><span class="nav-number">30.</span> <span class="nav-text">ename varchar ,</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#score-numeric"><span class="nav-number">31.</span> <span class="nav-text">score numeric,</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rated-numeric"><span class="nav-number">32.</span> <span class="nav-text">rated numeric,</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#instroduction-text"><span class="nav-number">33.</span> <span class="nav-text">instroduction text,</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#info-text"><span class="nav-number">34.</span> <span class="nav-text">info text</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">35.</span> <span class="nav-text">)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-1"><span class="nav-number">36.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#-2"><span class="nav-number">37.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%98%E2%80%99%E2%80%99-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E8%A1%A8"><span class="nav-number">38.</span> <span class="nav-text">‘’’  #创建数据表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#conn-sqlite3-connect-dbpath-1"><span class="nav-number">39.</span> <span class="nav-text">conn &#x3D; sqlite3.connect(dbpath)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cursor-conn-cursor"><span class="nav-number">40.</span> <span class="nav-text">cursor &#x3D; conn.cursor()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cursor-execute-sql"><span class="nav-number">41.</span> <span class="nav-text">cursor.execute(sql)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#conn-commit-1"><span class="nav-number">42.</span> <span class="nav-text">conn.commit()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#conn-close-1"><span class="nav-number">43.</span> <span class="nav-text">conn.close()</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%9D%E5%AD%98%E6%95%B0%E6%8D%AE%E5%88%B0%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">44.</span> <span class="nav-text">保存数据到数据库</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">郑佳杭</p>
+  <div class="site-description" itemprop="description">好好学习，天天向上</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">郑佳杭</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
