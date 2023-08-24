@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/gkjzjh146.github.io\/",
+  "author": {
+    "@type": "Person",
+    "name": "gkjzjh146",
+    
+    "image": "https://gkjzjh146.github.io/images/1.jpg"
+    
+  },
+  "name":"gkjzjh146",
+  "description":"",
+  "url":"https:\/\/gkjzjh146.github.io\/post\/2023wmctf-steg-wp\/",
+  "keywords":"[wp]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.115.4 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="gkjzjh146">
+<meta name="keywords" content="wp">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【2023WMCTF】STEG-WP">
+<meta name="twitter:title" content="【2023WMCTF】STEG-WP">
+<meta property="og:url" content="https://gkjzjh146.github.io/post/2023wmctf-steg-wp/">
+<meta property="twitter:url" content="https://gkjzjh146.github.io/post/2023wmctf-steg-wp/">
+<meta property="og:site_name" content="gkjzjh146">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2023-08-24T07:09:25">
+  
+  
+    <meta property="article:modified_time" content="2023-08-24T07:09:25">
+  
+  
+  
+    
+      <meta property="article:section" content="ctf">
+    
+      <meta property="article:section" content="misc">
+    
+  
+  
+    
+      <meta property="article:tag" content="wp">
+    
+      <meta property="article:tag" content="2023">
+    
+      <meta property="article:tag" content="wmctf">
+    
+      <meta property="article:tag" content="misc">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/images/1.jpg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/images/1.jpg">
+
+
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/3.jpeg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/3.jpeg">
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/wmctf2023.png">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/wmctf2023.png">
+
+
+    <title>【2023WMCTF】STEG-WP</title>
+
+    <link rel="icon" href="https://gkjzjh146.github.io/images/1.jpg">
+    
+
+    
+
+    <link rel="canonical" href="https://gkjzjh146.github.io/post/2023wmctf-steg-wp/">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://gkjzjh146.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://gkjzjh146.github.io/" aria-label="去首页">gkjzjh146</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://gkjzjh146.github.io/#about" aria-label="打开链接: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://gkjzjh146.github.io/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">gkjzjh146</h4>
+        
+          <h5 class="sidebar-profile-bio">会点web，会点misc</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('/3.jpeg')"
+       data-behavior="4">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title">
+      【2023WMCTF】STEG-WP
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2023-08-24T07:09:25&#43;08:00">
+        
+  八月 24, 2023
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://gkjzjh146.github.io/categories/ctf">ctf</a>, 
+    
+      <a class="category-link" href="https://gkjzjh146.github.io/categories/misc">misc</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="4"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <h1 id="table-of-contents">目录</h1>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#ez_v1deo">EZ_v1deo</a></li>
+    <li><a href="#mondy-left-me-broken">Mondy left me Broken</a></li>
+    <li><a href="#perfect-two-way-foil">perfect two-way foil</a></li>
+    <li><a href="#steglab-pointattack-1-2">StegLab-PointAttack 1&amp; 2</a></li>
+  </ul>
+</nav>
+
+<h1 id="ez_v1deo">EZ_v1deo</h1>
+<p>视频的lsb隐写，直接让gpt写脚本，修改几次就差不多了</p>
+<pre tabindex="0"><code>import cv2
+import numpy as np
+
+# 读取原始视频
+input_filename = &#39;flag.avi&#39;
+cap = cv2.VideoCapture(input_filename)
+fps = int(cap.get(cv2.CAP_PROP_FPS))
+frame_size = (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
+
+# 准备写入新视频
+output_filename = &#39;decrypted_flag.avi&#39;
+fourcc = cv2.VideoWriter_fourcc(*&#39;XVID&#39;)
+out = cv2.VideoWriter(output_filename, fourcc, fps, frame_size)
+
+# 解密LSB隐写并写入新视频
+while cap.isOpened():
+    ret, frame = cap.read()
+    if not ret:
+        break
+
+    # 解密LSB隐写
+    decrypted_frame = frame &amp; 1
+    decrypted_frame = decrypted_frame*(255,255,255)
+    out.write(decrypted_frame.astype(np.uint8))
+
+cap.release()
+out.release()
+
+cv2.destroyAllWindows()
+</code></pre><p>看视频拿到flag</p>
+<h1 id="mondy-left-me-broken">Mondy left me Broken</h1>
+<p>看到视频猜测是猫脸变换，提取一帧出来，爆破一下参数</p>
+<pre tabindex="0"><code>ffmpeg -i final.mkv -vframes 1 output.png
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> PIL <span style="color:#f92672">import</span> Image
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> cv2
+</span></span><span style="display:flex;"><span>im <span style="color:#f92672">=</span> Image<span style="color:#f92672">.</span>open(<span style="color:#e6db74">&#39;output.png&#39;</span>)
+</span></span><span style="display:flex;"><span>im <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array(im)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">dearnold</span>(img):
+</span></span><span style="display:flex;"><span>    r,c,t <span style="color:#f92672">=</span> img<span style="color:#f92672">.</span>shape
+</span></span><span style="display:flex;"><span>    p <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros((r,c,t),dtype<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>uint8)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> a <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">11</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> b <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">11</span>):
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(r):
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(c):
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">for</span> k <span style="color:#f92672">in</span> range(t):
+</span></span><span style="display:flex;"><span>                        x <span style="color:#f92672">=</span> ((a<span style="color:#f92672">*</span>b<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">*</span>i <span style="color:#f92672">-</span> b<span style="color:#f92672">*</span>j)<span style="color:#f92672">%</span>r
+</span></span><span style="display:flex;"><span>                        y <span style="color:#f92672">=</span> (<span style="color:#f92672">-</span>a<span style="color:#f92672">*</span>i <span style="color:#f92672">+</span> j)<span style="color:#f92672">%</span>r
+</span></span><span style="display:flex;"><span>                        p[x,y,k] <span style="color:#f92672">=</span> img[i,j,k]
+</span></span><span style="display:flex;"><span>            filename <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;new/dearnold</span><span style="color:#e6db74">{</span>a<span style="color:#e6db74">}</span><span style="color:#e6db74">_</span><span style="color:#e6db74">{</span>b<span style="color:#e6db74">}</span><span style="color:#e6db74">.png&#39;</span>
+</span></span><span style="display:flex;"><span>            cv2<span style="color:#f92672">.</span>imwrite(filename, p)
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">&#39;dearnold</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">_</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#39;</span><span style="color:#f92672">.</span>format(a, b))
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> p
+</span></span><span style="display:flex;"><span>dearnold(im)
+</span></span></code></pre></div><p><img src="https://gkjzjh146.github.io/2023WMCTF-STEG-WP.assets/image-20230824200618458.png" alt="image-20230824200618458"></p>
+<p>爆破出来图片参数a和b都是5的时候，图片正常</p>
+<pre tabindex="0"><code>ffmpeg -i final.mkv -c:v libx264 -c:a aac output.mp4
+</code></pre><p>恢复视频</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> cv2
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> PIL <span style="color:#f92672">import</span> Image
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> tqdm
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">dearnold</span>(img):
+</span></span><span style="display:flex;"><span>    r,c,t <span style="color:#f92672">=</span> img<span style="color:#f92672">.</span>shape
+</span></span><span style="display:flex;"><span>    p <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros((r,c,t),dtype<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>uint8)
+</span></span><span style="display:flex;"><span>    a <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>    b <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(r):
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(c):
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> k <span style="color:#f92672">in</span> range(t):
+</span></span><span style="display:flex;"><span>                x <span style="color:#f92672">=</span> ((a<span style="color:#f92672">*</span>b<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">*</span>i <span style="color:#f92672">-</span> b<span style="color:#f92672">*</span>j)<span style="color:#f92672">%</span>r
+</span></span><span style="display:flex;"><span>                y <span style="color:#f92672">=</span> (<span style="color:#f92672">-</span>a<span style="color:#f92672">*</span>i <span style="color:#f92672">+</span> j)<span style="color:#f92672">%</span>r
+</span></span><span style="display:flex;"><span>                p[x,y,k] <span style="color:#f92672">=</span> img[i,j,k]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> p
+</span></span><span style="display:flex;"><span>video <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;output.mp4&#34;</span>
+</span></span><span style="display:flex;"><span>cap <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>VideoCapture(video)
+</span></span><span style="display:flex;"><span>fps <span style="color:#f92672">=</span> cap<span style="color:#f92672">.</span>get(cv2<span style="color:#f92672">.</span>CAP_PROP_FPS)
+</span></span><span style="display:flex;"><span>size <span style="color:#f92672">=</span> (int(cap<span style="color:#f92672">.</span>get(cv2<span style="color:#f92672">.</span>CAP_PROP_FRAME_WIDTH)),
+</span></span><span style="display:flex;"><span>int(cap<span style="color:#f92672">.</span>get(cv2<span style="color:#f92672">.</span>CAP_PROP_FRAME_HEIGHT)))
+</span></span><span style="display:flex;"><span>fourcc <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>VideoWriter_fourcc(<span style="color:#f92672">*</span><span style="color:#e6db74">&#39;mp4v&#39;</span>)
+</span></span><span style="display:flex;"><span>out <span style="color:#f92672">=</span> cv2<span style="color:#f92672">.</span>VideoWriter(<span style="color:#e6db74">&#39;flag.mp4&#39;</span>, fourcc, fps, size)
+</span></span><span style="display:flex;"><span>pbar <span style="color:#f92672">=</span> tqdm<span style="color:#f92672">.</span>tqdm(total<span style="color:#f92672">=</span>int(cap<span style="color:#f92672">.</span>get(cv2<span style="color:#f92672">.</span>CAP_PROP_FRAME_COUNT)))
+</span></span><span style="display:flex;"><span>ret, frame <span style="color:#f92672">=</span> cap<span style="color:#f92672">.</span>read()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> ret:
+</span></span><span style="display:flex;"><span>    ret, frame <span style="color:#f92672">=</span> cap<span style="color:#f92672">.</span>read()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ret:
+</span></span><span style="display:flex;"><span>        frame <span style="color:#f92672">=</span> dearnold(frame)
+</span></span><span style="display:flex;"><span>        out<span style="color:#f92672">.</span>write(frame) <span style="color:#75715e"># 将处理后的帧写⼊新的视频⽂件</span>
+</span></span><span style="display:flex;"><span>        pbar<span style="color:#f92672">.</span>update(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>cap<span style="color:#f92672">.</span>release()
+</span></span><span style="display:flex;"><span>out<span style="color:#f92672">.</span>release()
+</span></span></code></pre></div><p><img src="https://gkjzjh146.github.io/2023WMCTF-STEG-WP.assets/image-20230824203840778.png" alt="image-20230824203840778"></p>
+<p>第三秒左右应该是有一半flag的，但这里看不清，题目后面直接给了</p>
+<pre tabindex="0"><code>_I_CAN_GOT_both}
+</code></pre><p>还发现了水印的参数（题目hint给了说是dct音频隐写）</p>
+<p><img src="https://gkjzjh146.github.io/2023WMCTF-STEG-WP.assets/image-20230824203146448.png" alt="image-20230824203146448"></p>
+<p>这里<code>dct</code>水印提取需要原视频，所以要下载原视频</p>
+<p><a href="https://www.bilibili.com/video/BV1Fh4y1M79t/?spm_id_from=333.337.search-card.all.click">https://www.bilibili.com/video/BV1Fh4y1M79t/?spm_id_from=333.337.search-card.all.click</a></p>
+<p>提取音频</p>
+<pre tabindex="0"><code>ffmpeg -i final.mkv -vn -acodec pcm_s16le flag.wav
+</code></pre><pre tabindex="0"><code>ffmpeg -i origin2.mp4 -vn -acodec pcm_s16le origin.wav
+</code></pre><pre tabindex="0"><code>import numpy as np
+from scipy.io import wavfile
+from scipy.fftpack import fft, fftfreq
+import matplotlib.pyplot as plt
+
+# 读取音频文件
+rate, data = wavfile.read(&#39;flag.wav&#39;)
+rate2, data2 = wavfile.read(&#39;origin2.wav&#39;)
+
+# 将双声道音频合并成单声道
+if len(data.shape) &gt; 1 and data.shape[1] == 2:
+    data = data.mean(axis=1)
+if len(data2.shape) &gt; 1 and data2.shape[1] == 2:
+    data2 = data2.mean(axis=1)
+
+
+# 计算音频差异
+data3 = data2 - data
+
+# 计算频谱
+fft_size = 4096
+plt.specgram(data3, fft_size, rate, window=None, noverlap=30, scale=&#39;dB&#39;)
+plt.savefig(&#34;1.png&#34;)
+plt.show()
+</code></pre><p><img src="https://gkjzjh146.github.io/2023WMCTF-STEG-WP.assets/image-20230824214330144.png" alt="image-20230824214330144"></p>
+<p>稍微拉伸一下就可以直接扫了</p>
+<p><img src="https://gkjzjh146.github.io/2023WMCTF-STEG-WP.assets/image-20230824214429321.png" alt="image-20230824214429321"></p>
+<pre tabindex="0"><code>WMCTF{Video_Audio
+</code></pre><p>那么flag为</p>
+<pre tabindex="0"><code>WMCTF{Video_Audio_I_CAN_GOT_both}
+</code></pre><h1 id="perfect-two-way-foil">perfect two-way foil</h1>
+<p><img src="https://gkjzjh146.github.io/2023WMCTF-STEG-WP.assets/image-20230824214829801.png" alt="image-20230824214829801"></p>
+<p><img src="https://gkjzjh146.github.io/2023WMCTF-STEG-WP.assets/image-20230824215005265.png" alt="image-20230824215005265"></p>
+<p>这里可以看到是希伯特曲线和<code>flag.png</code>很像</p>
+<p>⼤⼩为512*512，同时题⽬中要求是⼆向化的⿊盒⼦，结合图像中有很多的⿊⾊要素和图⽚为RGBA，可以基础猜测需要将
+⼆维图像希尔伯特取点后重新组合回三维物体，之后有⼀部分彩⾊要素应该就是flag需要的东⻄，最后的三维物体
+我们再对其z轴进⾏切⽚我们就可以到三维物体的⼤致概况，由此编写脚本：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> mpl_toolkits.mplot3d <span style="color:#f92672">import</span> Axes3D
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> PIL <span style="color:#f92672">import</span> Image
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_hilbert_3d</span>(order):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">gen_3d</span>(order, x, y, z, xi, xj, xk, yi, yj, yk, zi, zj, zk, array):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> order <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> :
+</span></span><span style="display:flex;"><span>            xx <span style="color:#f92672">=</span> x <span style="color:#f92672">+</span> (xi <span style="color:#f92672">+</span> yi <span style="color:#f92672">+</span> zi)<span style="color:#f92672">/</span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>            yy <span style="color:#f92672">=</span> y <span style="color:#f92672">+</span> (xj <span style="color:#f92672">+</span> yj <span style="color:#f92672">+</span> zj)<span style="color:#f92672">/</span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>            zz <span style="color:#f92672">=</span> z <span style="color:#f92672">+</span> (xk <span style="color:#f92672">+</span> yk <span style="color:#f92672">+</span> zk)<span style="color:#f92672">/</span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>            array<span style="color:#f92672">.</span>append((xx, yy, zz))
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            gen_3d(order<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, x, y, z, yi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, yj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, yk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, zi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, zj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, zk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, xi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, xj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>,xk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, array)
+</span></span><span style="display:flex;"><span>            gen_3d(order<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, x <span style="color:#f92672">+</span> xi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, y <span style="color:#f92672">+</span> xj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, z <span style="color:#f92672">+</span> xk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, zi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, zj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, zk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, xi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, xj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>,xk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, yi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, yj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, yk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, array)
+</span></span><span style="display:flex;"><span>            gen_3d(order<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, x <span style="color:#f92672">+</span> xi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> yi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, y <span style="color:#f92672">+</span> xj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> yj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, z <span style="color:#f92672">+</span> xk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> yk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, zi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>,zj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, zk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, xi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, xj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, xk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, yi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, yj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, yk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, array)
+</span></span><span style="display:flex;"><span>            gen_3d(order<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, x <span style="color:#f92672">+</span> xi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> yi, y <span style="color:#f92672">+</span> xj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> yj, z <span style="color:#f92672">+</span> xk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> yk, <span style="color:#f92672">-</span>xi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>xj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>xk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>yi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>yj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>yk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, zi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, zj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, zk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, array)
+</span></span><span style="display:flex;"><span>            gen_3d(order<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, x <span style="color:#f92672">+</span> xi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> yi <span style="color:#f92672">+</span> zi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, y <span style="color:#f92672">+</span> xj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> yj <span style="color:#f92672">+</span> zj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, z <span style="color:#f92672">+</span> xk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> yk <span style="color:#f92672">+</span> zk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>xi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>xj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>xk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>yi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>yj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>yk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, zi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, zj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, zk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, array)
+</span></span><span style="display:flex;"><span>            gen_3d(order<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, x <span style="color:#f92672">+</span> xi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> yi <span style="color:#f92672">+</span> zi, y <span style="color:#f92672">+</span> xj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> yj <span style="color:#f92672">+</span> zj, z <span style="color:#f92672">+</span> xk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> yk <span style="color:#f92672">+</span> zk,<span style="color:#f92672">-</span>zi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>zj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>zk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, xi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, xj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, xk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>yi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>yj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>yk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, array)
+</span></span><span style="display:flex;"><span>            gen_3d(order<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, x <span style="color:#f92672">+</span> xi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> yi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> zi, y <span style="color:#f92672">+</span> xj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> yj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> zj , z <span style="color:#f92672">+</span> xk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> yk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">+</span> zk, <span style="color:#f92672">-</span>zi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>zj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>zk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, xi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, xj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, xk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>yi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>yj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>yk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, array)
+</span></span><span style="display:flex;"><span>            gen_3d(order<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, x <span style="color:#f92672">+</span> xi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> zi, y <span style="color:#f92672">+</span> xj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> zj, z <span style="color:#f92672">+</span> xk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> zk, yi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, yj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>,yk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>zi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>zj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>zk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>xi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>xj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>xk<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, array)
+</span></span><span style="display:flex;"><span>    n <span style="color:#f92672">=</span> pow(<span style="color:#ae81ff">2</span>, order)
+</span></span><span style="display:flex;"><span>    hilbert_curve <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    gen_3d(order, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, n, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, n, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, n, hilbert_curve)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> np<span style="color:#f92672">.</span>array(hilbert_curve)<span style="color:#f92672">.</span>astype(<span style="color:#e6db74">&#39;int&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_hilbert_2d</span>(order):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">gen_2d</span>(order, x, y, xi, xj, yi, yj, array):
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> order <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span>            xx <span style="color:#f92672">=</span> x <span style="color:#f92672">+</span> (xi <span style="color:#f92672">+</span> yi)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>            yy <span style="color:#f92672">=</span> y <span style="color:#f92672">+</span> (xj <span style="color:#f92672">+</span> yj)<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>            array<span style="color:#f92672">.</span>append((xx, yy))
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            gen_2d(order<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, x, y, yi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, yj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, xi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, xj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, array)
+</span></span><span style="display:flex;"><span>            gen_2d(order<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, x <span style="color:#f92672">+</span> xi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, y <span style="color:#f92672">+</span> xj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, xi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, xj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, yi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, yj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, array)
+</span></span><span style="display:flex;"><span>            gen_2d(order<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, x <span style="color:#f92672">+</span> xi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> yi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, y <span style="color:#f92672">+</span> xj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> yj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, xi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, xj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, yi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, yj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>,array)
+</span></span><span style="display:flex;"><span>            gen_2d(order<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, x <span style="color:#f92672">+</span> xi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> yi, y <span style="color:#f92672">+</span> xj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span> <span style="color:#f92672">+</span> yj, <span style="color:#f92672">-</span>yi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>yj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>xi<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>, <span style="color:#f92672">-</span>xj<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>,array)
+</span></span><span style="display:flex;"><span>    n <span style="color:#f92672">=</span> pow(<span style="color:#ae81ff">2</span>, order)
+</span></span><span style="display:flex;"><span>    hilbert_curve <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    gen_2d(order, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, n, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, n, hilbert_curve)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> np<span style="color:#f92672">.</span>array(hilbert_curve)<span style="color:#f92672">.</span>astype(<span style="color:#e6db74">&#39;int&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Generate 3D Hilbert curve for order 3</span>
+</span></span><span style="display:flex;"><span>curve <span style="color:#f92672">=</span> _hilbert_3d(<span style="color:#ae81ff">6</span>)
+</span></span><span style="display:flex;"><span>curve_2 <span style="color:#f92672">=</span> _hilbert_2d(<span style="color:#ae81ff">9</span>)
+</span></span><span style="display:flex;"><span>p <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array(Image<span style="color:#f92672">.</span>open(<span style="color:#e6db74">&#39;flag.png&#39;</span>)<span style="color:#f92672">.</span>convert(<span style="color:#e6db74">&#39;RGBA&#39;</span>))
+</span></span><span style="display:flex;"><span>line <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> curve_2:
+</span></span><span style="display:flex;"><span>    line<span style="color:#f92672">.</span>append(p[i[<span style="color:#ae81ff">0</span>], i[<span style="color:#ae81ff">1</span>]])
+</span></span><span style="display:flex;"><span>line <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>array(line)
+</span></span><span style="display:flex;"><span>remake_3d <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros((<span style="color:#ae81ff">64</span>,<span style="color:#ae81ff">64</span>,<span style="color:#ae81ff">64</span>,<span style="color:#ae81ff">4</span>), dtype<span style="color:#f92672">=</span>np<span style="color:#f92672">.</span>uint8)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(len(curve)):
+</span></span><span style="display:flex;"><span>    remake_3d[curve[i][<span style="color:#ae81ff">0</span>], curve[i][<span style="color:#ae81ff">1</span>], curve[i][<span style="color:#ae81ff">2</span>], :] <span style="color:#f92672">=</span> line[i]
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">64</span>):
+</span></span><span style="display:flex;"><span>    pic <span style="color:#f92672">=</span> Image<span style="color:#f92672">.</span>fromarray(remake_3d[:,:,i,:])
+</span></span><span style="display:flex;"><span>    pic<span style="color:#f92672">.</span>save(<span style="color:#e6db74">&#39;res/&#39;</span> <span style="color:#f92672">+</span> str(i) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;.png&#39;</span>)
+</span></span></code></pre></div><p><img src="https://gkjzjh146.github.io/2023WMCTF-STEG-WP.assets/image-20230824221331730.png" alt="image-20230824221331730"></p>
+<p><img src="https://gkjzjh146.github.io/2023WMCTF-STEG-WP.assets/image-20230824221358877.png" alt="image-20230824221358877"></p>
+<pre tabindex="0"><code>WMCTF{6532f556-2dc5-45f6-847f-797f235d7bb1}
+</code></pre><h1 id="steglab-pointattack-1-2">StegLab-PointAttack 1&amp; 2</h1>
+<p>直接看雪殇的，师傅们乱秀集锦</p>
+<p><a href="http://www.snowywar.top/?p=4211">http://www.snowywar.top/?p=4211</a></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/wp/">wp</a>
+
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/2023/">2023</a>
+
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/wmctf/">wmctf</a>
+
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/misc/">misc</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://gkjzjh146.github.io/post/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9/" data-tooltip="Jndi注入大杂烩" aria-label="上一篇: Jndi注入大杂烩">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gkjzjh146.github.io/post/2023wmctf-steg-wp/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://gkjzjh146.github.io/post/2023wmctf-steg-wp/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://gkjzjh146.github.io/post/2023wmctf-steg-wp/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/gkjzjh146.github.io\/post\/2023wmctf-steg-wp\/';
+        
+          this.page.identifier = '\/post\/2023wmctf-steg-wp\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'hugo-tranquilpeak-theme';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 gkjzjh146. All Rights Reserved
+  </span>
+    <br>
+    
+    <div class="busuanzi-footer">
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+        <span id="busuanzi_container_site_uv">
+    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
+    </div></footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://gkjzjh146.github.io/post/jndi%E6%B3%A8%E5%85%A5%E5%A4%A7%E6%9D%82%E7%83%A9/" data-tooltip="Jndi注入大杂烩" aria-label="上一篇: Jndi注入大杂烩">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gkjzjh146.github.io/post/2023wmctf-steg-wp/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://gkjzjh146.github.io/post/2023wmctf-steg-wp/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://gkjzjh146.github.io/post/2023wmctf-steg-wp/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2F2023wmctf-steg-wp%2F" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2F2023wmctf-steg-wp%2F" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2F2023wmctf-steg-wp%2F" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>分享到 Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">gkjzjh146</h4>
+    
+      <div id="about-card-bio">会点web，会点misc</div>
+    
+    
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://gkjzjh146.github.io/images/3.jpeg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://gkjzjh146.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+
