@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/gkjzjh146.github.io\/",
+  "author": {
+    "@type": "Person",
+    "name": "gkjzjh146",
+    
+    "image": "https://gkjzjh146.github.io/images/1.jpg"
+    
+  },
+  "name":"gkjzjh146",
+  "description":"",
+  "url":"https:\/\/gkjzjh146.github.io\/post\/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%96%E8%AF%81\/",
+  "keywords":"[数据库]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.115.4 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="gkjzjh146">
+<meta name="keywords" content="数据库">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库取证">
+<meta name="twitter:title" content="数据库取证">
+<meta property="og:url" content="https://gkjzjh146.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%96%E8%AF%81/">
+<meta property="twitter:url" content="https://gkjzjh146.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%96%E8%AF%81/">
+<meta property="og:site_name" content="gkjzjh146">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2023-09-01T22:40:10">
+  
+  
+    <meta property="article:modified_time" content="2023-09-01T22:40:10">
+  
+  
+  
+    
+      <meta property="article:section" content="取证">
+    
+  
+  
+    
+      <meta property="article:tag" content="取证">
+    
+      <meta property="article:tag" content="数据库">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/images/1.jpg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/images/1.jpg">
+
+
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/2.jpeg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/2.jpeg">
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/15.jpeg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/15.jpeg">
+
+
+    <title>数据库取证</title>
+
+    <link rel="icon" href="https://gkjzjh146.github.io/images/1.jpg">
+    
+
+    
+
+    <link rel="canonical" href="https://gkjzjh146.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%96%E8%AF%81/">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://gkjzjh146.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://gkjzjh146.github.io/" aria-label="去首页">gkjzjh146</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://gkjzjh146.github.io/#about" aria-label="打开链接: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://gkjzjh146.github.io/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">gkjzjh146</h4>
+        
+          <h5 class="sidebar-profile-bio">会点web，会点misc</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('/2.jpeg')"
+       data-behavior="4">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title">
+      数据库取证
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2023-09-01T22:40:10&#43;08:00">
+        
+  九月 1, 2023
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://gkjzjh146.github.io/categories/%e5%8f%96%e8%af%81">取证</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="4"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <div id="verification" style=" display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20vh;">
+    <div id="entry-box">
+        
+        <div id="secret-word" style="  font-size: 1.5rem;
+    margin-bottom: 1rem;">Unlock to view this content.</div>
+        <form id="password-form" onsubmit="checkPassword(); return false;" style=" display: flex;
+    flex-direction: column;
+    width: auto;">
+            <input type="password" name="password" id="password" placeholder="Please enter password" required style="margin-bottom: 1.5rem;
+      padding: 10px 20px;">
+            <input type="hidden" name="encryptedPassword" id="encrypted-password">
+            <input type="submit" value="Submit" name="submit" id="secret-submit" style=" padding: 10px 20px;
+      cursor: pointer;" onmouseover="this.style.backgroundColor='#FAB005';"
+                   onmouseout="this.style.backgroundColor='';">
+        </form>
+    </div>
+    <div id="secret" style="display: none" password="0psu3gkj2jh146">
+
+<h1 id="table-of-contents">目录</h1>
+<nav id="TableOfContents"></nav>
+
+
+
+
+# 参考链接
+
+[数据库取证分析 | Getuid (doomkkkkk.github.io)](https://doomkkkkk.github.io/2021/10/23/数据库取证分析/)
+
+https://mp.weixin.qq.com/s/vNwtQg6JpUBnnORNTx1BOA
+
+# MYSQL
+
+搭建环境(mysql8)
+
+```shell
+docker pull mysql
+docker run -d --name mysql -e MYSQL_ROOT_PASSWORD=password mysql
+mysql -h 127.0.0.1 -uroot -ppassword
+```
+
+
+
+搭建环境mysql(5.7)
+
+```shell
+docker pull mysql:5.7
+docker run -d --name mysql5.7 -e MYSQL_ROOT_PASSWORD=password mysql:5.7
+mysql -h 127.0.0.1 -uroot -ppassword
+```
+
+
+
+## MYSQL简介
+
+### mysql文件：
+
+- .ini/cnf
+- .err错误文件
+- ib_logfile事务日志文件（innodb）
+- binlog二进制日志文件
+- .frm表结构文件
+- .ibdata共享表空间文件（innodb）
+- .ibd独立表空间文件（innodb）
+- .myi索引文件（myisam）
+- .myd数据文件（myisam）
+
+### 配置文件
+
+**windows**：my.ini或者my-default.ini
+
+**linux**：/etc/my.cnf
+
+```
+[mysqld]
+
+# 设置3306端口
+
+port=3306
+
+# 设置mysql的安装目录
+
+basedir=D:\Program Files\MySQL
+
+# 设置mysql数据库的数据的存放目录
+
+datadir=D:\Users\qiuzhiwen\MySQL\Data
+
+# 允许最大连接数
+
+max_connections=200
+
+# 允许连接失败的次数。这是为了防止有人从该主机试图攻击数据库系统
+
+max_connect_errors=10
+
+# 服务端使用的字符集默认为UTF8
+
+character-set-server=utf8
+
+# 创建新表时将使用的默认存储引擎
+
+default-storage-engine=INNODB
+
+# 默认使用“mysql_native_password”插件认证
+
+default_authentication_plugin=mysql_native_password
+
+[mysql]
+
+# 设置mysql客户端默认字符集
+
+default-character-set=utf8
+
+[client]
+
+# 设置mysql客户端连接服务端时默认使用的端口
+
+port=3306
+
+default-character-set=utf8
+```
+
+### 日志文件
+
+登录mysql后可以通过sql语句进行查看
+
+**日志文件路径**
+
+```
+show variables like 'general_log_file';
+```
+
+**错误日志文件路径**
+
+```
+show variables like 'log_error';
+```
+
+**慢查询日志文件路径**
+
+```
+show variables like 'slow_query_log_file';
+```
+
+
+
+### MYsql结构：
+
+> data目录：
+>
+> - 如果数据库用的是myisam引擎，则目录底下有
+>   - .frm(表文件)
+>   - .myd(数据)
+>   - .myi(索引)文件
+> - 如果数据库用的是innoDB引擎，则目录下有
+>   - .frm(表文件)
+>   - .ibd(数据)文件
+
+## 版本识别
+
+### 登录
+
+登录成功后可以直接看到版本信息
+
+![image-20230902183903286](/数据库取证.assets/image-20230902183903286.png)
+
+### status
+
+```
+mysql -h 127.0.0.1 -uroot -ppassword
+status;
+```
+
+![image-20230902184140767](/数据库取证.assets/image-20230902184140767.png)
+
+### select version();
+
+```
+select version();
+```
+
+![image-20230902185015370](/数据库取证.assets/image-20230902185015370.png)
+
+
+
+### mysql -v
+
+```
+mysql -v
+```
+
+
+
+
+
+### 第三方工具查看
+
+用宝塔查看
+
+![image-20230902185943717](/数据库取证.assets/image-20230902185943717.png)
+
+
+
+### 十六进制查看
+
+用010editor打开数据库文件夹下任意后缀为frm的文件，版本偏移量为 34+33（小端） 的值，如图所示是5.7.26的版本。
+
+![image-20230903221849502](/数据库取证.assets/image-20230903221849502.png)
+
+
+## 数据库存储路径
+
+- windows下数据文件路径：C:\programdata\MYSQL\Mysql sever 5.7.29\data
+- linux下数据文件路径：/var/lib/mysql/
+
+仿真起来可以使用
+
+```
+show global variables like "%datadir"；
+```
+
+![image-20230903223017555](/数据库取证.assets/image-20230903223017555.png)
+
+还可以利用文件的扩展名来查找数据存储路径，
+
+```
+.mdf .ldf .bak .sql
+```
+
+## 绕过数据库密码
+
+### 操作
+
+```
+1.停止MySQL服务。
+
+systemctl stop mysqld
+
+2.找到MySQL的配置文件所在路径。
+
+find / -name my.cnf
+
+3.修改配置文件。
+
+vim /文件所在路径/my.cnf
+
+4.在配置文件中【mysqld】后面加入语句。
+
+skip-grant-tables
+
+5.开启MySQL服务。
+
+systemctl start mysqld
+
+6.免密登录数据库。
+
+mysql -uroot -p（此处按两次回车即可进入）
+```
+
+### 例子：2023蓝帽杯服务器取证 32
+
+![image-20230904001314519](/数据库取证.assets/image-20230904001314519.png)
+
+
+
+## 修改root密码：
+
+取证一般能拿到root密码，但是如果没能拿到root密码，可以用下面方法来改密码,来用来连接navicat
+
+```
+mysql -uuser -ppassword
+```
+
+**方式一：**
+
+```
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123456';
+```
+
+**方式二：**
+
+```
+show databases;
+use mysql; 
+```
+
+（这里的mybase是数据库名）
+
+5.7.1以下版本
+
+```
+update user set password=password('p4ssword') where user='root';
+```
+
+
+
+5.7.1以上版本
+
+```
+update user set authentication_string=password('p4ssword') where user='root';
+flush privileges;
+quit
+```
+
+![image-20230904120920021](/数据库取证.assets/image-20230904120920021.png)
+
+## 图形化处理
+
+使用工具navicat
+
+### 连接方式（常规）
+
+这里可以先看数据库的ip用`ifconfig`然后输入账号密码直接连接
+
+![image-20230904002332774](/数据库取证.assets/image-20230904002332774.png)
+
+### 连接方式（ssh）
+
+![image-20230904002614425](/数据库取证.assets/image-20230904002614425.png)
+
+如果是没开3306端口，可能是使用ssh通道进行连接
+
+### 数据恢复
+
+如果是db文件，可以直接将其拖到navicat
+
+### 题目：2023蓝帽杯服务器取证
+
+![image-20230904002909893](/数据库取证.assets/image-20230904002909893.png)
+
+
+
+
+
+# Oracle:
+
+取证中不常见，先占坑
+
+
+
+
+
+# Mongodb
+
+## 环境搭建
+
+```
+docker pull mongo
+docker run -d --name my-mongodb -p 27017:27017 mongo
+```
+
+可以用navicat直接连接
+
+![image-20230904165405639](/数据库取证.assets/image-20230904165405639.png)
+
+## 简介
+
+MongoDB 是一个基于分布式文件存储的数据库。由 C++ 语言编写。旨在为 WEB 应用提供可扩展的高性能数据存储解决方案。MongoDB 是一个介于关系数据库和非关系数据库之间的产品，是非关系数据库当中功能最丰富，最像关系数据库的
+
+
+
+## 重要文件
+
+### 配置文件
+
+**linux:**
+
+```
+/etc/mongodb.conf
+```
+
+**windows:**
+
+这个得看具体情况找
+
+```
+mongodb.config
+```
+
+
+
+### mongodb.conf
+
+```
+# mongodb.conf
+
+# 数据库文件位置
+dbpath=/var/lib/mongodb
+
+#日志文件的路径
+logpath=/var/log/mongodb/mongodb.log
+
+# 是否追加方式写入日志，默认True
+logappend=true
+
+# 设置绑定ip
+bind_ip = 127.0.0.1
+# 设置端口
+port = 27017
+
+# 是否以守护进程方式运行，默认false
+fork = true
+
+# 启用日志文件，默认启用
+journal=true
+
+# 启用定期记录CPU利用率和 I/O 等待,默认false
+#cpu = true
+
+# 是否以安全认证方式运行，默认是不认证的非安全方式
+#noauth = true
+#auth = true
+
+# 详细记录输出，默认false
+#verbose = true
+
+#用于开发驱动程序时验证客户端请求
+#objcheck = true
+
+# # 启用数据库配额管理,默认false
+#quota = true
+
+# 设置oplog日志记录等级，默认0
+#   0=off (default)
+#   1=W
+#   2=R
+#   3=both
+#   7=W+some reads
+#oplog = 0
+
+# 是否打开动态调试项，默认false
+#nocursors = true
+
+# 忽略查询提示，默认false
+#nohints = true
+
+# 禁用http界面，默认为localhost：28017
+#nohttpinterface = true
+
+# 关闭服务器端脚本，这将极大的限制功能，默认false
+#noscripting = true
+
+# 关闭扫描表，任何查询将会是扫描失败
+#notablescan = true
+
+# 关闭数据文件预分配
+#noprealloc = true
+
+# 为新数据库指定.ns文件的大小，单位:MB
+# nssize = <size>
+
+# 用于Mongo监控服务器的Accout token。
+#mms-token = <token>
+
+# Mongo监控服务器的服务器名称。
+#mms-name = <server-name>
+
+# Mongo监控服务器的Ping间隔时间，即心跳
+#mms-interval = <seconds>
+
+# Replication Options
+
+# 设置主从复制参数
+#slave = true # 设置从节点
+#source = master.example.com # 指定从节点的主节点
+# Slave only: 指定要复制的单个数据库
+#only = master.example.com
+# or
+#master = true # 设置主节点
+#source = slave.example.com 
+
+# 设置副本集的名字，所有的实例指定相同的名字属于一个副本集
+replSet = name
+
+#pairwith = <server:port>
+
+# 仲裁服务器地址
+#arbiter = <server:port>
+
+# 默认为false，用于从实例设置。是否自动重新同步
+#autoresync = true
+
+# 指定的复制操作日志（OPLOG）的最大大小
+#oplogSize = <MB>
+
+# 限制复制操作的内存使用
+#opIdMem = <bytes>
+
+# 设置ssl认证
+# Enable SSL on normal ports
+#sslOnNormalPorts = true
+
+# SSL Key file and password
+#sslPEMKeyFile = /etc/ssl/mongodb.pem
+#sslPEMKeyPassword = pass
+```
+
+### 日志文件
+
+具体位置还得先看配置文件，下面的是默认的
+
+```
+/var/log/mongodb/mongodb.log
+```
+
+
+
+## 基本操作
+
+**连接数据库**：
+
+```
+mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]
+```
+
+一般就是看账号密码，端口默认是27017，如果填了，就按照填写的来
+
+使用用户名gkjzjh146，密码password登录localhost的database数据库
+
+```
+mongodb://gkjzjh146:password@localhost/database
+```
+
+**恢复数据库**
+
+可以提前准备好docker，直接用docker来搭建，将数据库文件拖进navicat即可
+
+
+
+## 题目
+
+2019长安杯28-33题有考察mongodb
+
+主要是账号、密码、ip、数据库、日志信息。
+
+
+
+</div>
+</div>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/%E5%8F%96%E8%AF%81/">取证</a>
+
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://gkjzjh146.github.io/post/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/" data-tooltip="kerberos域渗透学习（一）" aria-label="上一篇: kerberos域渗透学习（一）">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gkjzjh146.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%96%E8%AF%81/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://gkjzjh146.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%96%E8%AF%81/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://gkjzjh146.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%96%E8%AF%81/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/gkjzjh146.github.io\/post\/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%96%E8%AF%81\/';
+        
+          this.page.identifier = '\/post\/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%96%E8%AF%81\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'hugo-tranquilpeak-theme';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 gkjzjh146. All Rights Reserved
+  </span>
+    <br>
+    
+    <div class="busuanzi-footer">
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+        <span id="busuanzi_container_site_uv">
+    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
+    </div></footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://gkjzjh146.github.io/post/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/" data-tooltip="kerberos域渗透学习（一）" aria-label="上一篇: kerberos域渗透学习（一）">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gkjzjh146.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%96%E8%AF%81/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://gkjzjh146.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%96%E8%AF%81/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://gkjzjh146.github.io/post/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%96%E8%AF%81/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2F%25E6%2595%25B0%25E6%258D%25AE%25E5%25BA%2593%25E5%258F%2596%25E8%25AF%2581%2F" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2F%25E6%2595%25B0%25E6%258D%25AE%25E5%25BA%2593%25E5%258F%2596%25E8%25AF%2581%2F" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2F%25E6%2595%25B0%25E6%258D%25AE%25E5%25BA%2593%25E5%258F%2596%25E8%25AF%2581%2F" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>分享到 Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">gkjzjh146</h4>
+    
+      <div id="about-card-bio">会点web，会点misc</div>
+    
+    
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://gkjzjh146.github.io/images/3.jpeg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://gkjzjh146.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+
