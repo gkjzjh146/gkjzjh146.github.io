@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/gkjzjh146.github.io\/",
+  "author": {
+    "@type": "Person",
+    "name": "gkjzjh146",
+    
+    "image": "https://gkjzjh146.github.io/images/1.jpg"
+    
+  },
+  "name":"gkjzjh146",
+  "description":"",
+  "url":"https:\/\/gkjzjh146.github.io\/post\/ognl%E8%A1%A8%E8%BE%BE%E5%BC%8F\/",
+  "keywords":"[OGNL]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.115.4 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="gkjzjh146">
+<meta name="keywords" content="OGNL">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OGNL表达式">
+<meta name="twitter:title" content="OGNL表达式">
+<meta property="og:url" content="https://gkjzjh146.github.io/post/ognl%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+<meta property="twitter:url" content="https://gkjzjh146.github.io/post/ognl%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+<meta property="og:site_name" content="gkjzjh146">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2023-09-04T22:20:29">
+  
+  
+    <meta property="article:modified_time" content="2023-09-04T22:20:29">
+  
+  
+  
+    
+      <meta property="article:section" content="代码审计">
+    
+  
+  
+    
+      <meta property="article:tag" content="OGNL">
+    
+      <meta property="article:tag" content="代码审计">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/images/1.jpg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/images/1.jpg">
+
+
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/18.jpeg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/18.jpeg">
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/17.jpeg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/17.jpeg">
+
+
+    <title>OGNL表达式</title>
+
+    <link rel="icon" href="https://gkjzjh146.github.io/images/1.jpg">
+    
+
+    
+
+    <link rel="canonical" href="https://gkjzjh146.github.io/post/ognl%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://gkjzjh146.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://gkjzjh146.github.io/" aria-label="去首页">gkjzjh146</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://gkjzjh146.github.io/#about" aria-label="打开链接: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://gkjzjh146.github.io/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">gkjzjh146</h4>
+        
+          <h5 class="sidebar-profile-bio">会点web，会点misc</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('/18.jpeg')"
+       data-behavior="4">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title">
+      OGNL表达式
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2023-09-04T22:20:29&#43;08:00">
+        
+  九月 4, 2023
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://gkjzjh146.github.io/categories/%e4%bb%a3%e7%a0%81%e5%ae%a1%e8%ae%a1">代码审计</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="4"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <h1 id="table-of-contents">目录</h1>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#参考">参考</a></li>
+    <li><a href="#ognl基础">OGNL基础</a>
+      <ul>
+        <li><a href="#ognl三要素">OGNL三要素</a></li>
+        <li><a href="#ognl语法">OGNL语法</a>
+          <ul>
+            <li><a href="#操作符"><code>.</code>操作符</a></li>
+            <li><a href="#操作符-1">@操作符</a></li>
+            <li><a href="#操作符-2">#操作符</a></li>
+            <li><a href="#操作符-3">%操作符</a></li>
+            <li><a href="#操作符-4">$操作符</a></li>
+            <li><a href="#集合表达式">集合表达式</a></li>
+          </ul>
+        </li>
+        <li><a href="#投影与选择">投影与选择</a></li>
+      </ul>
+    </li>
+    <li><a href="#ognl命令执行">OGNL命令执行</a>
+      <ul>
+        <li><a href="#ognl低版本273">OGNL低版本（2.7.3）</a></li>
+        <li><a href="#ognl-3218测试">Ognl 3.2.18测试</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+<h1 id="参考">参考</h1>
+<p><a href="https://boogipop.com/2023/04/25/Struct2%20OGNL%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B3%A8%E5%85%A5/">https://boogipop.com/2023/04/25/Struct2%20OGNL%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B3%A8%E5%85%A5/</a></p>
+<p><a href="https://xz.aliyun.com/t/10482">一文读懂OGNL漏洞 - 先知社区 (aliyun.com)</a></p>
+<p><a href="https://www.freebuf.com/articles/web/325700.html">Java安全学习—表达式注入 - FreeBuf网络安全行业门户</a></p>
+<h1 id="ognl基础">OGNL基础</h1>
+<h2 id="ognl三要素">OGNL三要素</h2>
+<p><strong>expression表达式</strong>：表达式是整个OGNL的核心，通过表达式来告诉OGNL需要执行什么操作；
+<strong>root根对象</strong>：OGNL的Root对象可以理解为OGNL的操作对象。当OGNL通过表达式规定了“干什么”以后，还需要指定对谁进行操作；
+<strong>context上下文对象</strong>：context以MAP的结构、利用键值对关系来描述对象中的属性以及值，称之为OgnlContext，可以理解为对象运行的上下文环境，其实就是规定OGNL的操作在哪里。</p>
+<p>demo</p>
+<pre tabindex="0"><code>import ognl.Ognl;
+import ognl.OgnlContext;
+import ognl.OgnlException;
+
+public class OGNL {
+    public static void main(String[] args) throws OgnlException {
+        Tester tester = new Tester();
+        User gkjzjh146 = new User(&#34;gkjzjh&#34;, &#34;146&#34;);
+        tester.setUser(gkjzjh146);
+        //创建contex、设置root
+        OgnlContext context=new OgnlContext();
+        context.setRoot(tester);
+        //设置表达式
+        String expression=&#34;user.name&#34;;
+        //解析表达式
+        Object ognl= Ognl.parseExpression(expression);
+        //调用获取值
+        Object value = Ognl.getValue(ognl, context, context.getRoot());
+        System.out.println(value);
+    }
+}
+</code></pre><pre tabindex="0"><code>
+
+public class Tester {
+    public User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+}
+</code></pre><pre tabindex="0"><code>public class User {
+    public String name;
+    public String age;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public User() {
+    }
+
+    public User(String name, String age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+</code></pre><p><img src="https://gkjzjh146.github.io/OGNL%E8%A1%A8%E8%BE%BE%E5%BC%8F.assets/image-20230905142011104.png" alt="image-20230905142011104"></p>
+<p>运行上述代码即可获取<code>Tester.user.name</code>的值，注意是<code>.user.name</code>的值，上述我们是创建了一个tester，并且让他的user属性为一个User对象，表达式为<code>user.name</code>也就是获取tester的user属性的name属性。</p>
+<h2 id="ognl语法">OGNL语法</h2>
+<h3 id="操作符"><code>.</code>操作符</h3>
+<p>就和上面第一个demo的作用一样，用于调用对象的属性和方法<code>user.name</code>；</p>
+<p>且上一个节点的结果作为下一个节点的上下文，如</p>
+<pre tabindex="0"><code>(#a=new java.lang.String(&#34;calc&#34;)).(@java.lang.Runtime@getRuntime().exec(#a))
+</code></pre><p>也可以换成逗号</p>
+<pre tabindex="0"><code>(#a=new java.lang.String(&#34;calc&#34;)),(@java.lang.Runtime@getRuntime().exec(#a))
+</code></pre><p><img src="https://gkjzjh146.github.io/OGNL%E8%A1%A8%E8%BE%BE%E5%BC%8F.assets/image-20230905080000295.png" alt="image-20230905080000295"></p>
+<p>它把前面表达式当作结果给后面表达式执行了</p>
+<p>这里需要注意一下#前我们用括号包裹起来了，这是要符合语法</p>
+<p><img src="https://gkjzjh146.github.io/OGNL%E8%A1%A8%E8%BE%BE%E5%BC%8F.assets/image-20230905080121573.png" alt="image-20230905080121573"></p>
+<p>如果去掉括号就会报错</p>
+<h3 id="操作符-1">@操作符</h3>
+<ul>
+<li><code>@</code>操作符：用于调用静态属性、静态方法、静态变量，如上述的<code>@java.lang.Runtime@getRuntime().exec</code></li>
+</ul>
+<h3 id="操作符-2">#操作符</h3>
+<p><strong>用于调用非root对象</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> ognl.Ognl<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> ognl.OgnlContext<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> ognl.OgnlException<span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OGNL</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span><span style="color:#f92672">(</span>String<span style="color:#f92672">[]</span> args<span style="color:#f92672">)</span> <span style="color:#66d9ef">throws</span> OgnlException <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        Tester tester <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Tester<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        User gkjzjh146 <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> User<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;gkjzjh&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;146&#34;</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        tester<span style="color:#f92672">.</span><span style="color:#a6e22e">setUser</span><span style="color:#f92672">(</span>gkjzjh146<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//创建contex、设置root
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        OgnlContext context<span style="color:#f92672">=</span><span style="color:#66d9ef">new</span> OgnlContext<span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//context.setRoot(tester);
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        context<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;user&#34;</span><span style="color:#f92672">,</span>gkjzjh146<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//设置表达式
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#75715e">//String expression=&#34;(#a=new java.lang.String(\&#34;calc\&#34;)).(@java.lang.Runtime@getRuntime().exec(#a))&#34;;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        String expression<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#user.name&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//解析表达式
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        Object ognl<span style="color:#f92672">=</span> Ognl<span style="color:#f92672">.</span><span style="color:#a6e22e">parseExpression</span><span style="color:#f92672">(</span>expression<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//调用获取值
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        Object value <span style="color:#f92672">=</span> Ognl<span style="color:#f92672">.</span><span style="color:#a6e22e">getValue</span><span style="color:#f92672">(</span>ognl<span style="color:#f92672">,</span> context<span style="color:#f92672">,</span> context<span style="color:#f92672">.</span><span style="color:#a6e22e">getRoot</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span>value<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>我们不加<code>#</code>也是会报错的</p>
+<p><img src="https://gkjzjh146.github.io/OGNL%E8%A1%A8%E8%BE%BE%E5%BC%8F.assets/image-20230905141941789.png" alt="image-20230905141941789"></p>
+<p>因为它不是根对象</p>
+<p><strong>用于创建Map</strong></p>
+<pre tabindex="0"><code>#{&#34;name&#34;: &#34;gkjzjh146&#34;, &#34;level&#34;: &#34;caicai&#34;}
+</code></pre><p><strong>用于定义变量</strong></p>
+<p>一开始的例子<code>#a=new java.lang.String(&quot;calc&quot;)</code>，定义了一个字符串常量</p>
+<h3 id="操作符-3">%操作符</h3>
+<p><code>%</code>符号的用途是在标志的属性为字符串类型时，告诉执行环境%{}里的是OGNL表达式并计算表达式的值。</p>
+<pre tabindex="0"><code>%{hacker.name}
+</code></pre><h3 id="操作符-4">$操作符</h3>
+<p><code>$</code>在配置文件中引用OGNL表达式。</p>
+<pre tabindex="0"><code>${name}
+</code></pre><h3 id="集合表达式">集合表达式</h3>
+<p><strong><code>new</code>创建实例：</strong></p>
+<pre tabindex="0"><code>new java.lang.String(&#34;testnew&#34;)
+</code></pre><p><strong><code>{}</code>和<code>[]</code>的用法：</strong></p>
+<p>在OGNL中，可以用<code>{}</code>或者它的组合来创建列表、数组和map，<code>[]</code>可以获取下标元素。</p>
+<p>创建list：<code>{value1,value2...}</code></p>
+<pre tabindex="0"><code>{1,3,5}[1]
+</code></pre><p>创建数组：<code>new type[]{value1,value2...}</code></p>
+<pre tabindex="0"><code>new int[]{1,3,5}[0]
+</code></pre><p>创建map：<code>#{key:value,key1:value1...}</code></p>
+<pre tabindex="0"><code>#{&#34;name&#34;:&#34;xiaoming&#34;,&#34;school&#34;:&#34;tsinghua&#34;}[&#34;school&#34;]
+</code></pre><h2 id="投影与选择">投影与选择</h2>
+<p>**投影：**选出集合当中的相同属性组合成一个新的集合。语法为 collection.{XXX}，XXX 就是集合中每个元素的公共属性。
+**选择：**选择就是选择出集合当中符合条件的元素组合成新的集合。语法为 collection.{Y XXX}，其中 Y 是一个选择操作符，XXX 是选择用的逻辑表达式。选择操作符有 3 种：
+**? ：**选择满足条件的所有元素
+**^：**选择满足条件的第一个元素
+**$：**选择满足条件的最后一个元素</p>
+<pre tabindex="0"><code>User p1 = new User(&#34;name1&#34;, 11);
+User p2 = new User(&#34;name2&#34;, 22);
+User p3 = new User(&#34;name3&#34;, 33);
+User p4 = new User(&#34;name4&#34;, 44);
+Map&lt;String, Object&gt; context = new HashMap&lt;String, Object&gt;();
+ArrayList&lt;User&gt; list = new ArrayList&lt;User&gt;();
+list.add(p1);
+list.add(p2);
+list.add(p3);
+list.add(p4);
+context.put(&#34;list&#34;, list);
+System.out.println(Ognl.getValue(&#34;#list.{age}&#34;, context, list));	
+// [11, 22, 33, 44]
+System.out.println(Ognl.getValue(&#34;#list.{age + &#39;-&#39; + name}&#34;, context, list));	
+// [11-name1, 22-name2, 33-name3, 44-name4]
+System.out.println(Ognl.getValue(&#34;#list.{? #this.age &gt; 22}&#34;, context, list));	
+// [User(name=name3, age=33, address=null), User(name=name4, age=44, address=null)]
+System.out.println(Ognl.getValue(&#34;#list.{^ #this.age &gt; 22}&#34;, context, list));	
+// [User(name=name3, age=33, address=null)]
+System.out.println(Ognl.getValue(&#34;#list.{$ #this.age &gt; 22}&#34;, context, list));	
+// [User(name=name4, age=44, address=null)]
+</code></pre><h1 id="ognl命令执行">OGNL命令执行</h1>
+<pre tabindex="0"><code>@java.lang.Runtime@getRuntime().exec(&#34;calc&#34;)
+(new java.lang.ProcessBuilder(new java.lang.String[]{&#34;calc&#34;})).start()
+</code></pre><h2 id="ognl低版本273">OGNL低版本（2.7.3）</h2>
+<pre tabindex="0"><code>    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;ognl&lt;/groupId&gt;
+            &lt;artifactId&gt;ognl&lt;/artifactId&gt;
+            &lt;version&gt;2.7.3&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+</code></pre><pre tabindex="0"><code>import ognl.Ognl;
+import ognl.OgnlContext;
+
+
+public class ognlexp {
+
+    public static void main(String[] args) throws Exception {
+
+        // 创建一个 OGNL 上下文对象.
+        OgnlContext ognlContext = new OgnlContext();
+
+        // 触发 getValue.
+        Ognl.getValue(&#34;@java.lang.Runtime@getRuntime().exec(&#39;calc&#39;)&#34;, ognlContext, ognlContext.getRoot());
+
+        // 触发 setValue.
+        //Ognl.setValue(Runtime.getRuntime().exec(&#34;calc&#34;), ognlContext, ognlContext.getRoot());
+    }
+}
+</code></pre><p>下面调试分析</p>
+<pre tabindex="0"><code>Ognl.getValue(&#34;@java.lang.Runtime@getRuntime().exec(\&#34;calc\&#34;)&#34;, context, context.getRoot());
+</code></pre><p>Ognl.getValue()处理表达式时，会先生成一个tree，这个tree本质是SimpleNode实例，树的每个节点都是一个ASTChain实例，ASTChain继承自SimpleNode。</p>
+<p><img src="https://gkjzjh146.github.io/OGNL%E8%A1%A8%E8%BE%BE%E5%BC%8F.assets/image-20230905144428968.png" alt="image-20230905144428968"></p>
+<p>当调用<code>node.getValue(ognlContext, root);</code>时，会调用<code>SimpleNode.getValue()</code>进行处理，<code>SimpleNode.getValue()</code>会通过<code>SimpleNode.evaluateGetValueBody()</code>计算结果</p>
+<p><img src="https://gkjzjh146.github.io/OGNL%E8%A1%A8%E8%BE%BE%E5%BC%8F.assets/image-20230905144512943.png" alt="image-20230905144512943"></p>
+<p><img src="https://gkjzjh146.github.io/OGNL%E8%A1%A8%E8%BE%BE%E5%BC%8F.assets/image-20230905144556977.png" alt="image-20230905144556977"></p>
+<p><code>SimpleNode.evaluateGetValueBody()</code>在计算非常量情况的结果时会调用子类的getValueBody，Ognl在处理节点时分为多种情况进行处理：ASTChain、ASTConst、ASTCtor、ASTInstanceof、ASTList、ASTMethod、ASTStaticField、ASTStaticMethod等。</p>
+<p><img src="https://gkjzjh146.github.io/OGNL%E8%A1%A8%E8%BE%BE%E5%BC%8F.assets/image-20230905145016708.png" alt="image-20230905145016708"></p>
+<p>首先这里最开始是一个ASTChain <code>@java.lang.Runtime@getRuntime().exec(&quot;calc&quot;)</code>，<code>ASTChain.getValueBody()</code>在处理时，会迭代调用getValue处理子节点的结果，最终还是会调用ASTXXX方法处理节点的结果。</p>
+<p><img src="https://gkjzjh146.github.io/OGNL%E8%A1%A8%E8%BE%BE%E5%BC%8F.assets/image-20230905145214592.png" alt="image-20230905145214592"></p>
+<pre tabindex="0"><code>protected Object getValueBody(OgnlContext context, Object source) throws OgnlException {
+    Object result = source;
+    int i = 0;
+    // 迭代处理字子节点的结果
+    for(int ilast = this._children.length - 1; i &lt;= ilast; ++i) {
+        boolean handled = false;
+        ......
+        if (!handled) {
+            // 调用子节点的getValue方法处理
+            result = this._children[i].getValue(context, result);
+        }
+    }
+
+    return result;
+}
+</code></pre><p>当Ognl计算<code>@java.lang.Runtime@getRuntime()</code>时，由于方法是静态方法会调用<code>ASTStaticMethod.getValueBody</code>。<code>ASTStaticMethod.getValueBody</code>通过<code>OgnlRuntime.callStaticMethod</code>处理方法的调用。</p>
+<p><img src="https://gkjzjh146.github.io/OGNL%E8%A1%A8%E8%BE%BE%E5%BC%8F.assets/image-20230905145556007.png" alt="image-20230905145556007"></p>
+<p>通过<code>OgnlRuntime.callAppropriateMethod()</code>处理方法调用，最终会调用<code>Method.invoke()</code>进行方法调用并返回值。</p>
+<p>调用栈：</p>
+<pre tabindex="0"><code>getValueBody:92, ASTMethod (ognl)
+evaluateGetValueBody:212, SimpleNode (ognl)
+getValue:258, SimpleNode (ognl)
+getValueBody:141, ASTChain (ognl)
+evaluateGetValueBody:212, SimpleNode (ognl)
+getValue:258, SimpleNode (ognl)
+getValue:494, Ognl (ognl)
+getValue:596, Ognl (ognl)
+getValue:566, Ognl (ognl)
+main:13, ognlexp
+</code></pre><h2 id="ognl-3218测试">Ognl 3.2.18测试</h2>
+<p>Ognl&gt;=3.1.25、Ognl&gt;=3.2.12配置了黑名单检测，会导致上面的实验失败，提示<code>cannot be called from within OGNL invokeMethod() under stricter invocation mode</code>，在使用StricterInvocation模式下不允许执行<code>java.lang.Runtime.getRuntime()</code>。</p>
+<p>对比上面2.7.3版本，在<code>OgnlRuntime.invokeMethod</code>中，添加了黑名单判断，当命中黑名单会出现报错：<code>ClassResolver</code>、<code>MethodAccessor</code>、<code>MemberAccess</code>、<code>OgnlContext</code>、<code>Runtime</code>、<code>ClassLoader</code>、<code>ProcessBuilder</code>等。</p>
+<pre tabindex="0"><code>public static Object invokeMethod(Object target, Method method, Object[] argsArray) throws InvocationTargetException, IllegalAccessException {
+    if (_useStricterInvocation) {
+        Class methodDeclaringClass = method.getDeclaringClass();
+        if (AO_SETACCESSIBLE_REF != null &amp;&amp; AO_SETACCESSIBLE_REF.equals(method) || AO_SETACCESSIBLE_ARR_REF != null &amp;&amp; AO_SETACCESSIBLE_ARR_REF.equals(method) || SYS_EXIT_REF != null &amp;&amp; SYS_EXIT_REF.equals(method) || SYS_CONSOLE_REF != null &amp;&amp; SYS_CONSOLE_REF.equals(method) || AccessibleObjectHandler.class.isAssignableFrom(methodDeclaringClass) || ClassResolver.class.isAssignableFrom(methodDeclaringClass) || MethodAccessor.class.isAssignableFrom(methodDeclaringClass) || MemberAccess.class.isAssignableFrom(methodDeclaringClass) || OgnlContext.class.isAssignableFrom(methodDeclaringClass) || Runtime.class.isAssignableFrom(methodDeclaringClass) || ClassLoader.class.isAssignableFrom(methodDeclaringClass) || ProcessBuilder.class.isAssignableFrom(methodDeclaringClass) || AccessibleObjectHandlerJDK9Plus.unsafeOrDescendant(methodDeclaringClass)) {
+            throw new IllegalAccessException(&#34;Method [&#34; + method + &#34;] cannot be called from within OGNL invokeMethod() &#34; + &#34;under stricter invocation mode.&#34;);
+        }
+    }
+
+    ......
+        result = invokeMethodInsideSandbox(target, method, argsArray);
+    }
+
+    return result;
+}
+</code></pre>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/ognl/">OGNL</a>
+
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://gkjzjh146.github.io/post/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/" data-tooltip="kerberos域渗透学习（一）" aria-label="上一篇: kerberos域渗透学习（一）">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gkjzjh146.github.io/post/ognl%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://gkjzjh146.github.io/post/ognl%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://gkjzjh146.github.io/post/ognl%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/gkjzjh146.github.io\/post\/ognl%E8%A1%A8%E8%BE%BE%E5%BC%8F\/';
+        
+          this.page.identifier = '\/post\/ognl%E8%A1%A8%E8%BE%BE%E5%BC%8F\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'hugo-tranquilpeak-theme';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 gkjzjh146. All Rights Reserved
+  </span>
+    <br>
+    
+    <div class="busuanzi-footer">
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+        <span id="busuanzi_container_site_uv">
+    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
+    </div></footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://gkjzjh146.github.io/post/kerberos%E5%9F%9F%E6%B8%97%E9%80%8F%E5%AD%A6%E4%B9%A0/" data-tooltip="kerberos域渗透学习（一）" aria-label="上一篇: kerberos域渗透学习（一）">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gkjzjh146.github.io/post/ognl%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://gkjzjh146.github.io/post/ognl%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://gkjzjh146.github.io/post/ognl%E8%A1%A8%E8%BE%BE%E5%BC%8F/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2Fognl%25E8%25A1%25A8%25E8%25BE%25BE%25E5%25BC%258F%2F" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2Fognl%25E8%25A1%25A8%25E8%25BE%25BE%25E5%25BC%258F%2F" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2Fognl%25E8%25A1%25A8%25E8%25BE%25BE%25E5%25BC%258F%2F" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>分享到 Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">gkjzjh146</h4>
+    
+      <div id="about-card-bio">会点web，会点misc</div>
+    
+    
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://gkjzjh146.github.io/images/3.jpeg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://gkjzjh146.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+
