@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/gkjzjh146.github.io\/",
+  "author": {
+    "@type": "Person",
+    "name": "gkjzjh146",
+    
+    "image": "https://gkjzjh146.github.io/images/1.jpg"
+    
+  },
+  "name":"gkjzjh146",
+  "description":"",
+  "url":"https:\/\/gkjzjh146.github.io\/post\/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96\/",
+  "keywords":"[shiro]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.115.4 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="gkjzjh146">
+<meta name="keywords" content="shiro">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Shiro-550反序列化">
+<meta name="twitter:title" content="Shiro-550反序列化">
+<meta property="og:url" content="https://gkjzjh146.github.io/post/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+<meta property="twitter:url" content="https://gkjzjh146.github.io/post/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+<meta property="og:site_name" content="gkjzjh146">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2023-09-19T13:40:05">
+  
+  
+    <meta property="article:modified_time" content="2023-09-19T13:40:05">
+  
+  
+  
+    
+      <meta property="article:section" content="代码审计">
+    
+  
+  
+    
+      <meta property="article:tag" content="java">
+    
+      <meta property="article:tag" content="代码审计">
+    
+      <meta property="article:tag" content="反序列化">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/images/1.jpg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/images/1.jpg">
+
+
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/22.jpeg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/22.jpeg">
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/20.jpeg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/20.jpeg">
+
+
+    <title>Shiro-550反序列化</title>
+
+    <link rel="icon" href="https://gkjzjh146.github.io/images/1.jpg">
+    
+
+    
+
+    <link rel="canonical" href="https://gkjzjh146.github.io/post/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://gkjzjh146.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://gkjzjh146.github.io/" aria-label="去首页">gkjzjh146</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://gkjzjh146.github.io/#about" aria-label="打开链接: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://gkjzjh146.github.io/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">gkjzjh146</h4>
+        
+          <h5 class="sidebar-profile-bio">会点web，会点misc</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('/22.jpeg')"
+       data-behavior="4">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title">
+      Shiro-550反序列化
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2023-09-19T13:40:05&#43;08:00">
+        
+  九月 19, 2023
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://gkjzjh146.github.io/categories/%e4%bb%a3%e7%a0%81%e5%ae%a1%e8%ae%a1">代码审计</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="4"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <h1 id="table-of-contents">目录</h1>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#参考">参考</a></li>
+    <li><a href="#简介">简介</a></li>
+    <li><a href="#环境搭建">环境搭建</a></li>
+    <li><a href="#分析">分析</a>
+      <ul>
+        <li><a href="#加密">加密</a></li>
+        <li><a href="#解密">解密</a></li>
+      </ul>
+    </li>
+    <li><a href="#编写poc">编写poc</a></li>
+  </ul>
+</nav>
+
+<h1 id="参考">参考</h1>
+<p><a href="https://www.cnblogs.com/h0cksr/p/16189761.html">Java反序列化(六) | Shiroの起始篇(环境搭建+原理分析) - h0cksr - 博客园 (cnblogs.com)</a></p>
+<p><a href="https://blog.csdn.net/god_zzZ/article/details/108391075">Shiro 550 反序列化漏洞 详细分析+poc编写_shiro550原理_god_Zeo的博客-CSDN博客</a></p>
+<h1 id="简介">简介</h1>
+<p>通过在cookie的rememberMe字段中插入恶意payload，</p>
+<p>触发shiro框架的rememberMe的反序列化功能，导致任意代码执行。</p>
+<p>shiro 1.2.24中，提供了硬编码的AES密钥：kPH+bIxk5D2deZiIxcaaaA==</p>
+<p>由于开发人员未修改AES密钥而直接使用Shiro框架，导致了该问题</p>
+<h1 id="环境搭建">环境搭建</h1>
+<p><a href="https://codeload.github.com/apache/shiro/zip/shiro-root-1.2.4">https://codeload.github.com/apache/shiro/zip/shiro-root-1.2.4</a></p>
+<p>直接用这个项目</p>
+<p>用tomcat起一下就可以了</p>
+<h1 id="分析">分析</h1>
+<h2 id="加密">加密</h2>
+<p>找到加密的地方</p>
+<pre tabindex="0"><code>/shiro-core-1.2.4.jar!/org/apache/shiro/mgt/AbstractRememberMeManager.class
+</code></pre><p><img src="https://gkjzjh146.github.io/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.assets/image-20230920205848291.png" alt="image-20230920205848291"></p>
+<p>这里是继承了RememberMeManager类，那么我们向上看</p>
+<p><img src="https://gkjzjh146.github.io/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.assets/image-20230920210118823.png" alt="image-20230920210118823"></p>
+<p>这里看到onSuccessfulLogin函数，这里是登录成功的处理</p>
+<p>这里下个断点调试一下</p>
+<p><img src="https://gkjzjh146.github.io/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.assets/image-20230920211615454.png" alt="image-20230920211615454"></p>
+<p>下面进入forgetIdentity函数，这里处理request和response请求，继续跟进forgetIdentity函数</p>
+<p><img src="https://gkjzjh146.github.io/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.assets/image-20230920211753637.png" alt="image-20230920211753637"></p>
+<p>进入了getCookie的removeFrom方法，跟进removeFrom方法</p>
+<p><img src="https://gkjzjh146.github.io/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.assets/image-20230920211824406.png" alt="image-20230920211824406"></p>
+<p>里获取看配置信息，最后addCookieHeader放到了返回包中的cookie头中，其中就有我们熟悉的，deleteMe字段和rememberMe字段，也就是我们指纹识别最简单的两种方法的原理</p>
+<p><img src="https://gkjzjh146.github.io/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.assets/image-20230920211907307.png" alt="image-20230920211907307"></p>
+<p>然后就回到了onSuccessfulLogin函数</p>
+<p><img src="https://gkjzjh146.github.io/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.assets/image-20230920212047529.png" alt="image-20230920212047529"></p>
+<p>这个isRememberMe主要是检查选择了remember me这个按钮没有，随后步入 rememberIdentity 方法</p>
+<p><img src="https://gkjzjh146.github.io/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.assets/image-20230920212151175.png" alt="image-20230920212151175"></p>
+<p>这里authcInfo是root，继续往下走</p>
+<p><img src="https://gkjzjh146.github.io/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.assets/image-20230920212420169.png" alt="image-20230920212420169"></p>
+<p>进入rememberIdentity方法后发现，一个函数就是转化为bytes，跟进convertPrincipalsToBytes</p>
+<p><img src="https://gkjzjh146.github.io/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.assets/image-20230920212505798.png" alt="image-20230920212505798"></p>
+<p>这里是有序列化的，序列化的是传入的root用户名</p>
+<p><img src="https://gkjzjh146.github.io/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.assets/image-20230920221037667.png" alt="image-20230920221037667"></p>
+<p>再看到encrypt函数</p>
+<p><img src="https://gkjzjh146.github.io/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.assets/image-20230920221204670.png" alt="image-20230920221204670"></p>
+<p>发现CipherService cipherService = this.getCipherService()，就是获取密码服务的意思</p>
+<p><img src="https://gkjzjh146.github.io/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.assets/image-20230920221335537.png" alt="image-20230920221335537"></p>
+<p>这里看值，发现就是aes加密，AES/CBC/PKCS5Padding</p>
+<p><img src="https://gkjzjh146.github.io/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.assets/image-20230920221455378.png" alt="image-20230920221455378"></p>
+<p>再看getEncryptionCipherKey()，这个就是获取密钥，这个可以一直溯源，最终溯源到 getEncryptionCipherKey 就是开头中的 DEFAULT_CIPHER_KEY_BYTES，也就是我们一开始第一个提到的kPH+bIxk5D2deZiIxcaaaA==这个key</p>
+<p>那么再往下进入cipherService.encrypt函数</p>
+<p><img src="https://gkjzjh146.github.io/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.assets/image-20230920221932162.png" alt="image-20230920221932162"></p>
+<p>这里就是生成初始化向量的地方了，后面就是加密细节，直接跳了</p>
+<p>回到rememberIdentity函数，进入rememberSerializedIdentity</p>
+<p><img src="https://gkjzjh146.github.io/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.assets/image-20230920222301781.png" alt="image-20230920222301781"></p>
+<p>这里的逻辑就是把刚刚加密的base64放在cookie里面</p>
+<h2 id="解密">解密</h2>
+<p>切入点是</p>
+<p>org.apache.shiro.mgt.AbstractRememberMeManager 类的 getRememberedPrincipals，在这里下个断点</p>
+<p><img src="https://gkjzjh146.github.io/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.assets/image-20230920223053545.png" alt="image-20230920223053545"></p>
+<p>这个getRememberedSerializedIdentity方法中 有一个getCookie().readValue(request, response);</p>
+<p><img src="https://gkjzjh146.github.io/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.assets/image-20230920223554207.png" alt="image-20230920223554207"></p>
+<p>这里是要读取cookie中的数据，这里跟进去</p>
+<p><img src="https://gkjzjh146.github.io/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.assets/image-20230920223841271.png" alt="image-20230920223841271"></p>
+<p>一直往下跟可以看到decrypt，然后return回来，可以看到deserialize，往下走还可以看到readobject</p>
+<p><img src="https://gkjzjh146.github.io/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.assets/image-20230920224138930.png" alt="image-20230920224138930"></p>
+<p><img src="https://gkjzjh146.github.io/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96.assets/image-20230920224218856.png" alt="image-20230920224218856"></p>
+<h1 id="编写poc">编写poc</h1>
+<pre tabindex="0"><code>命令=&gt;序列化=&gt;AES加密=&gt;base64编码=&gt;RememberMe Cookie值
+</code></pre><p>一般就结合其它链子打一下</p>
+<p>工具还是挺多的</p>
+<p><a href="https://github.com/insightglacier/Shiro_exploit">https://github.com/insightglacier/Shiro_exploit</a></p>
+<p><a href="https://github.com/SummerSec/ShiroAttack2">SummerSec/ShiroAttack2: shiro反序列化漏洞综合利用,包含（回显执行命令/注入内存马）修复原版中NoCC的问题 https://github.com/j1anFen/shiro_attack</a></p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/java/">java</a>
+
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/">代码审计</a>
+
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">反序列化</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://gkjzjh146.github.io/post/2023%E8%93%9D%E5%B8%BD%E5%8D%8A%E5%86%B3%E8%B5%9B%E5%8F%96%E8%AF%81misc/" data-tooltip="【2023蓝帽半决赛】取证&amp;MISC" aria-label="上一篇: 【2023蓝帽半决赛】取证&amp;MISC">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gkjzjh146.github.io/post/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://gkjzjh146.github.io/post/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://gkjzjh146.github.io/post/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/gkjzjh146.github.io\/post\/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96\/';
+        
+          this.page.identifier = '\/post\/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'hugo-tranquilpeak-theme';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 gkjzjh146. All Rights Reserved
+  </span>
+    <br>
+    
+    <div class="busuanzi-footer">
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+        <span id="busuanzi_container_site_uv">
+    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
+    </div></footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://gkjzjh146.github.io/post/2023%E8%93%9D%E5%B8%BD%E5%8D%8A%E5%86%B3%E8%B5%9B%E5%8F%96%E8%AF%81misc/" data-tooltip="【2023蓝帽半决赛】取证&amp;MISC" aria-label="上一篇: 【2023蓝帽半决赛】取证&amp;MISC">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gkjzjh146.github.io/post/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://gkjzjh146.github.io/post/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://gkjzjh146.github.io/post/shiro-550%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2Fshiro-550%25E5%258F%258D%25E5%25BA%258F%25E5%2588%2597%25E5%258C%2596%2F" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2Fshiro-550%25E5%258F%258D%25E5%25BA%258F%25E5%2588%2597%25E5%258C%2596%2F" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2Fshiro-550%25E5%258F%258D%25E5%25BA%258F%25E5%2588%2597%25E5%258C%2596%2F" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>分享到 Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">gkjzjh146</h4>
+    
+      <div id="about-card-bio">会点web，会点misc</div>
+    
+    
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://gkjzjh146.github.io/images/3.jpeg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://gkjzjh146.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+
